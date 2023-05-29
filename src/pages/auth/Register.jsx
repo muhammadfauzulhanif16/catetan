@@ -5,7 +5,7 @@ import { Button, SimpleGrid } from '@chakra-ui/react'
 
 export const Register = () => (
   <Layout
-    title="Register a new account"
+    title="Register an account"
     flexProps={{
       alignItems: 'center',
       justifyContent: 'center'
@@ -22,7 +22,7 @@ export const Register = () => (
       <FormControl type="password" label="Confirm Password" helperText="" />
 
       <Button w="full" colorScheme="yellow">
-        Register new account
+        Register account
       </Button>
     </SimpleGrid>
   </Layout>
