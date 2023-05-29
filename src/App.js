@@ -1,10 +1,26 @@
 import React from 'react'
-import { ChakraProvider, theme } from '@chakra-ui/react'
+import { ChakraProvider, extendTheme } from '@chakra-ui/react'
 import { Register } from './pages/auth/Register'
+import { mode } from '@chakra-ui/theme-tools'
 
 // import { ColorModeSwitcher } from './ColorModeSwitcher'
 
 export const App = () => {
+  const theme = extendTheme({
+    fonts: {
+      body: 'Josefin Sans',
+      heading: 'Josefin Sans'
+    },
+    styles: {
+      global: props => ({
+        body: {
+          color: mode('gray.500', 'gray.300')(props),
+          bg: mode('white', 'gray.900')(props)
+        }
+      })
+    }
+  })
+
   return (
     <ChakraProvider theme={theme}>
       <Register />
