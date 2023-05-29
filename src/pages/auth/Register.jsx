@@ -1,16 +1,17 @@
 import React from 'react'
 import { FormControl } from '../../components/FormControl'
 import { Layout } from '../../components/Layout'
-import { Button, Container } from '@chakra-ui/react'
+import { Button, SimpleGrid } from '@chakra-ui/react'
 
 export const Register = () => (
   <Layout
     title="Register a new account"
     flexProps={{
-      alignItems: 'center'
+      alignItems: 'center',
+      justifyContent: 'center'
     }}
   >
-    <Container>
+    <SimpleGrid gap={4} columns={[1, 2]}>
       <FormControl type="text" label="Full Name" helperText="" />
       <FormControl type="email" label="Email" helperText="" />
       <FormControl
@@ -23,6 +24,6 @@ export const Register = () => (
       <Button w="full" colorScheme="yellow">
         Register new account
       </Button>
-    </Container>
+    </SimpleGrid>
   </Layout>
 )
