@@ -34,7 +34,7 @@ export const Register = () => (
       />
       <FormControl type='password' label='Confirm Password' helperText='' />
 
-      <Button w='full' colorScheme='yellow'>
+      <Button w='full' bgColor='yellow.300' color='gray.600'>
         Register account
       </Button>
     </GridItem>
