@@ -1,7 +1,7 @@
 import React from 'react'
 import { FormControl } from '../../components/FormControl'
 import { Layout } from '../../components/Layout'
-import { Button, GridItem, Link } from '@chakra-ui/react'
+import { Button, Flex, GridItem, Link } from '@chakra-ui/react'
 import {
   LockClosed,
   LockOpen,
@@ -17,9 +17,11 @@ import {
 import { Icon } from '../../components/Icon'
 import { useForm } from '../../utils/hooks'
 import { Logo } from '../../components/Logo'
+import { Language } from '../../components/Language'
+import { Theme } from '../../components/Theme'
 
 export const Register = () => {
-  const [fullName, onFullNameChange] = useForm('')
+  const [fullName, onFullNameChange, isInValidFullName] = useForm('')
   const [email, onEmailChange] = useForm('')
   const [password, onPasswordChange] = useForm('')
   const [confirmPassword, onConfirmPasswordChange] = useForm('')
@@ -48,6 +50,13 @@ export const Register = () => {
         justifyContent='center'
         gap={4}
       >
+        <GridItem colSpan={[1, 2]}>
+          <Flex gap={4}>
+            <Language />
+            <Theme />
+          </Flex>
+        </GridItem>
+
         <GridItem
           colSpan={[1, 2]}
           mb={4}
@@ -60,7 +69,8 @@ export const Register = () => {
         <FormControl
           formControlProps={{
             isRequired: true,
-            role: 'group'
+            role: 'group',
+            _invalid: { isInvalid: isInValidFullName }
           }}
           inputLeftElement={
             <Icon
