@@ -4,7 +4,14 @@ import { Helmet } from 'react-helmet-async'
 import { Box } from '@chakra-ui/react'
 
 export const Layout = ({ children, title, boxProps }) => (
-  <Box {...boxProps} bgColor='gray.50' pos='fixed' h='100vh' w='100vw'>
+  <Box
+    {...boxProps}
+    bgColor='gray.50'
+    pos='fixed'
+    h='100vh'
+    w='100vw'
+    userSelect='none'
+  >
     <Helmet>
       <title>{`${title} | Catetan`}</title>
     </Helmet>
