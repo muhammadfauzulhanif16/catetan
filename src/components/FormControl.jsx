@@ -4,6 +4,9 @@ import {
   FormHelperText,
   FormLabel,
   Input,
+  InputGroup,
+  InputLeftElement,
+  InputRightElement,
   Radio,
   RadioGroup,
   Select,
@@ -20,44 +23,47 @@ export const FormControl = ({
   radioGroupProps,
   stackProps,
   textareaProps,
-  selectProps,
   label,
   type,
   options,
+  inputLeftElement,
+  inputRightElement,
   helperText
 }) => (
   <FormControlChakra {...formControlProps}>
     <FormLabel {...formLabelProps}>{label}</FormLabel>
 
-    {type === 'radio'
-      ? (
+    {type === 'radio' ? (
       <RadioGroup {...radioGroupProps}>
         <Stack {...stackProps}>
-          {options.map(({ value, name }, id) => (
-            <Radio key={id} value={value}>
-              {name}
-            </Radio>
+          {options.map(({ name }, id) => (
+            <Radio key={id}>{name}</Radio>
           ))}
         </Stack>
       </RadioGroup>
-        )
-      : type === 'textarea'
-        ? (
-      <Textarea {...textareaProps} bgColor="white" />
-          )
-        : type === 'select'
-          ? (
-      <Select {...selectProps}>
-        {options.map(({ value, name }, id) => (
-          <option key={id} value={value}>
-            {name}
-          </option>
+    ) : null}
+
+    {type === 'textarea' ?? <Textarea {...textareaProps} bgColor='white' />}
+
+    {type === 'select' ? (
+      <Select>
+        {options.map(({ name }, id) => (
+          <option key={id}>{name}</option>
         ))}
       </Select>
-            )
-          : (
-      <Input type={type} {...inputProps} bgColor="white" />
-            )}
+    ) : null}
+
+    {type !== 'radio' || type !== 'textarea' || type !== 'select' ? (
+      <InputGroup>
+        <InputLeftElement pointerEvents='none'>
+          {inputLeftElement}
+        </InputLeftElement>
+        <Input type={type} {...inputProps} bgColor='white' />
+        <InputRightElement pointerEvents='none'>
+          {inputRightElement}
+        </InputRightElement>
+      </InputGroup>
+    ) : null}
 
     <FormHelperText {...formHelperTextProps}>{helperText}</FormHelperText>
   </FormControlChakra>
@@ -71,9 +77,10 @@ FormControl.propTypes = {
   radioGroupProps: PropTypes.object,
   stackProps: PropTypes.object,
   textareaProps: PropTypes.object,
-  selectProps: PropTypes.object,
   label: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   options: PropTypes.arrayOf(PropTypes.object),
+  inputLeftElement: PropTypes.any,
+  inputRightElement: PropTypes.elementType,
   helperText: PropTypes.string.isRequired
 }
