@@ -16,6 +16,7 @@ import {
 } from '@emotion-icons/fluentui-system-filled'
 import { Icon } from '../../components/Icon'
 import { useForm } from '../../utils/hooks'
+import { Logo } from '../../components/Logo'
 
 export const Register = () => {
   const [fullName, onFullNameChange] = useForm('')
@@ -47,6 +48,15 @@ export const Register = () => {
         justifyContent='center'
         gap={4}
       >
+        <GridItem
+          colSpan={[1, 2]}
+          mb={4}
+          display='flex'
+          justifyContent='center'
+        >
+          <Logo />
+        </GridItem>
+
         <FormControl
           formControlProps={{
             isRequired: true,
