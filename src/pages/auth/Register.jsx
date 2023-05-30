@@ -21,7 +21,7 @@ import { Language } from '../../components/Language'
 import { Theme } from '../../components/Theme'
 
 export const Register = () => {
-  const [fullName, onFullNameChange, isInValidFullName] = useForm('')
+  const [fullName, onFullNameChange] = useForm('')
   const [email, onEmailChange] = useForm('')
   const [password, onPasswordChange] = useForm('')
   const [confirmPassword, onConfirmPasswordChange] = useForm('')
@@ -69,8 +69,7 @@ export const Register = () => {
         <FormControl
           formControlProps={{
             isRequired: true,
-            role: 'group',
-            _invalid: { isInvalid: isInValidFullName }
+            role: 'group'
           }}
           inputLeftElement={
             <Icon
@@ -159,7 +158,7 @@ export const Register = () => {
           }
           type='password'
           label='Confirm Password'
-          helperText=''
+          helperText='Password confirmation must match'
           inputProps={{
             placeholder: 'Enter your confirm password',
             value: confirmPassword,
