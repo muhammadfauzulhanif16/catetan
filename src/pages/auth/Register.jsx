@@ -1,29 +1,42 @@
 import React from 'react'
 import { FormControl } from '../../components/FormControl'
 import { Layout } from '../../components/Layout'
-import { Button, SimpleGrid } from '@chakra-ui/react'
+import { Button, GridItem } from '@chakra-ui/react'
 
 export const Register = () => (
   <Layout
-    title="Register an account"
-    flexProps={{
-      alignItems: 'center',
-      justifyContent: 'center'
+    title='Register an account'
+    boxProps={{
+      display: 'grid',
+      gridTemplateColumns: [
+        'repeat(1, 1fr)',
+        'repeat(5, 1fr)',
+        'repeat(4, 1fr)'
+      ],
+      p: [4, 0]
     }}
   >
-    <SimpleGrid gap={4} columns={[1, 2]}>
-      <FormControl type="text" label="Full Name" helperText="" />
-      <FormControl type="email" label="Email" helperText="" />
+    <GridItem
+      colStart={[1, 2, 2]}
+      colSpan={[1, 3, 2]}
+      display='flex'
+      alignItems='center'
+      justifyContent='center'
+      flexDirection='column'
+      gap={4}
+    >
+      <FormControl type='text' label='Full Name' helperText='' />
+      <FormControl type='email' label='Email' helperText='' />
       <FormControl
-        type="password"
-        label="Password"
-        helperText="Minimum 8 characters"
+        type='password'
+        label='Password'
+        helperText='Minimum 8 characters'
       />
-      <FormControl type="password" label="Confirm Password" helperText="" />
+      <FormControl type='password' label='Confirm Password' helperText='' />
 
-      <Button w="full" colorScheme="yellow">
+      <Button w='full' colorScheme='yellow'>
         Register account
       </Button>
-    </SimpleGrid>
+    </GridItem>
   </Layout>
 )
