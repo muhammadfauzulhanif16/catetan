@@ -12,9 +12,9 @@ export const App = () => {
       heading: 'Josefin Sans'
     },
     styles: {
-      global: props => ({
+      global: (props) => ({
         body: {
-          color: mode('gray.500', 'gray.300')(props),
+          color: mode('gray.500', 'gray.400')(props),
           bg: mode('white', 'gray.900')(props)
         }
       })
