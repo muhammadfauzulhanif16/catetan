@@ -190,6 +190,10 @@ export const Register = () => {
             Create account
           </Button>
         </GridItem>
+
+        <GridItem colSpan={[1, 2]} mt={4} color='gray.400' textAlign='center'>
+          Proudly made by Muhammad Fauzul Hanif. All right reserved
+        </GridItem>
       </GridItem>
     </Layout>
   )
