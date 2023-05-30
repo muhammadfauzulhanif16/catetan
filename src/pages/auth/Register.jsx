@@ -1,7 +1,7 @@
 import React from 'react'
 import { FormControl } from '../../components/FormControl'
 import { Layout } from '../../components/Layout'
-import { Button, GridItem } from '@chakra-ui/react'
+import { Button, GridItem, Link } from '@chakra-ui/react'
 import {
   LockClosed,
   LockOpen,
@@ -192,7 +192,15 @@ export const Register = () => {
         </GridItem>
 
         <GridItem colSpan={[1, 2]} mt={4} color='gray.400' textAlign='center'>
-          Proudly made by Muhammad Fauzul Hanif. All right reserved
+          Proudly made by{' '}
+          <Link
+            color='purple.500'
+            href='https://github.com/muhammadfauzulhanif16'
+            isExternal
+          >
+            Muhammad Fauzul Hanif
+          </Link>
+          . All right reserved
         </GridItem>
       </GridItem>
     </Layout>
