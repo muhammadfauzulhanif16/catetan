@@ -4,6 +4,7 @@ import { Layout } from '../../components/Layout'
 import { Button, GridItem } from '@chakra-ui/react'
 import {
   LockClosed,
+  LockOpen,
   Mail as MailRegular,
   Password as PasswordRegular,
   Person as PersonRegular
@@ -150,15 +151,25 @@ export const Register = () => {
           <Button
             colSpan={2}
             leftIcon={
-              <Icon
-                initIcon={LockClosed}
-                iconProps={{
-                  w: 6,
-                  h: 6
-                }}
-              />
+              !fullName || !email || !password || !confirmPassword ? (
+                <Icon
+                  initIcon={LockClosed}
+                  iconProps={{
+                    w: 6,
+                    h: 6
+                  }}
+                />
+              ) : (
+                <Icon
+                  initIcon={LockOpen}
+                  iconProps={{
+                    w: 6,
+                    h: 6
+                  }}
+                />
+              )
             }
-            isDisabled
+            isDisabled={!fullName || !email || !password || !confirmPassword}
             w='full'
             bgColor='yellow.300'
             color='gray.600'
