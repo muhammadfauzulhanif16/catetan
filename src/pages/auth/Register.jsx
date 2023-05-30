@@ -14,129 +14,162 @@ import {
   Person as PersonFilled
 } from '@emotion-icons/fluentui-system-filled'
 import { Icon } from '../../components/Icon'
+import { useForm } from '../../utils/hooks'
 
-export const Register = () => (
-  <Layout
-    title='Register an account'
-    boxProps={{
-      display: 'grid',
-      gridTemplateColumns: [
-        'repeat(1, 1fr)',
-        'repeat(5, 1fr)',
-        'repeat(3, 1fr)'
-      ],
-      p: [4, 0]
-    }}
-  >
-    <GridItem
-      colStart={[1, 2, 2]}
-      colSpan={[1, 3, 1]}
-      display='flex'
-      alignItems='center'
-      justifyContent='center'
-      flexDirection='column'
-      gap={4}
+export const Register = () => {
+  const [fullName, onFullNameChange] = useForm('')
+  const [email, onEmailChange] = useForm('')
+  const [password, onPasswordChange] = useForm('')
+  const [confirmPassword, onConfirmPasswordChange] = useForm('')
+
+  return (
+    <Layout
+      title='Register an account'
+      boxProps={{
+        display: 'grid',
+        gridTemplateColumns: [
+          'repeat(1, 1fr)',
+          'repeat(1, 1fr)',
+          'repeat(5, 1fr)'
+        ],
+        p: [4, 8],
+        alignItems: 'center',
+        justifyContent: 'center'
+      }}
     >
-      <FormControl
-        formControlProps={{
-          isRequired: true,
-          role: 'group'
-        }}
-        inputLeftElement={
-          <Icon
-            initIcon={PersonRegular}
-            finalIcon={PersonFilled}
-            iconProps={{
-              w: 6,
-              h: 6
-            }}
-          />
-        }
-        type='text'
-        label='Full Name'
-        helperText=''
-      />
-
-      <FormControl
-        formControlProps={{
-          isRequired: true,
-          role: 'group'
-        }}
-        inputLeftElement={
-          <Icon
-            initIcon={MailRegular}
-            finalIcon={MailFilled}
-            iconProps={{
-              w: 6,
-              h: 6
-            }}
-          />
-        }
-        type='email'
-        label='Email'
-        helperText=''
-      />
-
-      <FormControl
-        formControlProps={{
-          isRequired: true,
-          role: 'group'
-        }}
-        inputLeftElement={
-          <Icon
-            initIcon={PasswordRegular}
-            finalIcon={PasswordFilled}
-            iconProps={{
-              w: 6,
-              h: 6
-            }}
-          />
-        }
-        type='password'
-        label='Password'
-        helperText='Minimum 8 characters'
-      />
-
-      <FormControl
-        formControlProps={{
-          isRequired: true,
-          role: 'group'
-        }}
-        inputLeftElement={
-          <Icon
-            initIcon={PasswordRegular}
-            finalIcon={PasswordFilled}
-            iconProps={{
-              w: 6,
-              h: 6
-            }}
-          />
-        }
-        type='password'
-        label='Confirm Password'
-        helperText=''
-      />
-
-      <Button
-        leftIcon={
-          <Icon
-            initIcon={LockClosed}
-            iconProps={{
-              w: 6,
-              h: 6
-            }}
-          />
-        }
-        isDisabled
-        w='full'
-        bgColor='yellow.300'
-        color='gray.600'
-        _hover={{
-          bgColor: 'yellow.400'
-        }}
+      <GridItem
+        colStart={[1, 1, 2]}
+        colSpan={[1, 1, 3]}
+        display='grid'
+        gridTemplateColumns={['repeat(1, 1fr)', 'repeat(2, 1fr)']}
+        alignItems='center'
+        justifyContent='center'
+        gap={4}
       >
-        Register account
-      </Button>
-    </GridItem>
-  </Layout>
-)
+        <FormControl
+          formControlProps={{
+            isRequired: true,
+            role: 'group'
+          }}
+          inputLeftElement={
+            <Icon
+              initIcon={PersonRegular}
+              finalIcon={PersonFilled}
+              iconProps={{
+                w: 6,
+                h: 6
+              }}
+            />
+          }
+          type='text'
+          label='Full Name'
+          helperText=''
+          inputProps={{
+            placeholder: 'Enter your full name',
+            value: fullName,
+            onChange: onFullNameChange
+          }}
+        />
+
+        <FormControl
+          formControlProps={{
+            isRequired: true,
+            role: 'group'
+          }}
+          inputLeftElement={
+            <Icon
+              initIcon={MailRegular}
+              finalIcon={MailFilled}
+              iconProps={{
+                w: 6,
+                h: 6
+              }}
+            />
+          }
+          type='email'
+          label='Email'
+          helperText=''
+          inputProps={{
+            placeholder: 'Enter your email',
+            value: email,
+            onChange: onEmailChange
+          }}
+        />
+
+        <FormControl
+          formControlProps={{
+            isRequired: true,
+            role: 'group'
+          }}
+          inputLeftElement={
+            <Icon
+              initIcon={PasswordRegular}
+              finalIcon={PasswordFilled}
+              iconProps={{
+                w: 6,
+                h: 6
+              }}
+            />
+          }
+          type='password'
+          label='Password'
+          helperText='Minimum 8 characters'
+          inputProps={{
+            placeholder: 'Enter your password',
+            value: password,
+            onChange: onPasswordChange
+          }}
+        />
+
+        <FormControl
+          formControlProps={{
+            isRequired: true,
+            role: 'group'
+          }}
+          inputLeftElement={
+            <Icon
+              initIcon={PasswordRegular}
+              finalIcon={PasswordFilled}
+              iconProps={{
+                w: 6,
+                h: 6
+              }}
+            />
+          }
+          type='password'
+          label='Confirm Password'
+          helperText=''
+          inputProps={{
+            placeholder: 'Enter your confirm password',
+            value: confirmPassword,
+            onChange: onConfirmPasswordChange
+          }}
+        />
+
+        <GridItem colSpan={[1, 2]} mt={4}>
+          <Button
+            colSpan={2}
+            leftIcon={
+              <Icon
+                initIcon={LockClosed}
+                iconProps={{
+                  w: 6,
+                  h: 6
+                }}
+              />
+            }
+            isDisabled
+            w='full'
+            bgColor='yellow.300'
+            color='gray.600'
+            _hover={{
+              bgColor: 'yellow.400'
+            }}
+          >
+            Create account
+          </Button>
+        </GridItem>
+      </GridItem>
+    </Layout>
+  )
+}
