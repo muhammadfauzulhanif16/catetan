@@ -39,6 +39,7 @@ export const Register = () => (
     >
       <FormControl
         formControlProps={{
+          isRequired: true,
           role: 'group'
         }}
         inputLeftElement={
@@ -55,8 +56,10 @@ export const Register = () => (
         label='Full Name'
         helperText=''
       />
+
       <FormControl
         formControlProps={{
+          isRequired: true,
           role: 'group'
         }}
         inputLeftElement={
@@ -73,8 +76,10 @@ export const Register = () => (
         label='Email'
         helperText=''
       />
+
       <FormControl
         formControlProps={{
+          isRequired: true,
           role: 'group'
         }}
         inputLeftElement={
@@ -91,8 +96,10 @@ export const Register = () => (
         label='Password'
         helperText='Minimum 8 characters'
       />
+
       <FormControl
         formControlProps={{
+          isRequired: true,
           role: 'group'
         }}
         inputLeftElement={
