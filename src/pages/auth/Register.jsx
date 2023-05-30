@@ -34,7 +34,14 @@ export const Register = () => (
       />
       <FormControl type='password' label='Confirm Password' helperText='' />
 
-      <Button w='full' bgColor='yellow.300' color='gray.600'>
+      <Button
+        w='full'
+        bgColor='yellow.300'
+        color='gray.600'
+        _hover={{
+          bgColor: 'yellow.400'
+        }}
+      >
         Register account
       </Button>
     </GridItem>
