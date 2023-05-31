@@ -5,7 +5,7 @@ import { Icon } from './Icon'
 import PropTypes from 'prop-types'
 
 export const Logo = ({ flexProps }) => (
-  <Flex {...flexProps} alignItems='center' color='yellow.300' gap={4}>
+  <Flex {...flexProps} alignItems='center' color='yellow.300' gap={[3, 6]}>
     <Icon initIcon={Note} iconProps={{ w: 12, h: 12 }} />
 
     <Heading size='lg'>Catetan</Heading>

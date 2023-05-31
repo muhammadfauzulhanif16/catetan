@@ -191,10 +191,18 @@ export const Register = () => {
           Create account
         </Button>
 
-        <Text>Already have an account? Log in</Text>
+        <Text color='gray.600'>
+          Already have an account?{' '}
+          <Link
+            color='yellow.500'
+            href='https://github.com/muhammadfauzulhanif16'
+          >
+            Log in
+          </Link>
+        </Text>
       </Flex>
 
-      <Text textAlign='center' pt={[2, 4, 8]}>
+      <Text textAlign='center' pt={[2, 4, 8]} color='gray.800'>
         Proudly made by{' '}
         <Link
           color='purple.500'

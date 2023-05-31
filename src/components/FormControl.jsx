@@ -31,7 +31,9 @@ export const FormControl = ({
   helperText
 }) => (
   <FormControlChakra {...formControlProps}>
-    <FormLabel {...formLabelProps}>{label}</FormLabel>
+    <FormLabel {...formLabelProps} color='gray.700'>
+      {label}
+    </FormLabel>
 
     {type === 'radio' ? (
       <RadioGroup {...radioGroupProps}>
