@@ -6,9 +6,9 @@ import PropTypes from 'prop-types'
 
 export const Logo = ({ flexProps }) => (
   <Flex {...flexProps} alignItems='center' color='yellow.300' gap={4}>
-    <Icon initIcon={Note} iconProps={{ w: 16, h: 16 }} />
+    <Icon initIcon={Note} iconProps={{ w: 12, h: 12 }} />
 
-    <Heading>Catetan</Heading>
+    <Heading size='lg'>Catetan</Heading>
   </Flex>
 )
 
