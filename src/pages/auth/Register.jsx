@@ -35,193 +35,176 @@ export const Register = () => {
         p: [4, 8, 12]
       }}
     >
-      <>
-        <Flex
-          flex='none'
+      <Flex flex='none' gap={4} justifyContent='flex-end' alignItems='flex-end'>
+        <Flex gap={4}>
+          <Language />
+
+          <Theme />
+        </Flex>
+      </Flex>
+
+      <Flex
+        flexGrow={1}
+        direction='column'
+        gap={4}
+        w={{ base: 'full', md: '80%', lg: '60%' }}
+        m='auto'
+        justifyContent='center'
+        alignItems='center'
+      >
+        <Logo />
+
+        <Grid
+          templateColumns={{ base: 'repeat(1, 1fr)', md: 'repeat(2, 1fr)' }}
           gap={4}
-          justifyContent='flex-end'
-          alignItems='flex-end'
+          w='full'
         >
-          <Flex gap={4}>
-            <Language />
-
-            <Theme />
-          </Flex>
-        </Flex>
-
-        {/* <Container */}
-        {/*  w='full' */}
-        {/*  display='flex' */}
-        {/*  flexGrow={1} */}
-        {/*  flexDirection='column' */}
-        {/*  justifyContent='center' */}
-        {/*  gap={4} */}
-        {/*  m={0} */}
-        {/*  p={0} */}
-        {/*  alignItems='center' */}
-        {/* > */}
-        <Flex
-          flexGrow={1}
-          direction='column'
-          gap={6}
-          w={{ base: 'full', md: '80%', lg: '60%' }}
-          m='auto'
-          justifyContent='center'
-          alignItems='center'
-        >
-          <Logo />
-
-          <Grid
-            templateColumns={{ base: 'repeat(1, 1fr)', md: 'repeat(2, 1fr)' }}
-            gap={4}
-            w='full'
-          >
-            <FormControl
-              formControlProps={{
-                isRequired: true,
-                role: 'group'
-              }}
-              inputLeftElement={
-                <Icon
-                  initIcon={PersonRegular}
-                  finalIcon={PersonFilled}
-                  iconProps={{
-                    w: 6,
-                    h: 6
-                  }}
-                />
-              }
-              type='text'
-              label='Full Name'
-              helperText=''
-              inputProps={{
-                placeholder: 'Enter your full name',
-                value: fullName,
-                onChange: onFullNameChange
-              }}
-            />
-
-            <FormControl
-              formControlProps={{
-                isRequired: true,
-                role: 'group'
-              }}
-              inputLeftElement={
-                <Icon
-                  initIcon={MailRegular}
-                  finalIcon={MailFilled}
-                  iconProps={{
-                    w: 6,
-                    h: 6
-                  }}
-                />
-              }
-              type='email'
-              label='Email'
-              helperText=''
-              inputProps={{
-                placeholder: 'Enter your email',
-                value: email,
-                onChange: onEmailChange
-              }}
-            />
-
-            <FormControl
-              formControlProps={{
-                isRequired: true,
-                role: 'group'
-              }}
-              inputLeftElement={
-                <Icon
-                  initIcon={PasswordRegular}
-                  finalIcon={PasswordFilled}
-                  iconProps={{
-                    w: 6,
-                    h: 6
-                  }}
-                />
-              }
-              type='password'
-              label='Password'
-              helperText='Minimum 8 characters'
-              inputProps={{
-                placeholder: 'Enter your password',
-                value: password,
-                onChange: onPasswordChange
-              }}
-            />
-
-            <FormControl
-              formControlProps={{
-                isRequired: true,
-                role: 'group'
-              }}
-              inputLeftElement={
-                <Icon
-                  initIcon={PasswordRegular}
-                  finalIcon={PasswordFilled}
-                  iconProps={{
-                    w: 6,
-                    h: 6
-                  }}
-                />
-              }
-              type='password'
-              label='Confirm Password'
-              helperText='Password confirmation must match'
-              inputProps={{
-                placeholder: 'Enter your confirm password',
-                value: confirmPassword,
-                onChange: onConfirmPasswordChange
-              }}
-            />
-          </Grid>
-
-          <Button
-            leftIcon={
-              !fullName || !email || !password || !confirmPassword ? (
-                <Icon
-                  initIcon={LockClosed}
-                  iconProps={{
-                    w: 6,
-                    h: 6
-                  }}
-                />
-              ) : (
-                <Icon
-                  initIcon={LockOpen}
-                  iconProps={{
-                    w: 6,
-                    h: 6
-                  }}
-                />
-              )
-            }
-            isDisabled={!fullName || !email || !password || !confirmPassword}
-            w='full'
-            bgColor='yellow.300'
-            color='gray.600'
-            _hover={{
-              bgColor: 'yellow.400'
+          <FormControl
+            formControlProps={{
+              isRequired: true,
+              role: 'group'
             }}
-          >
-            Create account
-          </Button>
-          {/* </Container> */}
-        </Flex>
+            inputLeftElement={
+              <Icon
+                initIcon={PersonRegular}
+                finalIcon={PersonFilled}
+                iconProps={{
+                  w: 6,
+                  h: 6
+                }}
+              />
+            }
+            type='text'
+            label='Full Name'
+            helperText=''
+            inputProps={{
+              placeholder: 'Enter your full name',
+              value: fullName,
+              onChange: onFullNameChange
+            }}
+          />
 
-        <Text textAlign='center' pt={[2, 4, 8]}>
-          Proudly made by{' '}
-          <Link
-            color='purple.500'
-            href='https://github.com/muhammadfauzulhanif16'
-            isExternal
-          >
-            Muhammad Fauzul Hanif
-          </Link>
-          , all right reserved.
-        </Text>
-      </>
+          <FormControl
+            formControlProps={{
+              isRequired: true,
+              role: 'group'
+            }}
+            inputLeftElement={
+              <Icon
+                initIcon={MailRegular}
+                finalIcon={MailFilled}
+                iconProps={{
+                  w: 6,
+                  h: 6
+                }}
+              />
+            }
+            type='email'
+            label='Email'
+            helperText=''
+            inputProps={{
+              placeholder: 'Enter your email',
+              value: email,
+              onChange: onEmailChange
+            }}
+          />
+
+          <FormControl
+            formControlProps={{
+              isRequired: true,
+              role: 'group'
+            }}
+            inputLeftElement={
+              <Icon
+                initIcon={PasswordRegular}
+                finalIcon={PasswordFilled}
+                iconProps={{
+                  w: 6,
+                  h: 6
+                }}
+              />
+            }
+            type='password'
+            label='Password'
+            helperText='Minimum 8 characters'
+            inputProps={{
+              placeholder: 'Enter your password',
+              value: password,
+              onChange: onPasswordChange
+            }}
+          />
+
+          <FormControl
+            formControlProps={{
+              isRequired: true,
+              role: 'group'
+            }}
+            inputLeftElement={
+              <Icon
+                initIcon={PasswordRegular}
+                finalIcon={PasswordFilled}
+                iconProps={{
+                  w: 6,
+                  h: 6
+                }}
+              />
+            }
+            type='password'
+            label='Confirm Password'
+            helperText='Password confirmation must match'
+            inputProps={{
+              placeholder: 'Enter your confirm password',
+              value: confirmPassword,
+              onChange: onConfirmPasswordChange
+            }}
+          />
+        </Grid>
+
+        <Button
+          leftIcon={
+            !fullName || !email || !password || !confirmPassword ? (
+              <Icon
+                initIcon={LockClosed}
+                iconProps={{
+                  w: 6,
+                  h: 6
+                }}
+              />
+            ) : (
+              <Icon
+                initIcon={LockOpen}
+                iconProps={{
+                  w: 6,
+                  h: 6
+                }}
+              />
+            )
+          }
+          isDisabled={!fullName || !email || !password || !confirmPassword}
+          w='full'
+          bgColor='yellow.300'
+          color='gray.600'
+          _hover={{
+            bgColor: 'yellow.400'
+          }}
+        >
+          Create account
+        </Button>
+
+        <Text>Already have an account? Log in</Text>
+      </Flex>
+
+      <Text textAlign='center' pt={[2, 4, 8]}>
+        Proudly made by{' '}
+        <Link
+          color='purple.500'
+          href='https://github.com/muhammadfauzulhanif16'
+          isExternal
+        >
+          Muhammad Fauzul Hanif
+        </Link>
+        , all right reserved.
+      </Text>
     </Layout>
   )
 }
