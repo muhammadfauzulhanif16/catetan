@@ -1,7 +1,9 @@
 import React from 'react'
-import { FormControl } from '../../components/FormControl'
 import { Layout } from '../../components/Layout'
-import { Button, Flex, GridItem, Link } from '@chakra-ui/react'
+import { Button, Container, Flex, Grid, Link } from '@chakra-ui/react'
+import { Language } from '../../components/Language'
+import { Theme } from '../../components/Theme'
+import { FormControl } from '../../components/FormControl'
 import {
   LockClosed,
   LockOpen,
@@ -17,8 +19,6 @@ import {
 import { Icon } from '../../components/Icon'
 import { useForm } from '../../utils/hooks'
 import { Logo } from '../../components/Logo'
-import { Language } from '../../components/Language'
-import { Theme } from '../../components/Theme'
 
 export const Register = () => {
   const [fullName, onFullNameChange] = useForm('')
@@ -30,143 +30,142 @@ export const Register = () => {
     <Layout
       title='Register an account'
       boxProps={{
-        display: 'grid',
-        gridTemplateColumns: [
-          'repeat(1, 1fr)',
-          'repeat(1, 1fr)',
-          'repeat(5, 1fr)'
-        ],
-        p: [4, 8],
-        alignItems: 'center',
-        justifyContent: 'center'
+        display: 'flex',
+        flexDirection: 'column',
+        p: [4, 8, 12]
       }}
     >
-      <GridItem
-        colStart={[1, 1, 2]}
-        colSpan={[1, 1, 3]}
-        display='grid'
-        gridTemplateColumns={['repeat(1, 1fr)', 'repeat(2, 1fr)']}
-        alignItems='center'
-        justifyContent='center'
-        gap={4}
-      >
-        <GridItem colSpan={[1, 2]}>
+      <>
+        <Flex
+          flex='none'
+          gap={4}
+          justifyContent='flex-end'
+          alignItems='flex-end'
+        >
           <Flex gap={4}>
             <Language />
+
             <Theme />
           </Flex>
-        </GridItem>
+        </Flex>
 
-        <GridItem
-          colSpan={[1, 2]}
-          mb={4}
+        <Container
           display='flex'
+          flexGrow={1}
+          flexDirection='column'
           justifyContent='center'
+          gap={8}
+          p={0}
+          alignItems='center'
         >
           <Logo />
-        </GridItem>
 
-        <FormControl
-          formControlProps={{
-            isRequired: true,
-            role: 'group'
-          }}
-          inputLeftElement={
-            <Icon
-              initIcon={PersonRegular}
-              finalIcon={PersonFilled}
-              iconProps={{
-                w: 6,
-                h: 6
+          <Grid
+            templateColumns={{ base: 'repeat(1, 1fr)', md: 'repeat(2, 1fr)' }}
+            gap={4}
+            w='full'
+          >
+            <FormControl
+              formControlProps={{
+                isRequired: true,
+                role: 'group'
+              }}
+              inputLeftElement={
+                <Icon
+                  initIcon={PersonRegular}
+                  finalIcon={PersonFilled}
+                  iconProps={{
+                    w: 6,
+                    h: 6
+                  }}
+                />
+              }
+              type='text'
+              label='Full Name'
+              helperText=''
+              inputProps={{
+                placeholder: 'Enter your full name',
+                value: fullName,
+                onChange: onFullNameChange
               }}
             />
-          }
-          type='text'
-          label='Full Name'
-          helperText=''
-          inputProps={{
-            placeholder: 'Enter your full name',
-            value: fullName,
-            onChange: onFullNameChange
-          }}
-        />
 
-        <FormControl
-          formControlProps={{
-            isRequired: true,
-            role: 'group'
-          }}
-          inputLeftElement={
-            <Icon
-              initIcon={MailRegular}
-              finalIcon={MailFilled}
-              iconProps={{
-                w: 6,
-                h: 6
+            <FormControl
+              formControlProps={{
+                isRequired: true,
+                role: 'group'
+              }}
+              inputLeftElement={
+                <Icon
+                  initIcon={MailRegular}
+                  finalIcon={MailFilled}
+                  iconProps={{
+                    w: 6,
+                    h: 6
+                  }}
+                />
+              }
+              type='email'
+              label='Email'
+              helperText=''
+              inputProps={{
+                placeholder: 'Enter your email',
+                value: email,
+                onChange: onEmailChange
               }}
             />
-          }
-          type='email'
-          label='Email'
-          helperText=''
-          inputProps={{
-            placeholder: 'Enter your email',
-            value: email,
-            onChange: onEmailChange
-          }}
-        />
 
-        <FormControl
-          formControlProps={{
-            isRequired: true,
-            role: 'group'
-          }}
-          inputLeftElement={
-            <Icon
-              initIcon={PasswordRegular}
-              finalIcon={PasswordFilled}
-              iconProps={{
-                w: 6,
-                h: 6
+            <FormControl
+              formControlProps={{
+                isRequired: true,
+                role: 'group'
+              }}
+              inputLeftElement={
+                <Icon
+                  initIcon={PasswordRegular}
+                  finalIcon={PasswordFilled}
+                  iconProps={{
+                    w: 6,
+                    h: 6
+                  }}
+                />
+              }
+              type='password'
+              label='Password'
+              helperText='Minimum 8 characters'
+              inputProps={{
+                placeholder: 'Enter your password',
+                value: password,
+                onChange: onPasswordChange
               }}
             />
-          }
-          type='password'
-          label='Password'
-          helperText='Minimum 8 characters'
-          inputProps={{
-            placeholder: 'Enter your password',
-            value: password,
-            onChange: onPasswordChange
-          }}
-        />
 
-        <FormControl
-          formControlProps={{
-            isRequired: true,
-            role: 'group'
-          }}
-          inputLeftElement={
-            <Icon
-              initIcon={PasswordRegular}
-              finalIcon={PasswordFilled}
-              iconProps={{
-                w: 6,
-                h: 6
+            <FormControl
+              formControlProps={{
+                isRequired: true,
+                role: 'group'
+              }}
+              inputLeftElement={
+                <Icon
+                  initIcon={PasswordRegular}
+                  finalIcon={PasswordFilled}
+                  iconProps={{
+                    w: 6,
+                    h: 6
+                  }}
+                />
+              }
+              type='password'
+              label='Confirm Password'
+              helperText='Password confirmation must match'
+              inputProps={{
+                placeholder: 'Enter your confirm password',
+                value: confirmPassword,
+                onChange: onConfirmPasswordChange
               }}
             />
-          }
-          type='password'
-          label='Confirm Password'
-          helperText='Password confirmation must match'
-          inputProps={{
-            placeholder: 'Enter your confirm password',
-            value: confirmPassword,
-            onChange: onConfirmPasswordChange
-          }}
-        />
+          </Grid>
 
-        <GridItem colSpan={[1, 2]} mt={4}>
           <Button
             colSpan={2}
             leftIcon={
@@ -198,9 +197,9 @@ export const Register = () => {
           >
             Create account
           </Button>
-        </GridItem>
+        </Container>
 
-        <GridItem colSpan={[1, 2]} mt={4} color='gray.400' textAlign='center'>
+        <Flex justifyContent='center'>
           Proudly made by{' '}
           <Link
             color='purple.500'
@@ -209,9 +208,9 @@ export const Register = () => {
           >
             Muhammad Fauzul Hanif
           </Link>
-          . All right reserved
-        </GridItem>
-      </GridItem>
+          , all right reserved.
+        </Flex>
+      </>
     </Layout>
   )
 }
