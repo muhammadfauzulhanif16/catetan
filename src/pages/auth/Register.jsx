@@ -35,7 +35,9 @@ export const Register = () => {
         p: [4, 8, 12]
       }}
     >
-      <Flex flex='none' gap={4} justifyContent='flex-end' alignItems='flex-end'>
+      <Flex flex='none' gap={4} justifyContent='space-between'>
+        <Logo />
+
         <Flex gap={4}>
           <Language />
 
@@ -52,8 +54,6 @@ export const Register = () => {
         justifyContent='center'
         alignItems='center'
       >
-        <Logo />
-
         <Grid
           templateColumns={{ base: 'repeat(1, 1fr)', md: 'repeat(2, 1fr)' }}
           gap={4}
@@ -202,7 +202,7 @@ export const Register = () => {
         </Text>
       </Flex>
 
-      <Text textAlign='center' pt={[2, 4, 8]} color='gray.800'>
+      <Text textAlign='center' color='gray.500'>
         Proudly made by{' '}
         <Link
           color='purple.500'
