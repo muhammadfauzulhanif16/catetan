@@ -54,7 +54,7 @@ export const Register = () => {
           flexGrow={1}
           flexDirection='column'
           justifyContent='center'
-          // gap={8}
+          gap={{ base: 4, md: 8 }}
           p={0}
           alignItems='center'
         >
