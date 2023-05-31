@@ -94,7 +94,7 @@ export const Register = () => {
               />
             }
             inputRightElement={
-              fullName.length >= 3 ? (
+              isValidFullName ? (
                 <Icon
                   initIcon={Checkmark}
                   iconProps={{
@@ -242,7 +242,10 @@ export const Register = () => {
 
         <Button
           leftIcon={
-            !fullName || !email || !password || !confirmPassword ? (
+            !isValidFullName ||
+            !isValidEmail ||
+            !isValidPassword ||
+            !isValidConfirmPassword ? (
               <Icon
                 initIcon={LockClosed}
                 iconProps={{
@@ -250,7 +253,7 @@ export const Register = () => {
                   h: 6
                 }}
               />
-            ) : (
+                ) : (
               <Icon
                 initIcon={LockOpen}
                 iconProps={{
@@ -258,9 +261,14 @@ export const Register = () => {
                   h: 6
                 }}
               />
-            )
+                )
           }
-          isDisabled={!fullName || !email || !password || !confirmPassword}
+          isDisabled={
+            !!isValidFullName ||
+            !isValidEmail ||
+            !isValidPassword ||
+            !isValidConfirmPassword
+          }
           w='full'
           bgColor='yellow.300'
           color='gray.600'
