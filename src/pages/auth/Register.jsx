@@ -1,6 +1,6 @@
 import React from 'react'
 import { Layout } from '../../components/Layout'
-import { Button, Container, Flex, Grid, Link } from '@chakra-ui/react'
+import { Button, Container, Flex, Grid, Link, Text } from '@chakra-ui/react'
 import { Language } from '../../components/Language'
 import { Theme } from '../../components/Theme'
 import { FormControl } from '../../components/FormControl'
@@ -54,7 +54,7 @@ export const Register = () => {
           flexGrow={1}
           flexDirection='column'
           justifyContent='center'
-          gap={8}
+          // gap={8}
           p={0}
           alignItems='center'
         >
@@ -167,7 +167,6 @@ export const Register = () => {
           </Grid>
 
           <Button
-            colSpan={2}
             leftIcon={
               !fullName || !email || !password || !confirmPassword ? (
                 <Icon
@@ -199,7 +198,7 @@ export const Register = () => {
           </Button>
         </Container>
 
-        <Flex justifyContent='center'>
+        <Text textAlign='center'>
           Proudly made by{' '}
           <Link
             color='purple.500'
@@ -209,7 +208,7 @@ export const Register = () => {
             Muhammad Fauzul Hanif
           </Link>
           , all right reserved.
-        </Flex>
+        </Text>
       </>
     </Layout>
   )
