@@ -7,7 +7,7 @@ export const Layout = ({ children, title, boxProps }) => (
   <Box
     {...boxProps}
     bgColor='gray.50'
-    pos='fixed'
+    // pos='fixed'
     h='100vh'
     w='100vw'
     userSelect='none'
