@@ -187,8 +187,10 @@ export const Register = () => {
           _hover={{
             bgColor: 'yellow.400'
           }}
+          display='flex'
+          alignItems='center'
         >
-          Create account
+          Create Account
         </Button>
 
         <Text color='gray.600'>
