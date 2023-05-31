@@ -8,30 +8,26 @@ import {
   LockClosed,
   LockOpen,
   Mail as MailRegular,
-  Password as PasswordRegular,
-  Person as PersonRegular
+  Password as PasswordRegular
 } from '@emotion-icons/fluentui-system-regular'
 import {
   Mail as MailFilled,
-  Password as PasswordFilled,
-  Person as PersonFilled
+  Password as PasswordFilled
 } from '@emotion-icons/fluentui-system-filled'
 import { Icon } from '../../components/Icon'
 import { useForm } from '../../utils/hooks'
 import { Logo } from '../../components/Logo'
 import { useNavigate } from 'react-router-dom'
 
-export const Register = () => {
+export const LogIn = () => {
   const navigate = useNavigate()
 
-  const [fullName, onFullNameChange] = useForm('')
   const [email, onEmailChange] = useForm('')
   const [password, onPasswordChange] = useForm('')
-  const [confirmPassword, onConfirmPasswordChange] = useForm('')
 
   return (
     <Layout
-      title='Register an account'
+      title='Log in account'
       boxProps={{
         display: 'flex',
         flexDirection: 'column',
@@ -52,41 +48,12 @@ export const Register = () => {
         flexGrow={1}
         direction='column'
         gap={[4, 6, 8]}
-        w={{ base: 'full', md: '80%', lg: '60%' }}
+        w={['full', '80%', '60%', '40%']}
         m='auto'
         justifyContent='center'
         alignItems='center'
       >
-        <Grid
-          templateColumns={{ base: 'repeat(1, 1fr)', md: 'repeat(2, 1fr)' }}
-          gap={4}
-          w='full'
-        >
-          <FormControl
-            formControlProps={{
-              isRequired: true,
-              role: 'group'
-            }}
-            inputLeftElement={
-              <Icon
-                initIcon={PersonRegular}
-                finalIcon={PersonFilled}
-                iconProps={{
-                  w: 6,
-                  h: 6
-                }}
-              />
-            }
-            type='text'
-            label='Full Name'
-            helperText=''
-            inputProps={{
-              placeholder: 'Enter your full name',
-              value: fullName,
-              onChange: onFullNameChange
-            }}
-          />
-
+        <Grid templateColumns='repeat(1, 1fr)' gap={4} w='full'>
           <FormControl
             formControlProps={{
               isRequired: true,
@@ -136,36 +103,11 @@ export const Register = () => {
               onChange: onPasswordChange
             }}
           />
-
-          <FormControl
-            formControlProps={{
-              isRequired: true,
-              role: 'group'
-            }}
-            inputLeftElement={
-              <Icon
-                initIcon={PasswordRegular}
-                finalIcon={PasswordFilled}
-                iconProps={{
-                  w: 6,
-                  h: 6
-                }}
-              />
-            }
-            type='password'
-            label='Confirm Password'
-            helperText='Password confirmation must match'
-            inputProps={{
-              placeholder: 'Enter your confirm password',
-              value: confirmPassword,
-              onChange: onConfirmPasswordChange
-            }}
-          />
         </Grid>
 
         <Button
           leftIcon={
-            !fullName || !email || !password || !confirmPassword ? (
+            !email || !password ? (
               <Icon
                 initIcon={LockClosed}
                 iconProps={{
@@ -183,7 +125,7 @@ export const Register = () => {
               />
             )
           }
-          isDisabled={!fullName || !email || !password || !confirmPassword}
+          isDisabled={!email || !password}
           w='full'
           bgColor='yellow.300'
           color='gray.600'
@@ -193,13 +135,14 @@ export const Register = () => {
           display='flex'
           alignItems='center'
         >
-          Create Account
+          Log In
         </Button>
 
         <Text color='gray.500'>
-          Already have an account?{' '}
-          <Link color='yellow.500' onClick={() => navigate('login')}>
-            Log in
+          {/* eslint-disable-next-line react/no-unescaped-entities */}
+          Don't have an account yet?{' '}
+          <Link color='yellow.500' onClick={() => navigate('/')}>
+            Register
           </Link>
         </Text>
       </Flex>

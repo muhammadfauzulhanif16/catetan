@@ -6,8 +6,9 @@ import reportWebVitals from './reportWebVitals'
 import * as serviceWorker from './serviceWorker'
 import { HelmetProvider } from 'react-helmet-async'
 import { theme } from './_theme'
-import { router } from './router'
-import { RouterProvider } from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { Register } from './pages/auth/Register'
+import { LogIn } from './pages/auth/LogIn'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -15,7 +16,14 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
     <HelmetProvider>
       <ChakraProvider theme={theme}>
-        <RouterProvider router={router} />
+        {/* <RouterProvider router={router} /> */}
+
+        <BrowserRouter>
+          <Routes>
+            <Route path='/' element={<Register />} />
+            <Route path='/login' element={<LogIn />} />
+          </Routes>
+        </BrowserRouter>
       </ChakraProvider>
     </HelmetProvider>
   </StrictMode>
