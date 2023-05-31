@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Layout } from '../../components/Layout'
 import { Button, Flex, Grid, Link, Text } from '@chakra-ui/react'
 import { Language } from '../../components/Language'
@@ -12,6 +12,7 @@ import {
   Person as PersonRegular
 } from '@emotion-icons/fluentui-system-regular'
 import {
+  Checkmark,
   Mail as MailFilled,
   Password as PasswordFilled,
   Person as PersonFilled
@@ -28,6 +29,17 @@ export const Register = () => {
   const [email, onEmailChange] = useForm('')
   const [password, onPasswordChange] = useForm('')
   const [confirmPassword, onConfirmPasswordChange] = useForm('')
+
+  const isValidFullName = fullName.length >= 3
+  const isValidEmail = /[a-z0-9]+@[a-z0-9]+.[a-z]{2,3}/.test(email)
+  const isValidPassword = password.length >= 8
+  const isValidConfirmPassword = confirmPassword === password && isValidPassword
+
+  const [isInValidFullName, setIsInValidFullName] = useState(false)
+  const [isInValidEmail, setIsInValidEmail] = useState(false)
+  const [isInValidPassword, setIsInValidPassword] = useState(false)
+  const [isInValidConfirmPassword, setIsInValidConfirmPassword] =
+    useState(false)
 
   return (
     <Layout
@@ -65,7 +77,11 @@ export const Register = () => {
           <FormControl
             formControlProps={{
               isRequired: true,
-              role: 'group'
+              role: 'group',
+              isInvalid: isInValidFullName,
+              onBlur: isValidFullName
+                ? () => setIsInValidFullName(false)
+                : () => setIsInValidFullName(true)
             }}
             inputLeftElement={
               <Icon
@@ -77,9 +93,21 @@ export const Register = () => {
                 }}
               />
             }
+            inputRightElement={
+              fullName.length >= 3 ? (
+                <Icon
+                  initIcon={Checkmark}
+                  iconProps={{
+                    color: 'green.400',
+                    w: 6,
+                    h: 6
+                  }}
+                />
+              ) : null
+            }
             type='text'
             label='Full Name'
-            helperText=''
+            helperText='Minimum 3 characters'
             inputProps={{
               placeholder: 'Enter your full name',
               value: fullName,
@@ -90,7 +118,11 @@ export const Register = () => {
           <FormControl
             formControlProps={{
               isRequired: true,
-              role: 'group'
+              role: 'group',
+              isInvalid: isInValidEmail,
+              onBlur: isValidEmail
+                ? () => setIsInValidEmail(false)
+                : () => setIsInValidEmail(true)
             }}
             inputLeftElement={
               <Icon
@@ -102,20 +134,37 @@ export const Register = () => {
                 }}
               />
             }
+            inputRightElement={
+              isValidEmail ? (
+                <Icon
+                  initIcon={Checkmark}
+                  iconProps={{
+                    color: 'green.400',
+                    w: 6,
+                    h: 6
+                  }}
+                />
+              ) : null
+            }
             type='email'
             label='Email'
             helperText=''
             inputProps={{
               placeholder: 'Enter your email',
               value: email,
-              onChange: onEmailChange
+              onChange: onEmailChange,
+              autoComplete: 'email'
             }}
           />
 
           <FormControl
             formControlProps={{
               isRequired: true,
-              role: 'group'
+              role: 'group',
+              isInvalid: isInValidPassword,
+              onBlur: isValidPassword
+                ? () => setIsInValidPassword(false)
+                : () => setIsInValidPassword(true)
             }}
             inputLeftElement={
               <Icon
@@ -126,6 +175,18 @@ export const Register = () => {
                   h: 6
                 }}
               />
+            }
+            inputRightElement={
+              isValidPassword ? (
+                <Icon
+                  initIcon={Checkmark}
+                  iconProps={{
+                    color: 'green.400',
+                    w: 6,
+                    h: 6
+                  }}
+                />
+              ) : null
             }
             type='password'
             label='Password'
@@ -140,7 +201,11 @@ export const Register = () => {
           <FormControl
             formControlProps={{
               isRequired: true,
-              role: 'group'
+              role: 'group',
+              isInvalid: isInValidConfirmPassword,
+              onBlur: isValidConfirmPassword
+                ? () => setIsInValidConfirmPassword(false)
+                : () => setIsInValidConfirmPassword(true)
             }}
             inputLeftElement={
               <Icon
@@ -151,6 +216,18 @@ export const Register = () => {
                   h: 6
                 }}
               />
+            }
+            inputRightElement={
+              isValidConfirmPassword ? (
+                <Icon
+                  initIcon={Checkmark}
+                  iconProps={{
+                    color: 'green.400',
+                    w: 6,
+                    h: 6
+                  }}
+                />
+              ) : null
             }
             type='password'
             label='Confirm Password'

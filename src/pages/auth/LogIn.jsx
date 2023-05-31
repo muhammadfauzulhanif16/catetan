@@ -96,7 +96,6 @@ export const LogIn = () => {
             }
             type='password'
             label='Password'
-            helperText='Minimum 8 characters'
             inputProps={{
               placeholder: 'Enter your password',
               value: password,
@@ -135,7 +134,7 @@ export const LogIn = () => {
           display='flex'
           alignItems='center'
         >
-          Log In
+          Log In to Account
         </Button>
 
         <Text color='gray.500'>

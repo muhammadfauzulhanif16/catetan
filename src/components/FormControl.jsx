@@ -84,5 +84,5 @@ FormControl.propTypes = {
   options: PropTypes.arrayOf(PropTypes.object),
   inputLeftElement: PropTypes.any,
   inputRightElement: PropTypes.node,
-  helperText: PropTypes.string.isRequired
+  helperText: PropTypes.string
 }
