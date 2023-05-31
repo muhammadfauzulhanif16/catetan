@@ -32,7 +32,7 @@ export const Register = () => {
       boxProps={{
         display: 'flex',
         flexDirection: 'column',
-        p: [4, 8, 12]
+        p: [4, 4, 8, 12]
       }}
     >
       <Flex flex='none' gap={4} justifyContent='space-between'>
@@ -48,7 +48,7 @@ export const Register = () => {
       <Flex
         flexGrow={1}
         direction='column'
-        gap={4}
+        gap={[4, 6, 8]}
         w={{ base: 'full', md: '80%', lg: '60%' }}
         m='auto'
         justifyContent='center'
