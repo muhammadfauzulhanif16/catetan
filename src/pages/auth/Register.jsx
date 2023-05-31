@@ -1,6 +1,6 @@
 import React from 'react'
 import { Layout } from '../../components/Layout'
-import { Button, Container, Flex, Grid, Link, Text } from '@chakra-ui/react'
+import { Button, Flex, Grid, Link, Text } from '@chakra-ui/react'
 import { Language } from '../../components/Language'
 import { Theme } from '../../components/Theme'
 import { FormControl } from '../../components/FormControl'
@@ -49,13 +49,24 @@ export const Register = () => {
           </Flex>
         </Flex>
 
-        <Container
-          display='flex'
+        {/* <Container */}
+        {/*  w='full' */}
+        {/*  display='flex' */}
+        {/*  flexGrow={1} */}
+        {/*  flexDirection='column' */}
+        {/*  justifyContent='center' */}
+        {/*  gap={4} */}
+        {/*  m={0} */}
+        {/*  p={0} */}
+        {/*  alignItems='center' */}
+        {/* > */}
+        <Flex
           flexGrow={1}
-          flexDirection='column'
+          direction='column'
+          gap={6}
+          w={{ base: 'full', md: '80%', lg: '60%' }}
+          m='auto'
           justifyContent='center'
-          gap={{ base: 4, md: 8 }}
-          p={0}
           alignItems='center'
         >
           <Logo />
@@ -196,9 +207,10 @@ export const Register = () => {
           >
             Create account
           </Button>
-        </Container>
+          {/* </Container> */}
+        </Flex>
 
-        <Text textAlign='center'>
+        <Text textAlign='center' pt={[2, 4, 8]}>
           Proudly made by{' '}
           <Link
             color='purple.500'
