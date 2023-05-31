@@ -193,7 +193,7 @@ export const Register = () => {
           Create Account
         </Button>
 
-        <Text color='gray.600'>
+        <Text color='gray.500'>
           Already have an account?{' '}
           <Link
             color='yellow.500'
@@ -204,7 +204,7 @@ export const Register = () => {
         </Text>
       </Flex>
 
-      <Text textAlign='center' color='gray.500'>
+      <Text textAlign='center' color='gray.400'>
         Proudly made by{' '}
         <Link
           color='purple.500'

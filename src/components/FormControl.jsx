@@ -31,7 +31,7 @@ export const FormControl = ({
   helperText
 }) => (
   <FormControlChakra {...formControlProps}>
-    <FormLabel {...formLabelProps} color='gray.700'>
+    <FormLabel {...formLabelProps} color='gray.600'>
       {label}
     </FormLabel>
 
