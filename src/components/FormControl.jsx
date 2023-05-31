@@ -83,6 +83,6 @@ FormControl.propTypes = {
   type: PropTypes.string.isRequired,
   options: PropTypes.arrayOf(PropTypes.object),
   inputLeftElement: PropTypes.any,
-  inputRightElement: PropTypes.elementType,
+  inputRightElement: PropTypes.node,
   helperText: PropTypes.string.isRequired
 }

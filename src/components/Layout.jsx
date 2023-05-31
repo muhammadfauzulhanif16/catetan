@@ -14,7 +14,7 @@ export const Layout = ({ children, title, boxProps }) => (
 )
 
 Layout.propTypes = {
-  children: PropTypes.element.isRequired,
+  children: PropTypes.arrayOf(PropTypes.node).isRequired,
   title: PropTypes.string.isRequired,
   boxProps: PropTypes.object
 }
