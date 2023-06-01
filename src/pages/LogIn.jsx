@@ -1,112 +1,86 @@
 import React from 'react'
-import { Layout } from '../components/Layout'
 import { Button, Flex, Grid, Link, Text } from '@chakra-ui/react'
-import { Language } from '../components/Language'
-import { Theme } from '../components/Theme'
 import { FormControl } from '../components/FormControl'
-import {
-  LockClosed,
-  LockOpen,
-  Mail as MailRegular,
-  Password as PasswordRegular
-} from '@emotion-icons/fluentui-system-regular'
-import {
-  Mail as MailFilled,
-  Password as PasswordFilled
-} from '@emotion-icons/fluentui-system-filled'
+import { LockClosed, LockOpen } from '@emotion-icons/fluentui-system-regular'
+import { Checkmark } from '@emotion-icons/fluentui-system-filled'
 import { Icon } from '../components/Icon'
-import { useForm } from '../utils/hooks'
-import { Logo } from '../components/Logo'
 import { useNavigate } from 'react-router-dom'
+import { login } from '../utils/login'
+import { AuthLayout } from '../components/AuthLayout'
 
 export const LogIn = () => {
   const navigate = useNavigate()
-
-  const [email, onEmailChange] = useForm('')
-  const [password, onPasswordChange] = useForm('')
+  const { loginList, isValidEmail, isValidPassword } = login()
 
   return (
-    <Layout
-      title='Log in account'
-      boxProps={{
-        display: 'flex',
-        flexDirection: 'column',
-        p: [4, 4, 8, 12]
-      }}
-    >
-      <Flex flex='none' gap={4} justifyContent='space-between'>
-        <Logo />
-
-        <Flex gap={4}>
-          <Language />
-
-          <Theme />
-        </Flex>
-      </Flex>
-
+    <AuthLayout title='Log in to account'>
       <Flex
         flexGrow={1}
         direction='column'
         gap={[4, 6, 8]}
-        w={['full', '80%', '60%', '40%']}
+        w={{ base: 'full', md: '80%', lg: '60%' }}
         m='auto'
         justifyContent='center'
         alignItems='center'
       >
-        <Grid templateColumns='repeat(1, 1fr)' gap={4} w='full'>
-          <FormControl
-            formControlProps={{
-              isRequired: true,
-              role: 'group'
-            }}
-            inputLeftElement={
-              <Icon
-                initIcon={MailRegular}
-                finalIcon={MailFilled}
-                iconProps={{
-                  w: 6,
-                  h: 6
-                }}
-              />
-            }
-            type='email'
-            label='Email'
-            helperText=''
-            inputProps={{
-              placeholder: 'Enter your email',
-              value: email,
-              onChange: onEmailChange
-            }}
-          />
-
-          <FormControl
-            formControlProps={{
-              isRequired: true,
-              role: 'group'
-            }}
-            inputLeftElement={
-              <Icon
-                initIcon={PasswordRegular}
-                finalIcon={PasswordFilled}
-                iconProps={{
-                  w: 6,
-                  h: 6
-                }}
-              />
-            }
-            type='password'
-            label='Password'
-            inputProps={{
-              placeholder: 'Enter your password',
-              value: password,
-              onChange: onPasswordChange
-            }}
-          />
+        <Grid
+          templateColumns={{ base: 'repeat(1, 1fr)', md: 'repeat(2, 1fr)' }}
+          gap={4}
+          w='full'
+        >
+          {loginList.map((register, id) => (
+            <FormControl
+              key={id}
+              label={register.label}
+              type={register.type}
+              inputLeftElement={
+                <Icon
+                  initIcon={register.initIcon}
+                  finalIcon={register.finalIcon}
+                  iconProps={{
+                    w: 6,
+                    h: 6
+                  }}
+                />
+              }
+              helperText={register.helperText}
+              formHelperTextProps={{
+                color: register.inValid ? 'red.600' : 'gray.600'
+              }}
+              inputProps={{
+                placeholder: 'Enter your email',
+                value: register.value,
+                onChange: register.onChange
+              }}
+              formControlProps={{
+                isRequired: true,
+                role: 'group',
+                isInvalid: register.inValid,
+                onBlur: register.valid
+                  ? () => register.setInValid(false)
+                  : () => register.setInValid(true)
+              }}
+              inputRightElement={
+                register.valid && (
+                  <Icon
+                    initIcon={Checkmark}
+                    iconProps={{
+                      color: 'green.400',
+                      w: 6,
+                      h: 6
+                    }}
+                  />
+                )
+              }
+            />
+          ))}
         </Grid>
 
         <Button
+          isLoading={false}
+          loadingText='Creating'
           leftIcon={
-            !email || !password ? (
+            !isValidEmail || !isValidPassword ? (
               <Icon
                 initIcon={LockClosed}
                 iconProps={{
@@ -124,7 +98,7 @@ export const LogIn = () => {
               />
             )
           }
-          isDisabled={!email || !password}
+          isDisabled={!isValidEmail || !isValidPassword}
           w='full'
           bgColor='yellow.300'
           color='gray.600'
@@ -134,28 +108,16 @@ export const LogIn = () => {
           display='flex'
           alignItems='center'
         >
-          Log In
+          Create Account
         </Button>
 
         <Text color='gray.500'>
-          {"Don't have an account yet? "}
-          <Link color='yellow.500' onClick={() => navigate('/register')}>
-            Register
+          Already have an account?{' '}
+          <Link color='yellow.500' onClick={() => navigate('/login')}>
+            Log in
           </Link>
         </Text>
       </Flex>
-
-      <Text textAlign='center' color='gray.400'>
-        Proudly made by{' '}
-        <Link
-          color='purple.500'
-          href='https://github.com/muhammadfauzulhanif16'
-          isExternal
-        >
-          Muhammad Fauzul Hanif
-        </Link>
-        , all right reserved.
-      </Text>
-    </Layout>
+    </AuthLayout>
   )
 }
