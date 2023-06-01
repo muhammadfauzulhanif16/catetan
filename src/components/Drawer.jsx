@@ -28,6 +28,7 @@ import {
   WeatherSunny as WeatherSunnyRegular
 } from '@emotion-icons/fluentui-system-regular'
 import { Icon } from './Icon'
+import { US } from 'country-flag-icons/react/3x2'
 
 export const Drawer = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -119,7 +120,8 @@ export const Drawer = () => {
                 w: 'full',
                 gap: 4,
                 display: 'flex',
-                justifyContent: 'flex-start'
+                justifyContent: 'flex-start',
+                rightIcon: <US title='United States' width={24} height={24} />
               }}
             />
 
