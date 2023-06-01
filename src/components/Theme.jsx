@@ -4,7 +4,7 @@ import { Icon } from './Icon'
 import { WeatherSunny } from '@emotion-icons/fluentui-system-regular'
 
 export const Theme = () => (
-  <Button p={0} w='full'>
+  <Button p={0}>
     <Icon
       initIcon={WeatherSunny}
       iconProps={{

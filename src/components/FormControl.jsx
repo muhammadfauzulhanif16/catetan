@@ -59,13 +59,19 @@ export const FormControl = ({
 
     {type !== 'radio' || type !== 'textarea' || type !== 'select' ? (
       <InputGroup>
-        <InputLeftElement pointerEvents='none'>
-          {inputLeftElement}
-        </InputLeftElement>
+        {inputLeftElement && (
+          <InputLeftElement pointerEvents='none'>
+            {inputLeftElement}
+          </InputLeftElement>
+        )}
+
         <Input type={type} {...inputProps} bgColor='white' />
-        <InputRightElement pointerEvents='none'>
-          {inputRightElement}
-        </InputRightElement>
+
+        {inputRightElement && (
+          <InputRightElement pointerEvents='none'>
+            {inputRightElement}
+          </InputRightElement>
+        )}
       </InputGroup>
     ) : null}
 

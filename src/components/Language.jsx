@@ -4,7 +4,7 @@ import { Icon } from './Icon'
 import { LocalLanguage } from '@emotion-icons/fluentui-system-regular'
 
 export const Language = () => (
-  <Button p={0} w='full'>
+  <Button p={0}>
     <Icon
       initIcon={LocalLanguage}
       iconProps={{
