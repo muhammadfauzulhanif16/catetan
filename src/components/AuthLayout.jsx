@@ -25,5 +25,5 @@ export const AuthLayout = ({ title, children }) => {
 
 AuthLayout.propTypes = {
   title: PropTypes.string.isRequired,
-  children: PropTypes.arrayOf(PropTypes.node).isRequired
+  children: PropTypes.node.isRequired
 }

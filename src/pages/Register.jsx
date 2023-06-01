@@ -127,7 +127,7 @@ export const Register = () => {
 
         <Text color='gray.500'>
           Already have an account?{' '}
-          <Link color='yellow.500' onClick={() => navigate('login')}>
+          <Link color='yellow.500' onClick={() => navigate('/login')}>
             Log in
           </Link>
         </Text>

@@ -138,9 +138,8 @@ export const LogIn = () => {
         </Button>
 
         <Text color='gray.500'>
-          {/* eslint-disable-next-line react/no-unescaped-entities */}
-          Don't have an account yet?{' '}
-          <Link color='yellow.500' onClick={() => navigate('/')}>
+          {"Don't have an account yet? "}
+          <Link color='yellow.500' onClick={() => navigate('/register')}>
             Register
           </Link>
         </Text>
