@@ -1,9 +1,9 @@
 import React from 'react'
-import { Layout } from '../../components/Layout'
+import { Layout } from '../components/Layout'
 import { Button, Flex, Grid, Link, Text } from '@chakra-ui/react'
-import { Language } from '../../components/Language'
-import { Theme } from '../../components/Theme'
-import { FormControl } from '../../components/FormControl'
+import { Language } from '../components/Language'
+import { Theme } from '../components/Theme'
+import { FormControl } from '../components/FormControl'
 import {
   LockClosed,
   LockOpen,
@@ -14,9 +14,9 @@ import {
   Mail as MailFilled,
   Password as PasswordFilled
 } from '@emotion-icons/fluentui-system-filled'
-import { Icon } from '../../components/Icon'
-import { useForm } from '../../utils/hooks'
-import { Logo } from '../../components/Logo'
+import { Icon } from '../components/Icon'
+import { useForm } from '../utils/hooks'
+import { Logo } from '../components/Logo'
 import { useNavigate } from 'react-router-dom'
 
 export const LogIn = () => {
