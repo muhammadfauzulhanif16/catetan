@@ -30,7 +30,7 @@ export const Register = () => {
   const [password, onPasswordChange] = useForm('')
   const [confirmPassword, onConfirmPasswordChange] = useForm('')
 
-  const isValidFullName = fullName.length >= 3
+  const isValidFullName = fullName.length > 0
   const isValidEmail = /[a-z0-9]+@[a-z0-9]+.[a-z]{2,3}/.test(email)
   const isValidPassword = password.length >= 8
   const isValidConfirmPassword = confirmPassword === password && isValidPassword
@@ -107,7 +107,10 @@ export const Register = () => {
             }
             type='text'
             label='Full Name'
-            helperText='Minimum 3 characters'
+            helperText={isInValidFullName ? 'Full name is required' : ''}
+            formHelperTextProps={{
+              color: isInValidFullName ? 'red.600' : 'gray.600'
+            }}
             inputProps={{
               placeholder: 'Enter your full name',
               value: fullName,
@@ -148,7 +151,10 @@ export const Register = () => {
             }
             type='email'
             label='Email'
-            helperText=''
+            helperText={isInValidEmail ? 'Email is required' : ''}
+            formHelperTextProps={{
+              color: isInValidEmail ? 'red.600' : 'gray.600'
+            }}
             inputProps={{
               placeholder: 'Enter your email',
               value: email,
@@ -190,7 +196,14 @@ export const Register = () => {
             }
             type='password'
             label='Password'
-            helperText='Minimum 8 characters'
+            helperText={
+              isInValidPassword
+                ? 'Password is required'
+                : 'Minimum 8 characters'
+            }
+            formHelperTextProps={{
+              color: isInValidPassword ? 'red.600' : 'gray.600'
+            }}
             inputProps={{
               placeholder: 'Enter your password',
               value: password,
@@ -218,7 +231,7 @@ export const Register = () => {
               />
             }
             inputRightElement={
-              isValidConfirmPassword ? (
+              isValidConfirmPassword && (
                 <Icon
                   initIcon={Checkmark}
                   iconProps={{
@@ -227,11 +240,18 @@ export const Register = () => {
                     h: 6
                   }}
                 />
-              ) : null
+              )
             }
             type='password'
             label='Confirm Password'
-            helperText='Password confirmation must match'
+            helperText={
+              isInValidConfirmPassword
+                ? "Password confirmation doesn't match"
+                : 'Password confirmation must match'
+            }
+            formHelperTextProps={{
+              color: isInValidConfirmPassword ? 'red.600' : 'gray.600'
+            }}
             inputProps={{
               placeholder: 'Enter your confirm password',
               value: confirmPassword,
