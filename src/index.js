@@ -7,8 +7,9 @@ import * as serviceWorker from './serviceWorker'
 import { HelmetProvider } from 'react-helmet-async'
 import { theme } from './_theme'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { Register } from './pages/auth/Register'
-import { LogIn } from './pages/auth/LogIn'
+import { Home } from './pages/Home'
+import { Register } from './pages/Register'
+import { LogIn } from './pages/LogIn'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -20,7 +21,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
         <BrowserRouter>
           <Routes>
-            <Route path='/' element={<Register />} />
+            <Route path='/' element={<Home />} />
+            <Route path='/register' element={<Register />} />
             <Route path='/login' element={<LogIn />} />
           </Routes>
         </BrowserRouter>
@@ -32,7 +34,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://cra.link/PWA
-serviceWorker.unregister()
+serviceWorker.register()
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
