@@ -57,27 +57,28 @@ export const Drawer = () => {
 
         <DrawerContent
           bgColor='gray.50'
-          p={8}
+          p={[4, 8]}
           display='flex'
           direction='column'
-          gap={8}
+          gap={[4, 8]}
         >
           <DrawerHeader display='flex' gap={4} alignItems='center' p={0}>
             <Icon
               initIcon={PersonAccountsRegular}
               finalIcon={PersonAccountsFilled}
               iconProps={{
+                color: 'yellow.300',
                 w: 12,
                 h: 12
               }}
             />
 
             <Box w='full' noOfLines={1}>
-              <Heading size='md' noOfLines={1}>
+              <Heading size='md' noOfLines={1} color='gray.700'>
                 Muhammad Fauzul Hanif
               </Heading>
 
-              <Text fontSize='sm' noOfLines={1}>
+              <Text fontSize='sm' noOfLines={1} color='gray.600'>
                 muhammadfauzulhanif2230511102@ummi.ac.id
               </Text>
             </Box>
@@ -91,10 +92,10 @@ export const Drawer = () => {
                 w: 6,
                 h: 6
               }}
-              text='Language'
+              text='Theme'
               buttonProps={{
                 w: 'full',
-                gap: 4,
+                gap: [2, 4],
                 display: 'flex',
                 justifyContent: 'flex-start'
               }}
@@ -107,10 +108,10 @@ export const Drawer = () => {
                 w: 6,
                 h: 6
               }}
-              text='Theme'
+              text='Language'
               buttonProps={{
                 w: 'full',
-                gap: 4,
+                gap: [2, 4],
                 display: 'flex',
                 justifyContent: 'flex-start'
               }}
@@ -126,7 +127,7 @@ export const Drawer = () => {
               text='Log Out'
               buttonProps={{
                 w: 'full',
-                gap: 4,
+                gap: [2, 4],
                 display: 'flex',
                 justifyContent: 'flex-start'
               }}

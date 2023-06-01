@@ -27,10 +27,10 @@ export const Header = ({ layout }) => {
         ) : (
           <Box>
             <Heading size='lg' color='yellow.300'>
-              Welcome back
+              Welcome back,
             </Heading>
             <Heading size='lg' noOfLines={1} color='gray.600'>
-              Muhammad Fauzul Hanif
+              what to note now?
             </Heading>
           </Box>
         )}
