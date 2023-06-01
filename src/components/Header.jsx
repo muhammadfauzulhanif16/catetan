@@ -8,6 +8,7 @@ import { Theme } from './Theme'
 import { Search as SearchRegular } from '@emotion-icons/fluentui-system-regular'
 import { Search as SearchFilled } from '@emotion-icons/fluentui-system-filled'
 import { Icon } from './Icon'
+import { Drawer } from './Drawer'
 
 export const Header = ({ layout }) => {
   return (
@@ -65,7 +66,7 @@ export const Header = ({ layout }) => {
           </Flex>
         ) : (
           <Box>
-            <Theme />
+            <Drawer />
           </Box>
         )}
       </Flex>
