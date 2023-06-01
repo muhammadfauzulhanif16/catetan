@@ -264,7 +264,7 @@ export const Register = () => {
                 )
           }
           isDisabled={
-            !!isValidFullName ||
+            !isValidFullName ||
             !isValidEmail ||
             !isValidPassword ||
             !isValidConfirmPassword
