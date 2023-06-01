@@ -14,7 +14,7 @@ export const AuthLayout = ({ title, children }) => {
         p: [4, 4, 8, 12]
       }}
     >
-      <Header />
+      <Header layout='auth' />
 
       {children}
 

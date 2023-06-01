@@ -10,6 +10,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { Home } from './pages/Home'
 import { Register } from './pages/Register'
 import { LogIn } from './pages/LogIn'
+import { Dashboard } from './pages/Dashboard'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -24,6 +25,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             <Route path='/' element={<Home />} />
             <Route path='/register' element={<Register />} />
             <Route path='/login' element={<LogIn />} />
+            <Route path='/dashboard' element={<Dashboard />} />
           </Routes>
         </BrowserRouter>
       </ChakraProvider>
