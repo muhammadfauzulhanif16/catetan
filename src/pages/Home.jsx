@@ -26,7 +26,7 @@ export const Home = () => {
           }}
           onClick={() => navigate('/register')}
         >
-          Register A Account
+          Register
         </Button>
         <Button
           w='full'
@@ -36,7 +36,7 @@ export const Home = () => {
           }}
           onClick={() => navigate('/login')}
         >
-          Log In to Account
+          Log In
         </Button>
       </Flex>
     </AuthLayout>
