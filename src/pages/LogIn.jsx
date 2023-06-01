@@ -48,7 +48,7 @@ export const LogIn = () => {
                 color: register.inValid ? 'red.600' : 'gray.600'
               }}
               inputProps={{
-                placeholder: 'Enter your email',
+                placeholder: register.placeholder,
                 value: register.value,
                 onChange: register.onChange
               }}
@@ -108,13 +108,13 @@ export const LogIn = () => {
           display='flex'
           alignItems='center'
         >
-          Create Account
+          Log In
         </Button>
 
         <Text color='gray.500'>
-          Already have an account?{' '}
-          <Link color='yellow.500' onClick={() => navigate('/login')}>
-            Log in
+          {"Don't have an account yet? "}
+          <Link color='yellow.500' onClick={() => navigate('/register')}>
+            Register
           </Link>
         </Text>
       </Flex>

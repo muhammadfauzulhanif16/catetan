@@ -54,7 +54,7 @@ export const Register = () => {
                 color: register.inValid ? 'red.600' : 'gray.600'
               }}
               inputProps={{
-                placeholder: 'Enter your email',
+                placeholder: register.placeholder,
                 value: register.value,
                 onChange: register.onChange
               }}
