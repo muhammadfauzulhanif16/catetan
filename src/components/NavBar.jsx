@@ -29,7 +29,7 @@ export const NavBar = ({ pathName, setPathName, note, onAdd }) => {
           finalIcon={finalIcon}
           text={text}
           buttonProps={{
-            color: `${pathName === text ? 'yellow.400' : ''}`,
+            color: `${pathName === text ? 'yellow.400' : 'gray.600'}`,
             w: 'full',
             bgColor:
               text === 'Add' || text === 'Submit' ? 'yellow.300' : 'gray.100',

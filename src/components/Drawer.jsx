@@ -12,17 +12,19 @@ import {
 import React, { useRef } from 'react'
 import { Nav } from './Nav'
 import {
+  Important as ImportantFilled,
   LocalLanguage as LocalLanguageFilled,
   MoreVertical as MoreVerticalFilled,
   PersonAccounts as PersonAccountsFilled,
-  SwipeRight as SwipeRightFilled,
+  SignOut as SignOutFilled,
   WeatherSunny as WeatherSunnyFilled
 } from '@emotion-icons/fluentui-system-filled'
 import {
+  Important as ImportantRegular,
   LocalLanguage as LocalLanguageRegular,
   MoreVertical as MoreVerticalRegular,
   PersonAccounts as PersonAccountsRegular,
-  SwipeRight as SwipeRightRegular,
+  SignOut as SignOutRegular,
   WeatherSunny as WeatherSunnyRegular
 } from '@emotion-icons/fluentui-system-regular'
 import { Icon } from './Icon'
@@ -78,7 +80,7 @@ export const Drawer = () => {
                 Muhammad Fauzul Hanif
               </Heading>
 
-              <Text fontSize='sm' noOfLines={1} color='gray.600'>
+              <Text fontSize='sm' noOfLines={1} color='gray.500'>
                 muhammadfauzulhanif2230511102@ummi.ac.id
               </Text>
             </Box>
@@ -94,8 +96,10 @@ export const Drawer = () => {
               }}
               text='Theme'
               buttonProps={{
+                color: 'gray.600',
+                role: 'group',
                 w: 'full',
-                gap: [2, 4],
+                gap: 4,
                 display: 'flex',
                 justifyContent: 'flex-start'
               }}
@@ -110,24 +114,46 @@ export const Drawer = () => {
               }}
               text='Language'
               buttonProps={{
+                color: 'gray.600',
+                role: 'group',
                 w: 'full',
-                gap: [2, 4],
+                gap: 4,
                 display: 'flex',
                 justifyContent: 'flex-start'
               }}
             />
 
             <Nav
-              initIcon={SwipeRightRegular}
-              finalIcon={SwipeRightFilled}
+              initIcon={ImportantRegular}
+              finalIcon={ImportantFilled}
+              iconProps={{
+                w: 6,
+                h: 6
+              }}
+              text='About App'
+              buttonProps={{
+                color: 'gray.600',
+                role: 'group',
+                w: 'full',
+                gap: 4,
+                display: 'flex',
+                justifyContent: 'flex-start'
+              }}
+            />
+
+            <Nav
+              initIcon={SignOutRegular}
+              finalIcon={SignOutFilled}
               iconProps={{
                 w: 6,
                 h: 6
               }}
               text='Log Out'
               buttonProps={{
+                color: 'gray.600',
+                role: 'group',
                 w: 'full',
-                gap: [2, 4],
+                gap: 4,
                 display: 'flex',
                 justifyContent: 'flex-start'
               }}
