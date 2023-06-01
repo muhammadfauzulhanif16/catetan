@@ -107,6 +107,7 @@ export const LogIn = () => {
           }}
           display='flex'
           alignItems='center'
+          onClick={() => navigate('/dashboard')}
         >
           Log In
         </Button>
