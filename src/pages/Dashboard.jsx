@@ -1,6 +1,7 @@
 import React from 'react'
 import { Layout } from '../components/Layout'
 import { Header } from '../components/Header'
+import { VisuallyHidden } from '@chakra-ui/react'
 
 export const Dashboard = () => {
   return (
@@ -12,7 +13,7 @@ export const Dashboard = () => {
     >
       <Header layout='app' />
 
-      <div>tes</div>
+      <VisuallyHidden>Tes</VisuallyHidden>
     </Layout>
   )
 }

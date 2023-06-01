@@ -31,9 +31,11 @@ export const FormControl = ({
   helperText
 }) => (
   <FormControlChakra {...formControlProps}>
-    <FormLabel {...formLabelProps} color='gray.600'>
-      {label}
-    </FormLabel>
+    {label && (
+      <FormLabel {...formLabelProps} color='gray.600'>
+        {label}
+      </FormLabel>
+    )}
 
     {type === 'radio' ? (
       <RadioGroup {...radioGroupProps}>
@@ -79,7 +81,7 @@ FormControl.propTypes = {
   radioGroupProps: PropTypes.object,
   stackProps: PropTypes.object,
   textareaProps: PropTypes.object,
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
   type: PropTypes.string.isRequired,
   options: PropTypes.arrayOf(PropTypes.object),
   inputLeftElement: PropTypes.any,
