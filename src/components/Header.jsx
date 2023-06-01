@@ -21,13 +21,11 @@ export const Header = ({ layout }) => (
 
     {layout === 'app' && (
       <>
-        <Heading size='lg'>
+        <Heading size='lg' noOfLines={2}>
           Welcome back, <br /> Muhammad Fauzul Hanif
         </Heading>
 
         <Flex gap={4}>
-          <Language />
-
           <Theme />
         </Flex>
       </>
