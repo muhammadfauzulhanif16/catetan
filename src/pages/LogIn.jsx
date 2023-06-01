@@ -134,7 +134,7 @@ export const LogIn = () => {
           display='flex'
           alignItems='center'
         >
-          Log In to Account
+          Log In
         </Button>
 
         <Text color='gray.500'>

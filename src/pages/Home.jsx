@@ -26,7 +26,7 @@ export const Home = () => {
           }}
           onClick={() => navigate('/register')}
         >
-          Register A New Account
+          Register A Account
         </Button>
         <Button
           w='full'
