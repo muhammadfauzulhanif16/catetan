@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Button, Flex, Grid, Link, Text } from '@chakra-ui/react'
 import { FormControl } from '../components/FormControl'
 import { LockClosed, LockOpen } from '@emotion-icons/fluentui-system-regular'
@@ -7,13 +7,16 @@ import { Icon } from '../components/Icon'
 import { useNavigate } from 'react-router-dom'
 import { login } from '../utils/login'
 import { AuthLayout } from '../components/AuthLayout'
+import { title } from '../utils/content'
+import { LocaleContext } from '../context/Locale'
 
 export const LogIn = () => {
   const navigate = useNavigate()
+  const { locale } = useContext(LocaleContext)
   const { loginList, isValidEmail, isValidPassword } = login()
 
   return (
-    <AuthLayout title='Log in to account'>
+    <AuthLayout title={title[locale].login}>
       <Flex
         flexGrow={1}
         direction='column'

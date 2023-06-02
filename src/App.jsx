@@ -7,10 +7,13 @@ import { Dashboard } from './pages/Dashboard'
 import { LocaleContext } from './context/Locale'
 
 export const App = () => {
-  const [locale, setLocale] = useState('en')
+  const [locale, setLocale] = useState(
+    localStorage.getItem('catetanLocale') || 'en'
+  )
 
   const onLocaleChange = () => {
     setLocale((prevLocale) => (prevLocale === 'en' ? 'id' : 'en'))
+    localStorage.setItem('catetanLocale', locale === 'en' ? 'id' : 'en')
   }
 
   const localeContextValue = useMemo(() => {

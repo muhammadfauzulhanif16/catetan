@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Button, Flex, Grid, Link, Text } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom'
 import { register } from '../utils/register'
@@ -7,9 +7,12 @@ import { Icon } from '../components/Icon'
 import { Checkmark } from '@emotion-icons/fluentui-system-filled'
 import { LockClosed, LockOpen } from '@emotion-icons/fluentui-system-regular'
 import { AuthLayout } from '../components/AuthLayout'
+import { LocaleContext } from '../context/Locale'
+import { title } from '../utils/content'
 
 export const Register = () => {
   const navigate = useNavigate()
+  const { locale } = useContext(LocaleContext)
   const {
     registerList,
     isValidFullName,
@@ -19,7 +22,7 @@ export const Register = () => {
   } = register()
 
   return (
-    <AuthLayout title='Register an account'>
+    <AuthLayout title={title[locale].register}>
       <Flex
         flexGrow={1}
         direction='column'

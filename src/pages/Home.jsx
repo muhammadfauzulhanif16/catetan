@@ -1,15 +1,18 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { AuthLayout } from '../components/AuthLayout'
 import { Button, Flex } from '@chakra-ui/react'
 import { actionList } from '../data/actionList'
+import { LocaleContext } from '../context/Locale'
+import { title } from '../utils/content'
 
 export const Home = () => {
   const navigate = useNavigate()
   const actions = actionList()
+  const { locale } = useContext(LocaleContext)
 
   return (
-    <AuthLayout title='Register an account'>
+    <AuthLayout title={title[locale].home}>
       <Flex
         flexGrow={1}
         direction='column'

@@ -1,3 +1,16 @@
+export const title = {
+  en: {
+    home: 'Home',
+    register: 'Register an account',
+    login: 'Log in account'
+  },
+  id: {
+    home: 'Beranda',
+    register: 'Daftar akun',
+    login: 'Masuk akun'
+  }
+}
+
 export const action = {
   en: {
     register: 'Register',
