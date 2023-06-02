@@ -12,7 +12,7 @@ export const Logo = ({ flexProps }) => {
     <Flex
       {...flexProps}
       alignItems='center'
-      color={`yellow.${theme === 'light' ? '300' : '400'}`}
+      color={`yellow.${theme === 'light' ? '400' : '500'}`}
       gap={3}
     >
       <Icon initIcon={Note} iconProps={{ w: 12, h: 12 }} />

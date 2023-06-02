@@ -16,6 +16,10 @@ export const Layout = ({ children, title, boxProps }) => {
       userSelect='none'
     >
       <Helmet>
+        <meta
+          content={theme === 'light' ? 'gray.50' : 'gray.900'}
+          name='theme-color'
+        />
         <title>{`${title} | Catetan`}</title>
       </Helmet>
 
