@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Box, Flex, Heading } from '@chakra-ui/react'
 import { Logo } from './Logo'
 import PropTypes from 'prop-types'
@@ -9,8 +9,11 @@ import { Search as SearchRegular } from '@emotion-icons/fluentui-system-regular'
 import { Search as SearchFilled } from '@emotion-icons/fluentui-system-filled'
 import { Icon } from './Icon'
 import { Drawer } from './Drawer'
+import { LocaleContext } from '../context/Locale'
 
 export const Header = ({ layout }) => {
+  const { locale, onLocaleChange } = useContext(LocaleContext)
+
   return (
     <Flex
       flex='none'
@@ -60,7 +63,7 @@ export const Header = ({ layout }) => {
 
         {layout === 'auth' ? (
           <Flex gap={4}>
-            <Language />
+            <Language locale={locale} onLocaleChange={onLocaleChange} />
 
             <Theme />
           </Flex>
