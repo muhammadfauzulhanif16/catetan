@@ -20,7 +20,7 @@ export const register = (locale) => {
 
   const isValidFullName = fullName.length > 0
   const isValidEmail = /[a-z0-9]+@[a-z0-9]+.[a-z]{2,3}/.test(email)
-  const isValidPassword = password.length >= 8
+  const isValidPassword = password.length >= 6
   const isValidConfirmPassword = confirmPassword === password && isValidPassword
 
   const [isInValidFullName, setIsInValidFullName] = useState(false)

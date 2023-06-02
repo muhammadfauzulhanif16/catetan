@@ -44,7 +44,7 @@ export const FormControl = ({
         </FormLabel>
       )}
 
-      {type === 'radio' ? (
+      {type === 'radio' && (
         <RadioGroup {...radioGroupProps}>
           <Stack {...stackProps}>
             {options.map(({ name }, id) => (
@@ -52,17 +52,17 @@ export const FormControl = ({
             ))}
           </Stack>
         </RadioGroup>
-      ) : null}
+      )}
 
       {type === 'textarea' ?? <Textarea {...textareaProps} bgColor='white' />}
 
-      {type === 'select' ? (
+      {type === 'select' && (
         <Select>
           {options.map(({ name }, id) => (
             <option key={id}>{name}</option>
           ))}
         </Select>
-      ) : null}
+      )}
 
       {type !== 'radio' || type !== 'textarea' || type !== 'select' ? (
         <InputGroup>
