@@ -1,7 +1,7 @@
 import React from 'react'
 import { Layout } from './Layout'
-import { Footer } from './Footer'
-import { Header } from './Header'
+import { Footer } from '../Footer'
+import { Header } from '../Header'
 import PropTypes from 'prop-types'
 
 export const AuthLayout = ({ title, children }) => {

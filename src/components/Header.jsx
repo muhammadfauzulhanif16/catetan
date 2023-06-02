@@ -2,17 +2,19 @@ import React, { useContext } from 'react'
 import { Box, Flex, Heading } from '@chakra-ui/react'
 import { Logo } from './Logo'
 import PropTypes from 'prop-types'
-import { FormControl } from './FormControl'
-import { Language } from './Language'
+import { FormControl } from './base/FormControl'
 import { Theme } from './Theme'
 import { Search as SearchRegular } from '@emotion-icons/fluentui-system-regular'
 import { Search as SearchFilled } from '@emotion-icons/fluentui-system-filled'
-import { Icon } from './Icon'
+import { Icon } from './base/Icon'
 import { Drawer } from './Drawer'
 import { LocaleContext } from '../context/Locale'
+import { ThemeContext } from '../context/Theme'
+import { Language } from './Language'
 
 export const Header = ({ layout }) => {
   const { locale, onLocaleChange } = useContext(LocaleContext)
+  const { theme, onThemeChange } = useContext(ThemeContext)
 
   return (
     <Flex
@@ -20,7 +22,7 @@ export const Header = ({ layout }) => {
       gap={4}
       justifyContent='space-between'
       direction={{ base: 'column', md: 'row' }}
-      bgColor='gray.50'
+      bgColor={`gray.${theme === 'light' ? '50' : '900'}`}
       pos='sticky'
       top={0}
     >
@@ -63,13 +65,13 @@ export const Header = ({ layout }) => {
 
         {layout === 'auth' ? (
           <Flex gap={4}>
-            <Language locale={locale} onLocaleChange={onLocaleChange} />
+            <Language data={locale} onChange={onLocaleChange} theme={theme} />
 
-            <Theme />
+            <Theme data={theme} onChange={onThemeChange} />
           </Flex>
         ) : (
           <Box>
-            <Drawer />
+            <Drawer locale={locale} onLocaleChange={onLocaleChange} />
           </Box>
         )}
       </Flex>

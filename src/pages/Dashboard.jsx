@@ -1,5 +1,5 @@
 import React from 'react'
-import { Layout } from '../components/Layout'
+import { Layout } from '../components/base/Layout'
 import { Header } from '../components/Header'
 import { NavBar } from '../components/NavBar'
 

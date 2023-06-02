@@ -10,7 +10,7 @@ import {
   useDisclosure
 } from '@chakra-ui/react'
 import React, { useRef } from 'react'
-import { Nav } from './Nav'
+import { Nav } from './base/Nav'
 import {
   Important as ImportantFilled,
   LocalLanguage as LocalLanguageFilled,
@@ -27,7 +27,7 @@ import {
   SignOut as SignOutRegular,
   WeatherSunny as WeatherSunnyRegular
 } from '@emotion-icons/fluentui-system-regular'
-import { Icon } from './Icon'
+import { Icon } from './base/Icon'
 import { US } from 'country-flag-icons/react/3x2'
 
 export const Drawer = () => {
