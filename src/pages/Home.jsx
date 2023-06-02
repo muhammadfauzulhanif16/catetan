@@ -2,9 +2,11 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { AuthLayout } from '../components/AuthLayout'
 import { Button, Flex } from '@chakra-ui/react'
+import { actionList } from '../data/actionList'
 
 export const Home = () => {
   const navigate = useNavigate()
+  const actions = actionList()
 
   return (
     <AuthLayout title='Register an account'>
@@ -17,27 +19,23 @@ export const Home = () => {
         justifyContent='center'
         alignItems='center'
       >
-        <Button
-          variant='outline'
-          w='full'
-          borderColor='yellow.300'
-          _hover={{
-            bgColor: 'yellow.400'
-          }}
-          onClick={() => navigate('/register')}
-        >
-          Register
-        </Button>
-        <Button
-          w='full'
-          bgColor='yellow.300'
-          _hover={{
-            bgColor: 'yellow.400'
-          }}
-          onClick={() => navigate('/login')}
-        >
-          Log In
-        </Button>
+        {actions.map((action, id) => (
+          <Button
+            key={id}
+            variant={action.variant}
+            w='full'
+            borderColor={
+              action.variant === 'solid' ? 'transparent' : 'yellow.300'
+            }
+            bgColor={action.variant === 'solid' ? 'yellow.300' : 'transparent'}
+            _hover={{
+              bgColor: 'yellow.400'
+            }}
+            onClick={() => navigate(`/${action.path}`)}
+          >
+            {action.name}
+          </Button>
+        ))}
       </Flex>
     </AuthLayout>
   )

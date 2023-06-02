@@ -1,7 +1,7 @@
 import React from 'react'
 import { SimpleGrid } from '@chakra-ui/react'
 import { Nav } from './Nav'
-import { navList } from '../utils/navList'
+import { navList } from '../data/navList'
 import { useNavigate } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
