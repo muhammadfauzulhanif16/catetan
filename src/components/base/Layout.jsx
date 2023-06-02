@@ -27,7 +27,7 @@ export const Layout = ({ children, title, boxProps }) => {
           name='description'
         />
         <meta
-          content={theme === 'light' ? 'gray.50' : 'gray.900'}
+          content={theme === 'light' ? '#F7FAFC' : '#171923'}
           name='theme-color'
         />
         <title>{`${title} | Catetan - ${
