@@ -10,8 +10,9 @@ import {
   Password as PasswordFilled,
   Person as PersonFilled
 } from '@emotion-icons/fluentui-system-filled'
+import PropTypes from 'prop-types'
 
-export const register = () => {
+export const register = (locale) => {
   const [fullName, onFullNameChange] = useForm('')
   const [email, onEmailChange] = useForm('')
   const [password, onPasswordChange] = useForm('')
@@ -30,12 +31,17 @@ export const register = () => {
 
   const registerList = [
     {
-      label: 'Full Name',
+      label: locale === 'en' ? 'Full Name' : 'Nama Lengkap',
       type: 'text',
       initIcon: PersonRegular,
       finalIcon: PersonFilled,
-      helperText: isInValidFullName ? 'Full name is required' : '',
-      placeholder: 'Enter your full name',
+      helperText: isInValidFullName
+        ? `${
+            locale === 'en'
+              ? 'Full name is required'
+              : 'Nama lengkap diperlukan'
+          }`
+        : '',
       value: fullName,
       onChange: onFullNameChange,
       valid: isValidFullName,
@@ -43,12 +49,13 @@ export const register = () => {
       setInValid: setIsInValidFullName
     },
     {
-      label: 'Email',
+      label: locale === 'en' ? 'Email' : 'Surel',
       type: 'email',
       initIcon: MailRegular,
       finalIcon: MailFilled,
-      helperText: isInValidEmail ? 'Email is required' : '',
-      placeholder: 'Enter your email',
+      helperText: isInValidEmail
+        ? `${locale === 'en' ? 'Email is required' : 'Surel diperlukan'}`
+        : `${locale === 'en' ? 'Email must be unique' : 'Surel harus unik'}`,
       value: email,
       onChange: onEmailChange,
       valid: isValidEmail,
@@ -56,14 +63,19 @@ export const register = () => {
       setInValid: setIsInValidEmail
     },
     {
-      label: 'Password',
+      label: locale === 'en' ? 'Password' : 'Kata Sandi',
       type: 'password',
       initIcon: PasswordRegular,
       finalIcon: PasswordFilled,
       helperText: isInValidPassword
-        ? 'Password is required'
-        : 'Minimal 8 characters',
-      placeholder: 'Enter your password',
+        ? `${
+            locale === 'en' ? 'Password is required' : 'Kata sandi diperlukan'
+          }`
+        : `${
+            locale === 'en'
+              ? 'Must be at least 6 characters'
+              : 'Minimal harus 6 karakter'
+          }`,
       value: password,
       onChange: onPasswordChange,
       valid: isValidPassword,
@@ -71,14 +83,21 @@ export const register = () => {
       setInValid: setIsInValidPassword
     },
     {
-      label: 'Confirm Password',
+      label: locale === 'en' ? 'Confirm Password' : 'Konfirmasi Kata Sandi',
       type: 'password',
       initIcon: PasswordRegular,
       finalIcon: PasswordFilled,
       helperText: isInValidConfirmPassword
-        ? "Confirm password doesn't match"
-        : 'Confirm password must match',
-      placeholder: 'Enter your confirm password',
+        ? `${
+            locale === 'en'
+              ? "Confirm password doesn't match"
+              : 'Konfirmasi kata sandi tidak sesuai'
+          }`
+        : `${
+            locale === 'en'
+              ? 'Confirm password must match'
+              : 'Konfirmasi kata sandi harus sesuai'
+          }`,
       value: confirmPassword,
       onChange: onConfirmPasswordChange,
       valid: isValidConfirmPassword,
@@ -94,4 +113,8 @@ export const register = () => {
     isValidPassword,
     isValidConfirmPassword
   }
+}
+
+register.propTypes = {
+  locale: PropTypes.string
 }

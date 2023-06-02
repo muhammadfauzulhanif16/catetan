@@ -9,9 +9,11 @@ import { LockClosed, LockOpen } from '@emotion-icons/fluentui-system-regular'
 import { AuthLayout } from '../components/base/AuthLayout'
 import { LocaleContext } from '../context/Locale'
 import { title } from '../utils/content'
+import { ThemeContext } from '../context/Theme'
 
 export const Register = () => {
   const navigate = useNavigate()
+  const { theme } = useContext(ThemeContext)
   const { locale } = useContext(LocaleContext)
   const {
     registerList,
@@ -19,7 +21,7 @@ export const Register = () => {
     isValidEmail,
     isValidPassword,
     isValidConfirmPassword
-  } = register()
+  } = register(locale)
 
   return (
     <AuthLayout title={title[locale].register}>
@@ -54,10 +56,15 @@ export const Register = () => {
               }
               helperText={register.helperText}
               formHelperTextProps={{
-                color: register.inValid ? 'red.600' : 'gray.600'
+                color: register.inValid
+                  ? `red.${theme === 'light' ? '600' : '300'}`
+                  : `gray.${theme === 'light' ? '600' : '300'}`
               }}
               inputProps={{
-                placeholder: register.placeholder,
+                placeholder:
+                  locale === 'en'
+                    ? `Enter your ${register.label.toLowerCase()}`
+                    : `Masukkan ${register.label.toLowerCase()} anda`,
                 value: register.value,
                 onChange: register.onChange
               }}

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import {
   FormControl as FormControlChakra,
   FormHelperText,
@@ -14,6 +14,7 @@ import {
   Textarea
 } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
+import { ThemeContext } from '../../context/Theme'
 
 export const FormControl = ({
   formControlProps,
@@ -29,55 +30,73 @@ export const FormControl = ({
   inputLeftElement,
   inputRightElement,
   helperText
-}) => (
-  <FormControlChakra {...formControlProps}>
-    {label && (
-      <FormLabel {...formLabelProps} color='gray.600'>
-        {label}
-      </FormLabel>
-    )}
+}) => {
+  const { theme } = useContext(ThemeContext)
 
-    {type === 'radio' ? (
-      <RadioGroup {...radioGroupProps}>
-        <Stack {...stackProps}>
+  return (
+    <FormControlChakra {...formControlProps}>
+      {label && (
+        <FormLabel
+          {...formLabelProps}
+          color={`gray.${theme === 'light' ? '600' : '300'}`}
+        >
+          {label}
+        </FormLabel>
+      )}
+
+      {type === 'radio' ? (
+        <RadioGroup {...radioGroupProps}>
+          <Stack {...stackProps}>
+            {options.map(({ name }, id) => (
+              <Radio key={id}>{name}</Radio>
+            ))}
+          </Stack>
+        </RadioGroup>
+      ) : null}
+
+      {type === 'textarea' ?? <Textarea {...textareaProps} bgColor='white' />}
+
+      {type === 'select' ? (
+        <Select>
           {options.map(({ name }, id) => (
-            <Radio key={id}>{name}</Radio>
+            <option key={id}>{name}</option>
           ))}
-        </Stack>
-      </RadioGroup>
-    ) : null}
+        </Select>
+      ) : null}
 
-    {type === 'textarea' ?? <Textarea {...textareaProps} bgColor='white' />}
+      {type !== 'radio' || type !== 'textarea' || type !== 'select' ? (
+        <InputGroup>
+          {inputLeftElement && (
+            <InputLeftElement
+              pointerEvents='none'
+              color={theme === 'light' ? 'gray.500' : 'gray.400'}
+            >
+              {inputLeftElement}
+            </InputLeftElement>
+          )}
 
-    {type === 'select' ? (
-      <Select>
-        {options.map(({ name }, id) => (
-          <option key={id}>{name}</option>
-        ))}
-      </Select>
-    ) : null}
+          <Input
+            type={type}
+            {...inputProps}
+            bgColor={theme === 'light' ? 'whiteAlpha.900' : 'blackAlpha.50'}
+            borderColor={`gray.${theme === 'light' ? '300' : '600'}`}
+            focusBorderColor={`blue.${theme === 'light' ? '600' : '300'}`}
+            errorBorderColor={`red.${theme === 'light' ? '600' : '300'}`}
+            color={`gray.${theme === 'light' ? '800' : '100'}`}
+          />
 
-    {type !== 'radio' || type !== 'textarea' || type !== 'select' ? (
-      <InputGroup>
-        {inputLeftElement && (
-          <InputLeftElement pointerEvents='none'>
-            {inputLeftElement}
-          </InputLeftElement>
-        )}
+          {inputRightElement && (
+            <InputRightElement pointerEvents='none'>
+              {inputRightElement}
+            </InputRightElement>
+          )}
+        </InputGroup>
+      ) : null}
 
-        <Input type={type} {...inputProps} bgColor='white' />
-
-        {inputRightElement && (
-          <InputRightElement pointerEvents='none'>
-            {inputRightElement}
-          </InputRightElement>
-        )}
-      </InputGroup>
-    ) : null}
-
-    <FormHelperText {...formHelperTextProps}>{helperText}</FormHelperText>
-  </FormControlChakra>
-)
+      <FormHelperText {...formHelperTextProps}>{helperText}</FormHelperText>
+    </FormControlChakra>
+  )
+}
 
 FormControl.propTypes = {
   formControlProps: PropTypes.object,
