@@ -31,11 +31,21 @@ export const Header = ({ layout }) => {
           <Logo />
         ) : (
           <Box>
-            <Heading size='lg' color='yellow.300'>
-              Welcome back,
+            <Heading
+              size='lg'
+              color={`yellow.${theme === 'light' ? '400' : '500'}`}
+            >
+              {locale === 'en' ? 'Welcome back' : 'Selamat datang kembali'},
             </Heading>
-            <Heading size='lg' noOfLines={1} color='gray.600'>
-              what to note now?
+
+            <Heading
+              size='lg'
+              noOfLines={1}
+              color={`gray.${theme === 'light' ? '600' : '300'}`}
+            >
+              {locale === 'en'
+                ? 'what do wanna note?'
+                : 'apa yang ingin dicatat?'}
             </Heading>
           </Box>
         )}
