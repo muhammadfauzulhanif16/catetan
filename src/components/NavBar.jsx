@@ -39,6 +39,7 @@ export const NavBar = ({ note, onAdd }) => {
             fontSize: 'sm'
           }}
           buttonProps={{
+            transition: 'all .4s ease-in-out',
             w: pathName === path ? 'full' : ['none', '50%'],
             role: 'group',
             display: 'flex',
