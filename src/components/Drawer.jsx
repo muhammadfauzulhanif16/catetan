@@ -12,14 +12,18 @@ import {
 import React, { useRef } from 'react'
 import { Nav } from './base/Nav'
 import {
+  Important as ImportantFilled,
   MoreVertical as MoreVerticalFilled,
   PersonAccounts as PersonAccountsFilled,
+  SwipeRight as SwipeRightFilled,
   WeatherMoon as WeatherMoonFilled,
   WeatherSunny as WeatherSunnyFilled
 } from '@emotion-icons/fluentui-system-filled'
 import {
+  Important as ImportantRegular,
   MoreVertical as MoreVerticalRegular,
   PersonAccounts as PersonAccountsRegular,
+  SwipeRight as SwipeRightRegular,
   WeatherMoon as WeatherMoonRegular,
   WeatherSunny as WeatherSunnyRegular
 } from '@emotion-icons/fluentui-system-regular'
@@ -35,11 +39,26 @@ export const Drawer = ({ locale, theme, onLocaleChange, onThemeChange }) => {
       text: locale === 'en' ? 'Theme' : 'Tema',
       initIcon: theme === 'light' ? WeatherSunnyRegular : WeatherMoonRegular,
       finalIcon: theme === 'light' ? WeatherSunnyFilled : WeatherMoonFilled,
+      color: 'purple',
       onClick: onThemeChange
     },
     {
       text: locale === 'en' ? 'Language' : 'Bahasa',
       initIcon: locale === 'en' ? US : ID,
+      onClick: onLocaleChange
+    },
+    {
+      text: locale === 'en' ? 'About App' : 'Tentang Aplikasi',
+      initIcon: ImportantRegular,
+      finalIcon: ImportantFilled,
+      color: 'cyan',
+      onClick: onLocaleChange
+    },
+    {
+      text: locale === 'en' ? 'Log Out' : 'Keluar',
+      initIcon: SwipeRightRegular,
+      finalIcon: SwipeRightFilled,
+      color: 'pink',
       onClick: onLocaleChange
     }
   ]
@@ -116,7 +135,7 @@ export const Drawer = ({ locale, theme, onLocaleChange, onThemeChange }) => {
                 initIcon={nav.initIcon}
                 finalIcon={nav.finalIcon}
                 iconProps={{
-                  color: `purple.${theme === 'light' ? '500' : '400'}`,
+                  color: `${nav.color}.${theme === 'light' ? '500' : '400'}`,
                   w: 6,
                   h: 6
                 }}
@@ -135,61 +154,6 @@ export const Drawer = ({ locale, theme, onLocaleChange, onThemeChange }) => {
                 }}
               />
             ))}
-
-            {/* <Nav */}
-            {/*  initIcon={LocalLanguageRegular} */}
-            {/*  finalIcon={LocalLanguageFilled} */}
-            {/*  iconProps={{ */}
-            {/*    w: 6, */}
-            {/*    h: 6 */}
-            {/*  }} */}
-            {/*  text='Language' */}
-            {/*  buttonProps={{ */}
-            {/*    color: 'gray.600', */}
-            {/*    role: 'group', */}
-            {/*    w: 'full', */}
-            {/*    gap: 4, */}
-            {/*    display: 'flex', */}
-            {/*    justifyContent: 'flex-start', */}
-            {/*    rightIcon: <US title='United States' width={24} height={24} /> */}
-            {/*  }} */}
-            {/* /> */}
-
-            {/* <Nav */}
-            {/*  initIcon={ImportantRegular} */}
-            {/*  finalIcon={ImportantFilled} */}
-            {/*  iconProps={{ */}
-            {/*    w: 6, */}
-            {/*    h: 6 */}
-            {/*  }} */}
-            {/*  text='About App' */}
-            {/*  buttonProps={{ */}
-            {/*    color: 'gray.600', */}
-            {/*    role: 'group', */}
-            {/*    w: 'full', */}
-            {/*    gap: 4, */}
-            {/*    display: 'flex', */}
-            {/*    justifyContent: 'flex-start' */}
-            {/*  }} */}
-            {/* /> */}
-
-            {/* <Nav */}
-            {/*  initIcon={SignOutRegular} */}
-            {/*  finalIcon={SignOutFilled} */}
-            {/*  iconProps={{ */}
-            {/*    w: 6, */}
-            {/*    h: 6 */}
-            {/*  }} */}
-            {/*  text='Log Out' */}
-            {/*  buttonProps={{ */}
-            {/*    color: 'gray.600', */}
-            {/*    role: 'group', */}
-            {/*    w: 'full', */}
-            {/*    gap: 4, */}
-            {/*    display: 'flex', */}
-            {/*    justifyContent: 'flex-start' */}
-            {/*  }} */}
-            {/* /> */}
           </DrawerBody>
         </DrawerContent>
       </DrawerChakra>
