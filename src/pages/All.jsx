@@ -1,12 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Layout } from '../components/base/Layout'
 import { Header } from '../components/Header'
 import { NavBar } from '../components/NavBar'
+import { LocaleContext } from '../context/Locale'
 
-export const Dashboard = () => {
+export const All = () => {
+  const { locale } = useContext(LocaleContext)
+
   return (
     <Layout
-      title='Dashboard'
+      title={locale === 'en' ? 'All Notes' : 'Semua Catatan'}
       boxProps={{
         p: [4, 8, 12]
       }}

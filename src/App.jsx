@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom'
 import { Home } from './pages/Home'
 import { Register } from './pages/Register'
 import { LogIn } from './pages/LogIn'
-import { Dashboard } from './pages/Dashboard'
+import { All } from './pages/All'
 import { LocaleContext } from './context/Locale'
 import { ThemeContext } from './context/Theme'
 
@@ -43,7 +43,7 @@ export const App = () => {
           <Route path='/' element={<Home />} />
           <Route path='/register' element={<Register />} />
           <Route path='/login' element={<LogIn />} />
-          <Route path='/dashboard' element={<Dashboard />} />
+          <Route path='/all' element={<All />} />
         </Routes>
       </LocaleContext.Provider>
     </ThemeContext.Provider>

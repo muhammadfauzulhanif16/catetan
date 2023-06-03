@@ -1,35 +1,37 @@
 import {
   Add as AddRegular,
   AppsList as AppListRegular,
-  Archive as ArchiveRegular,
-  Send as SendRegular
+  Archive as ArchiveRegular
 } from '@emotion-icons/fluentui-system-regular'
 import {
   Add as AddFilled,
   AppsList as AppListFilled,
-  Archive as ArchiveFilled,
-  Send as SendFilled
+  Archive as ArchiveFilled
 } from '@emotion-icons/fluentui-system-filled'
 import PropTypes from 'prop-types'
 
-export const navList = (pathName) => [
+export const navList = (locale) => [
   {
     initIcon: AppListRegular,
     finalIcon: AppListFilled,
-    text: 'All'
+    text: locale === 'en' ? 'All' : 'Semua',
+    path: 'all'
   },
   {
-    initIcon: pathName === 'Add' ? SendRegular : AddRegular,
-    finalIcon: pathName === 'Add' ? SendFilled : AddFilled,
-    text: pathName === 'Add' ? 'Submit' : 'Add'
+    initIcon: AddRegular,
+    finalIcon: AddFilled,
+    text: locale === 'en' ? 'Add' : 'Tambah',
+    path: 'add'
   },
   {
     initIcon: ArchiveRegular,
     finalIcon: ArchiveFilled,
-    text: 'Archived'
+    text: locale === 'en' ? 'Archived' : 'Arsip',
+    path: 'archived'
   }
 ]
 
 navList.propTypes = {
-  pathName: PropTypes.string
+  pathName: PropTypes.string,
+  locale: PropTypes.string
 }

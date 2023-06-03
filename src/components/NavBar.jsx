@@ -1,19 +1,27 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import { SimpleGrid } from '@chakra-ui/react'
 import { Nav } from './base/Nav'
 import { navList } from '../data/navList'
-import { useNavigate } from 'react-router-dom'
 import PropTypes from 'prop-types'
+import { LocaleContext } from '../context/Locale'
+import { ThemeContext } from '../context/Theme'
 
-export const NavBar = ({ pathName, setPathName, note, onAdd }) => {
-  const navs = navList(pathName)
-  const navigate = useNavigate()
+export const NavBar = ({ note, onAdd }) => {
+  // const checkPathName = ;
+
+  const [pathName, setPathName] = useState(
+    localStorage.getItem('catetan-path') || 'all'
+  )
+  // const navigate = useNavigate()
+  const { locale } = useContext(LocaleContext)
+  const { theme } = useContext(ThemeContext)
+  const navs = navList(locale)
 
   return (
     <SimpleGrid
       columns={3}
       m={[4, 8, 12]}
-      bgColor='gray.100'
+      bgColor={`gray.${theme === 'light' ? '100' : '800'}`}
       p={2}
       gap={2}
       rounded='md'
@@ -22,40 +30,31 @@ export const NavBar = ({ pathName, setPathName, note, onAdd }) => {
       right={0}
       left={0}
     >
-      {navs.map(({ initIcon, finalIcon, text }, id) => (
+      {navs.map(({ initIcon, finalIcon, text, path }, id) => (
         <Nav
           key={id}
           initIcon={initIcon}
           finalIcon={finalIcon}
           text={text}
-          buttonProps={{
-            color: `${pathName === text ? 'yellow.400' : 'gray.600'}`,
-            w: 'full',
-            bgColor:
-              text === 'Add' || text === 'Submit' ? 'yellow.300' : 'gray.100',
-            _hover: {
-              bgColor:
-                text === 'Add' || text === 'Submit' ? 'yellow.400' : 'gray.200'
-            },
-            isDisabled:
-              text === 'Submit' && (!note.title.content || !note.body.content),
-            gap: [2, 4],
-            alignItems: 'center',
-            role: 'group',
-            onClick:
-              text === 'Submit'
-                ? () => {
-                    onAdd()
-                    setPathName('All')
-                    navigate('/')
-                  }
-                : () => {
-                    setPathName(text)
-                    navigate(`/${text === 'All' ? '' : text.toLowerCase()}`)
-                  }
-          }}
           textProps={{
             fontSize: 'sm'
+          }}
+          buttonProps={{
+            role: 'group',
+            display: 'flex',
+            gap: [2, 4],
+            bgColor: `gray.${theme === 'light' ? '100' : '800'}`,
+            _hover: {
+              bgColor: `gray.${theme === 'light' ? '200' : '700'}`
+            },
+            color:
+              pathName === path
+                ? `yellow.${theme === 'light' ? '400' : '500'}`
+                : `gray.${theme === 'light' ? '600' : '300'}`,
+            onClick: () => {
+              localStorage.setItem('catetan-path', path)
+              setPathName(path)
+            }
           }}
           iconProps={{
             w: 6,
@@ -68,8 +67,6 @@ export const NavBar = ({ pathName, setPathName, note, onAdd }) => {
 }
 
 NavBar.propTypes = {
-  pathName: PropTypes.string,
-  setPathName: PropTypes.func,
   note: PropTypes.object,
   onAdd: PropTypes.func
 }
