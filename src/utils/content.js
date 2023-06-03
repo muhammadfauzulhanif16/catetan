@@ -22,6 +22,17 @@ export const action = {
   }
 }
 
+export const formHelperText = {
+  en: {
+    register: 'Already have an account',
+    login: "Don't have an account"
+  },
+  id: {
+    register: 'Sudah punya akun',
+    login: 'Belum punya akun'
+  }
+}
+
 export const footer = {
   en: {
     start: 'Proudly made by',

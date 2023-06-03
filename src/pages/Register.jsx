@@ -8,7 +8,7 @@ import { Checkmark } from '@emotion-icons/fluentui-system-filled'
 import { LockClosed, LockOpen } from '@emotion-icons/fluentui-system-regular'
 import { AuthLayout } from '../components/base/AuthLayout'
 import { LocaleContext } from '../context/Locale'
-import { title } from '../utils/content'
+import { action, formHelperText, title } from '../utils/content'
 import { ThemeContext } from '../context/Theme'
 
 export const Register = () => {
@@ -136,9 +136,9 @@ export const Register = () => {
         </Button>
 
         <Text color='gray.500'>
-          Already have an account?{' '}
+          {`${formHelperText[locale].register}? `}
           <Link color='yellow.500' onClick={() => navigate('/login')}>
-            Log in
+            {action[locale].login}
           </Link>
         </Text>
       </Flex>

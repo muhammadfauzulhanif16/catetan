@@ -7,11 +7,13 @@ import { Icon } from '../components/base/Icon'
 import { useNavigate } from 'react-router-dom'
 import { login } from '../utils/login'
 import { AuthLayout } from '../components/base/AuthLayout'
-import { title } from '../utils/content'
+import { action, formHelperText, title } from '../utils/content'
 import { LocaleContext } from '../context/Locale'
+import { ThemeContext } from '../context/Theme'
 
 export const LogIn = () => {
   const navigate = useNavigate()
+  const { theme } = useContext(ThemeContext)
   const { locale } = useContext(LocaleContext)
   const { loginList, isValidEmail, isValidPassword } = login()
 
@@ -48,7 +50,9 @@ export const LogIn = () => {
               }
               helperText={register.helperText}
               formHelperTextProps={{
-                color: register.inValid ? 'red.600' : 'gray.600'
+                color: register.inValid
+                  ? `red.${theme === 'light' ? '600' : '300'}`
+                  : `gray.${theme === 'light' ? '600' : '300'}`
               }}
               inputProps={{
                 placeholder: register.placeholder,
@@ -116,9 +120,9 @@ export const LogIn = () => {
         </Button>
 
         <Text color='gray.500'>
-          {"Don't have an account yet? "}
+          {`${formHelperText[locale].login}? `}
           <Link color='yellow.500' onClick={() => navigate('/register')}>
-            Register
+            {action[locale].register}
           </Link>
         </Text>
       </Flex>
