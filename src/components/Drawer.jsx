@@ -142,6 +142,7 @@ export const Drawer = ({ locale, theme, onLocaleChange, onThemeChange }) => {
                 text={nav.text}
                 buttonProps={{
                   onClick: nav.onClick,
+                  color: `gray.${theme === 'light' ? '600' : '300'}`,
                   bgColor: `gray.${theme === 'light' ? '100' : '800'}`,
                   _hover: {
                     bgColor: `gray.${theme === 'light' ? '200' : '700'}`
