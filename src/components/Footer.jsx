@@ -15,7 +15,7 @@ export const Footer = () => {
     >
       {`${footer[locale].start} `}
       <Link
-        color={`purple.${theme === 'light' ? '400' : '500'}`}
+        color={`purple.${theme === 'light' ? '500' : '400'}`}
         href='https://github.com/muhammadfauzulhanif16'
         isExternal
       >
