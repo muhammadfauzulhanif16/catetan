@@ -54,6 +54,7 @@ export const Drawer = ({ locale, theme, onLocaleChange, onThemeChange }) => {
           h: 6
         }}
         buttonProps={{
+          color: `gray.${theme === 'light' ? '600' : '300'}`,
           bgColor: `gray.${theme === 'light' ? '100' : '800'}`,
           _hover: { bgColor: `gray.${theme === 'light' ? '200' : '700'}` },
           onClick: onOpen,
@@ -71,6 +72,7 @@ export const Drawer = ({ locale, theme, onLocaleChange, onThemeChange }) => {
         <DrawerOverlay />
 
         <DrawerContent
+          color={`gray.${theme === 'light' ? '600' : '300'}`}
           bgColor={`gray.${theme === 'light' ? '50' : '900'}`}
           p={[4, 8]}
           display='flex'

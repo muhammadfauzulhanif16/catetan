@@ -13,6 +13,7 @@ import { Nav } from './base/Nav'
 export const Theme = ({ data, onChange }) => (
   <Nav
     buttonProps={{
+      color: `gray.${data === 'light' ? '600' : '300'}`,
       bgColor: `gray.${data === 'light' ? '100' : '800'}`,
       _hover: { bgColor: `gray.${data === 'light' ? '200' : '700'}` },
       p: 0,

@@ -14,11 +14,10 @@ export const Nav = ({
   // const { theme } = useContext(ThemeContext)
 
   return (
-    <Button
-      {...buttonProps}
-      // color={`gray.${theme === 'light' ? '600' : '300'}`}
-    >
-      <Icon initIcon={initIcon} finalIcon={finalIcon} iconProps={iconProps} />
+    <Button {...buttonProps}>
+      {initIcon && (
+        <Icon initIcon={initIcon} finalIcon={finalIcon} iconProps={iconProps} />
+      )}
 
       {text && <Text {...textProps}>{text}</Text>}
     </Button>

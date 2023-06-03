@@ -1,8 +1,15 @@
 import React, { useContext } from 'react'
-import { Button, Flex, Grid, Link, Text } from '@chakra-ui/react'
+import { Flex, Grid, Link, Text } from '@chakra-ui/react'
 import { FormControl } from '../components/base/FormControl'
-import { LockClosed, LockOpen } from '@emotion-icons/fluentui-system-regular'
-import { Checkmark } from '@emotion-icons/fluentui-system-filled'
+import {
+  LockClosed as LockClosedRegular,
+  LockOpen as LockOpenRegular
+} from '@emotion-icons/fluentui-system-regular'
+import {
+  Checkmark,
+  LockClosed as LockClosedFilled,
+  LockOpen as LockOpenFilled
+} from '@emotion-icons/fluentui-system-filled'
 import { Icon } from '../components/base/Icon'
 import { useNavigate } from 'react-router-dom'
 import { login } from '../utils/login'
@@ -10,6 +17,7 @@ import { AuthLayout } from '../components/base/AuthLayout'
 import { action, formHelperText, title } from '../utils/content'
 import { LocaleContext } from '../context/Locale'
 import { ThemeContext } from '../context/Theme'
+import { Nav } from '../components/base/Nav'
 
 export const LogIn = () => {
   const navigate = useNavigate()
@@ -86,41 +94,39 @@ export const LogIn = () => {
           ))}
         </Grid>
 
-        <Button
-          isLoading={false}
-          loadingText='Creating'
-          leftIcon={
-            !isValidEmail || !isValidPassword ? (
-              <Icon
-                initIcon={LockClosed}
-                iconProps={{
-                  w: 6,
-                  h: 6
-                }}
-              />
-            ) : (
-              <Icon
-                initIcon={LockOpen}
-                iconProps={{
-                  w: 6,
-                  h: 6
-                }}
-              />
-            )
-          }
-          isDisabled={!isValidEmail || !isValidPassword}
-          w='full'
-          bgColor='yellow.300'
-          color='gray.600'
-          _hover={{
-            bgColor: 'yellow.400'
+        <Nav
+          buttonProps={{
+            isLoading: false,
+            loadingText: locale === 'en' ? 'Loading' : 'Memuat',
+            isDisabled: !isValidEmail || !isValidPassword,
+            display: 'flex',
+            gap: 4,
+            w: 'full',
+            color: `gray.${theme === 'light' ? '600' : '300'}`,
+            bgColor: `yellow.${theme === 'light' ? '400' : '500'}`,
+            _hover: {
+              color: `gray.${theme === 'light' ? '300' : '600'}`,
+              bgColor: `yellow.${theme === 'light' ? '500' : '400'}`
+            },
+            role: 'group',
+            onClick: () => navigate('/all')
           }}
-          display='flex'
-          alignItems='center'
-          onClick={() => navigate('/dashboard')}
-        >
-          {action[locale].login.button}
-        </Button>
+          initIcon={
+            !isValidEmail || !isValidPassword
+              ? LockClosedRegular
+              : LockOpenRegular
+          }
+          finalIcon={
+            !isValidEmail || !isValidPassword
+              ? LockClosedFilled
+              : LockOpenFilled
+          }
+          iconProps={{
+            w: 6,
+            h: 6
+          }}
+          text={action[locale].login.button}
+        />
 
         <Text color='gray.500'>
           {`${formHelperText[locale].login}? `}

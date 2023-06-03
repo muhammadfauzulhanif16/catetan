@@ -30,6 +30,7 @@ export const Home = () => {
             key={id}
             text={action.name}
             buttonProps={{
+              color: `gray.${theme === 'light' ? '600' : '300'}`,
               variant: action.variant,
               w: 'full',
               borderColor:
@@ -41,7 +42,8 @@ export const Home = () => {
                   ? `yellow.${theme === 'light' ? '400' : '500'}`
                   : 'transparent',
               _hover: {
-                bgColor: `yellow.${theme === 'light' ? '500' : '600'}`
+                color: `gray.${theme === 'light' ? '300' : '600'}`,
+                bgColor: `yellow.${theme === 'light' ? '500' : '400'}`
               },
               onClick: () => navigate(`/${action.path}`)
             }}
