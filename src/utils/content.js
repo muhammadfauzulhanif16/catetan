@@ -13,12 +13,12 @@ export const title = {
 
 export const action = {
   en: {
-    register: 'Register',
-    login: 'Log In'
+    register: 'Create Account',
+    login: 'Log In Account'
   },
   id: {
-    register: 'Daftar',
-    login: 'Masuk'
+    register: 'Buat Akun',
+    login: 'Masuk Akun'
   }
 }
 

@@ -116,7 +116,7 @@ export const LogIn = () => {
           alignItems='center'
           onClick={() => navigate('/dashboard')}
         >
-          Log In
+          {action[locale].login}
         </Button>
 
         <Text color='gray.500'>

@@ -132,7 +132,7 @@ export const Register = () => {
           display='flex'
           alignItems='center'
         >
-          Create Account
+          {action[locale].register}
         </Button>
 
         <Text color='gray.500'>
