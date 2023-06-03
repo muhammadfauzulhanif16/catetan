@@ -81,7 +81,12 @@ export const Header = ({ layout }) => {
           </Flex>
         ) : (
           <Box>
-            <Drawer locale={locale} onLocaleChange={onLocaleChange} />
+            <Drawer
+              locale={locale}
+              onLocaleChange={onLocaleChange}
+              theme={theme}
+              onThemeChange={onThemeChange}
+            />
           </Box>
         )}
       </Flex>

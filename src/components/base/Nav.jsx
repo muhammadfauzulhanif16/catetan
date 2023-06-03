@@ -17,7 +17,7 @@ export const Nav = ({
   return (
     <Button
       {...buttonProps}
-      color={`gray.${theme === 'light' ? '800' : '100'}`}
+      color={`gray.${theme === 'light' ? '700' : '200'}`}
     >
       {initIcon && (
         <Icon initIcon={initIcon} finalIcon={finalIcon} iconProps={iconProps} />
