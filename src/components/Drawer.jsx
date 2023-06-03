@@ -116,6 +116,7 @@ export const Drawer = ({ locale, theme, onLocaleChange, onThemeChange }) => {
                 initIcon={nav.initIcon}
                 finalIcon={nav.finalIcon}
                 iconProps={{
+                  color: `purple.${theme === 'light' ? '500' : '400'}`,
                   w: 6,
                   h: 6
                 }}

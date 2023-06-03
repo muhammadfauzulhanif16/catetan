@@ -23,6 +23,7 @@ export const Theme = ({ data, onChange }) => (
     initIcon={data === 'light' ? WeatherSunnyRegular : WeatherMoonRegular}
     finalIcon={data === 'light' ? WeatherSunnyFilled : WeatherMoonFilled}
     iconProps={{
+      color: `purple.${data === 'light' ? '500' : '400'}`,
       w: 6,
       h: 6
     }}
