@@ -1,12 +1,11 @@
 import React, { useContext, useState } from 'react'
 import { Nav } from './base/Nav'
 import { navList } from '../data/navList'
-import PropTypes from 'prop-types'
 import { LocaleContext } from '../context/Locale'
 import { ThemeContext } from '../context/Theme'
 import { Flex } from '@chakra-ui/react'
 
-export const NavBar = ({ note, onAdd }) => {
+export const NavBar = () => {
   // const checkPathName = ;
 
   const [pathName, setPathName] = useState(
@@ -44,7 +43,10 @@ export const NavBar = ({ note, onAdd }) => {
             role: 'group',
             display: 'flex',
             gap: [2, 4],
-            bgColor: `gray.${theme === 'light' ? '100' : '800'}`,
+            bgColor:
+              pathName === path
+                ? `gray.${theme === 'light' ? '200' : '700'}`
+                : `gray.${theme === 'light' ? '100' : '800'}`,
             _hover: {
               bgColor: `gray.${theme === 'light' ? '200' : '700'}`
             },
@@ -67,7 +69,7 @@ export const NavBar = ({ note, onAdd }) => {
   )
 }
 
-NavBar.propTypes = {
-  note: PropTypes.object,
-  onAdd: PropTypes.func
-}
+// NavBar.propTypes = {
+// note: PropTypes.object,
+// onAdd: PropTypes.func
+// }
