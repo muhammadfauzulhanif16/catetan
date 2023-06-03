@@ -109,7 +109,10 @@ export const Header = ({ layout }) => {
             display: { base: 'block', md: 'none' }
           }}
           inputProps={{
-            placeholder: 'Search notes by title...'
+            placeholder:
+              locale === 'en'
+                ? 'Search notes by title...'
+                : 'Cari catatan berdasarkan judul...'
           }}
         />
       )}
