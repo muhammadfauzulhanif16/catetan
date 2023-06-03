@@ -15,7 +15,7 @@ export const LogIn = () => {
   const navigate = useNavigate()
   const { theme } = useContext(ThemeContext)
   const { locale } = useContext(LocaleContext)
-  const { loginList, isValidEmail, isValidPassword } = login()
+  const { loginList, isValidEmail, isValidPassword } = login(locale)
 
   return (
     <AuthLayout title={title[locale].login}>
@@ -55,7 +55,10 @@ export const LogIn = () => {
                   : `gray.${theme === 'light' ? '600' : '300'}`
               }}
               inputProps={{
-                placeholder: register.placeholder,
+                placeholder:
+                  locale === 'en'
+                    ? `Enter your ${register.label.toLowerCase()}`
+                    : `Masukkan ${register.label.toLowerCase()} anda`,
                 value: register.value,
                 onChange: register.onChange
               }}

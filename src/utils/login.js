@@ -9,24 +9,25 @@ import {
   Password as PasswordFilled
 } from '@emotion-icons/fluentui-system-filled'
 
-export const login = () => {
+export const login = (locale) => {
   const [email, onEmailChange] = useForm('')
   const [password, onPasswordChange] = useForm('')
 
   const isValidEmail = /[a-z0-9]+@[a-z0-9]+.[a-z]{2,3}/.test(email)
-  const isValidPassword = password.length >= 8
+  const isValidPassword = password.length >= 6
 
   const [isInValidEmail, setIsInValidEmail] = useState(false)
   const [isInValidPassword, setIsInValidPassword] = useState(false)
 
   const loginList = [
     {
-      label: 'Email',
+      label: locale === 'en' ? 'Email' : 'Surel',
       type: 'email',
       initIcon: MailRegular,
       finalIcon: MailFilled,
-      helperText: isInValidEmail ? 'Email is required' : '',
-      placeholder: 'Enter your email',
+      helperText: isInValidEmail
+        ? `${locale === 'en' ? 'Email is required' : 'Surel diperlukan'}`
+        : '',
       value: email,
       onChange: onEmailChange,
       valid: isValidEmail,
@@ -34,12 +35,15 @@ export const login = () => {
       setInValid: setIsInValidEmail
     },
     {
-      label: 'Password',
+      label: locale === 'en' ? 'Password' : 'Kata Sandi',
       type: 'password',
       initIcon: PasswordRegular,
       finalIcon: PasswordFilled,
-      helperText: isInValidPassword ? 'Password is required' : '',
-      placeholder: 'Enter your password',
+      helperText: isInValidPassword
+        ? `${
+            locale === 'en' ? 'Password is required' : 'Kata sandi diperlukan'
+          }`
+        : '',
       value: password,
       onChange: onPasswordChange,
       valid: isValidPassword,
