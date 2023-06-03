@@ -1,10 +1,10 @@
 import React, { useContext, useState } from 'react'
-import { SimpleGrid } from '@chakra-ui/react'
 import { Nav } from './base/Nav'
 import { navList } from '../data/navList'
 import PropTypes from 'prop-types'
 import { LocaleContext } from '../context/Locale'
 import { ThemeContext } from '../context/Theme'
+import { Flex } from '@chakra-ui/react'
 
 export const NavBar = ({ note, onAdd }) => {
   // const checkPathName = ;
@@ -18,8 +18,7 @@ export const NavBar = ({ note, onAdd }) => {
   const navs = navList(locale)
 
   return (
-    <SimpleGrid
-      columns={3}
+    <Flex
       m={[4, 8, 12]}
       bgColor={`gray.${theme === 'light' ? '100' : '800'}`}
       p={2}
@@ -35,11 +34,12 @@ export const NavBar = ({ note, onAdd }) => {
           key={id}
           initIcon={initIcon}
           finalIcon={finalIcon}
-          text={text}
+          text={pathName === path ? text : ''}
           textProps={{
             fontSize: 'sm'
           }}
           buttonProps={{
+            w: pathName === path ? 'full' : ['none', '50%'],
             role: 'group',
             display: 'flex',
             gap: [2, 4],
@@ -62,7 +62,7 @@ export const NavBar = ({ note, onAdd }) => {
           }}
         />
       ))}
-    </SimpleGrid>
+    </Flex>
   )
 }
 
