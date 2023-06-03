@@ -138,7 +138,7 @@ export const Register = () => {
         <Text color='gray.500'>
           {`${formHelperText[locale].register}? `}
           <Link color='yellow.500' onClick={() => navigate('/login')}>
-            {action[locale].login}
+            {action[locale].login.split(' ').shift()}
           </Link>
         </Text>
       </Flex>

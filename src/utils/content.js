@@ -17,7 +17,7 @@ export const action = {
     login: 'Log In Account'
   },
   id: {
-    register: 'Buat Akun',
+    register: 'Daftar Akun',
     login: 'Masuk Akun'
   }
 }
