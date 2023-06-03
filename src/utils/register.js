@@ -18,10 +18,22 @@ export const register = (locale) => {
   const [password, onPasswordChange] = useForm('')
   const [confirmPassword, onConfirmPasswordChange] = useForm('')
 
+  const userData = {
+    name: fullName,
+    email,
+    password
+  }
+
   const isValidFullName = fullName.length > 0
   const isValidEmail = /[a-z0-9]+@[a-z0-9]+.[a-z]{2,3}/.test(email)
   const isValidPassword = password.length >= 6
   const isValidConfirmPassword = confirmPassword === password && isValidPassword
+
+  const isValid =
+    !isValidFullName ||
+    !isValidEmail ||
+    !isValidPassword ||
+    !isValidConfirmPassword
 
   const [isInValidFullName, setIsInValidFullName] = useState(false)
   const [isInValidEmail, setIsInValidEmail] = useState(false)
@@ -108,10 +120,8 @@ export const register = (locale) => {
 
   return {
     registerList,
-    isValidFullName,
-    isValidEmail,
-    isValidPassword,
-    isValidConfirmPassword
+    isValid,
+    userData
   }
 }
 

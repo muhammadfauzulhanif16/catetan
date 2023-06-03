@@ -1,5 +1,5 @@
-import React, { useContext } from 'react'
-import { Flex, Grid, Link, Text } from '@chakra-ui/react'
+import React, { useContext, useState } from 'react'
+import { Flex, Grid, Link, Text, useToast } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom'
 import { register } from '../utils/register'
 import { FormControl } from '../components/base/FormControl'
@@ -19,13 +19,30 @@ export const Register = () => {
   const navigate = useNavigate()
   const { theme } = useContext(ThemeContext)
   const { locale } = useContext(LocaleContext)
-  const {
-    registerList,
-    isValidFullName,
-    isValidEmail,
-    isValidPassword,
-    isValidConfirmPassword
-  } = register(locale)
+  const { registerList, isValid, userData } = register(locale)
+  const [isLoading, setIsLoading] = useState(false)
+  const toast = useToast()
+  // const [response, setResponse] = useState(null)
+
+  const postUser = async (payload) => {
+    const response = await fetch('https://notes-api.dicoding.dev/v1/register', {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: payload.name,
+        email: payload.email,
+        password: payload.password
+      })
+    })
+
+    return response.json()
+  }
+
+  // if (isLoading) {
+  //   return <>Loading</>
+  // }
 
   return (
     <AuthLayout title={title[locale].register}>
@@ -98,13 +115,9 @@ export const Register = () => {
 
         <Nav
           buttonProps={{
-            isLoading: false,
-            loadingText: locale === 'en' ? 'Loading' : 'Memuat',
-            isDisabled:
-              !isValidFullName ||
-              !isValidEmail ||
-              !isValidPassword ||
-              !isValidConfirmPassword,
+            isLoading,
+            loadingText: isLoading && locale === 'en' ? 'Loading' : 'Memuat',
+            isDisabled: isValid,
             display: 'flex',
             gap: 4,
             w: 'full',
@@ -115,24 +128,39 @@ export const Register = () => {
               bgColor: `yellow.${theme === 'light' ? '500' : '400'}`
             },
             role: 'group',
-            onClick: () => navigate('/all')
+            onClick: () => {
+              setIsLoading(true)
+
+              setTimeout(async () => {
+                const data = await postUser(userData)
+
+                if (data.status === 'success') {
+                  toast({
+                    title: 'Register Success',
+                    description: data.message,
+                    status: 'success',
+                    duration: 4000,
+                    isClosable: true,
+                    position: 'top'
+                  })
+
+                  navigate('/login')
+                } else {
+                  toast({
+                    title: 'Register Failed',
+                    description: data.message,
+                    status: 'error',
+                    duration: 4000,
+                    isClosable: true,
+                    position: 'top'
+                  })
+                }
+                setIsLoading(true)
+              }, 4000)
+            }
           }}
-          initIcon={
-            !isValidFullName ||
-            !isValidEmail ||
-            !isValidPassword ||
-            !isValidConfirmPassword
-              ? LockClosedRegular
-              : LockOpenRegular
-          }
-          finalIcon={
-            !isValidFullName ||
-            !isValidEmail ||
-            !isValidPassword ||
-            !isValidConfirmPassword
-              ? LockClosedFilled
-              : LockOpenFilled
-          }
+          initIcon={isValid ? LockClosedRegular : LockOpenRegular}
+          finalIcon={isValid ? LockClosedFilled : LockOpenFilled}
           iconProps={{
             w: 6,
             h: 6
