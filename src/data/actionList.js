@@ -6,7 +6,11 @@ export const actionList = () => {
   const { locale } = useContext(LocaleContext)
 
   return [
-    { name: action[locale].register, path: 'register', variant: 'outline' },
-    { name: action[locale].login, path: 'login', variant: 'solid' }
+    {
+      name: action[locale].register.button,
+      path: 'register',
+      variant: 'outline'
+    },
+    { name: action[locale].login.button, path: 'login', variant: 'solid' }
   ]
 }

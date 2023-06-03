@@ -119,13 +119,13 @@ export const LogIn = () => {
           alignItems='center'
           onClick={() => navigate('/dashboard')}
         >
-          {action[locale].login}
+          {action[locale].login.button}
         </Button>
 
         <Text color='gray.500'>
           {`${formHelperText[locale].login}? `}
           <Link color='yellow.500' onClick={() => navigate('/register')}>
-            {action[locale].register.split(' ').shift()}
+            {action[locale].register.link}
           </Link>
         </Text>
       </Flex>

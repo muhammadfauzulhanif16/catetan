@@ -132,13 +132,13 @@ export const Register = () => {
           display='flex'
           alignItems='center'
         >
-          {action[locale].register}
+          {action[locale].register.button}
         </Button>
 
         <Text color='gray.500'>
           {`${formHelperText[locale].register}? `}
           <Link color='yellow.500' onClick={() => navigate('/login')}>
-            {action[locale].login.split(' ').shift()}
+            {action[locale].login.link}
           </Link>
         </Text>
       </Flex>
