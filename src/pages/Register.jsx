@@ -155,7 +155,8 @@ export const Register = () => {
                     position: 'top'
                   })
                 }
-                setIsLoading(true)
+
+                setIsLoading(false)
               }, 4000)
             }
           }}
