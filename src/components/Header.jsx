@@ -35,7 +35,7 @@ export const Header = ({ layout }) => {
               size='lg'
               color={`yellow.${theme === 'light' ? '400' : '500'}`}
             >
-              {locale === 'en' ? 'Welcome back' : 'Selamat datang kembali'},
+              {locale === 'en' ? 'Welcome' : 'Selamat datang'},
             </Heading>
 
             <Heading
