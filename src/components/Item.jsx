@@ -10,7 +10,7 @@ export const Item = ({ data, onArchive, onDelete, setPathName, active }) => {
   return (
     <Box
       p={[4, 8, 12]}
-      bgColor={`teal.${theme === 'light' ? '50' : '900'}`}
+      bgColor={`yellow.${theme === 'light' ? '100' : '800'}`}
       rounded={8}
       color={`gray.${theme === 'light' ? '600' : '300'}`}
     >
@@ -33,7 +33,7 @@ export const Item = ({ data, onArchive, onDelete, setPathName, active }) => {
           active={active}
         />
 
-        <Text color='gray.400' noOfLines={1}>
+        <Text color={`gray.${theme === 'light' ? '500' : '400'}`} noOfLines={1}>
           {data.createdAt}
         </Text>
       </Flex>

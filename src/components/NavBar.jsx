@@ -43,12 +43,12 @@ export const NavBar = ({ path }) => {
             gap: [2, 4],
             bgColor: `gray.${theme === 'light' ? '50' : '900'}`,
             _hover: {
-              bgColor: `gray.${theme === 'light' ? '200' : '700'}`
+              bgColor: `gray.${theme === 'light' ? '100' : '800'}`
             },
             color:
               pathName === path
                 ? `yellow.${theme === 'light' ? '400' : '500'}`
-                : `gray.${theme === 'light' ? '600' : '300'}`,
+                : `gray.${theme === 'light' ? '400' : '500'}`,
             onClick: () => {
               localStorage.setItem('catetan-path', path)
               setPathName(path)

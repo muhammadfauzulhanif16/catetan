@@ -19,7 +19,7 @@ export const Header = ({ layout, onLogOut }) => {
   return (
     <Flex
       flex='none'
-      // gap={4}
+      gap={4}
       justifyContent='space-between'
       direction={{ base: 'column', md: 'row' }}
       bgColor={`gray.${theme === 'light' ? '50' : '900'}`}
@@ -43,7 +43,7 @@ export const Header = ({ layout, onLogOut }) => {
             <Heading
               size='lg'
               noOfLines={1}
-              color={`gray.${theme === 'light' ? '600' : '300'}`}
+              color={`gray.${theme === 'light' ? '500' : '400'}`}
             >
               {locale === 'en'
                 ? 'what do wanna note?'

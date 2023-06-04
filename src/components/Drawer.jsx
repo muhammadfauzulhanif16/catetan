@@ -79,7 +79,7 @@ export const Drawer = ({
           h: 6
         }}
         buttonProps={{
-          color: `gray.${theme === 'light' ? '600' : '300'}`,
+          color: `gray.${theme === 'light' ? '500' : '400'}`,
           bgColor: `gray.${theme === 'light' ? '100' : '800'}`,
           _hover: { bgColor: `gray.${theme === 'light' ? '200' : '700'}` },
           onClick: onOpen,
@@ -119,7 +119,7 @@ export const Drawer = ({
               <Heading
                 size='md'
                 noOfLines={1}
-                color={`gray.${theme === 'light' ? '700' : '200'}`}
+                color={`gray.${theme === 'light' ? '600' : '300'}`}
               >
                 Muhammad Fauzul Hanif
               </Heading>
@@ -127,7 +127,7 @@ export const Drawer = ({
               <Text
                 fontSize='sm'
                 noOfLines={1}
-                color={`gray.${theme === 'light' ? '500' : '400'}`}
+                color={`gray.${theme === 'light' ? '400' : '500'}`}
               >
                 muhammadfauzulhanif2230511102@ummi.ac.id
               </Text>
@@ -148,7 +148,7 @@ export const Drawer = ({
                 text={nav.text}
                 buttonProps={{
                   onClick: nav.onClick,
-                  color: `gray.${theme === 'light' ? '600' : '300'}`,
+                  color: `gray.${theme === 'light' ? '400' : '500'}`,
                   bgColor: `gray.${theme === 'light' ? '100' : '800'}`,
                   _hover: {
                     bgColor: `gray.${theme === 'light' ? '200' : '700'}`

@@ -21,15 +21,15 @@ export const Menu = ({ data, onArchive, onDelete, setPathName, active }) => {
     <MenuChakra>
       <MenuButton
         as={IconButton}
-        bgColor={`cyan.${theme === 'light' ? '100' : '800'}`}
+        bgColor={`yellow.${theme === 'light' ? '200' : '700'}`}
         _hover={{
-          bgColor: `cyan.${theme === 'light' ? '200' : '700'}`
+          bgColor: `yellow.${theme === 'light' ? '300' : '600'}`
         }}
         _active={{
-          bgColor: `cyan.${theme === 'light' ? '200' : '700'}`
+          bgColor: `yellow.${theme === 'light' ? '300' : '600'}`
         }}
         icon={<MoreHorizontal width={16} height={16} />}
-        color={`gray.${theme === 'light' ? '600' : '300'}`}
+        color={`gray.${theme === 'light' ? '500' : '400'}`}
       />
 
       <MenuList
@@ -44,7 +44,7 @@ export const Menu = ({ data, onArchive, onDelete, setPathName, active }) => {
               setPathName(text === 'View' ? '' : active)
               action(`${text === 'View' ? '/notes/' : ''}${data.id}`)
             }}
-            color={`${color}.${theme === 'light' ? '500' : '400'}`}
+            color={`${color}.${theme === 'light' ? '400' : '500'}`}
             bgColor={`gray.${theme === 'light' ? '50' : '900'}`}
             _hover={{
               bgColor: `gray.${theme === 'light' ? '100' : '800'}`
