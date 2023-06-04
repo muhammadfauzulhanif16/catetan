@@ -12,7 +12,7 @@ import { LocaleContext } from '../context/Locale'
 import { ThemeContext } from '../context/Theme'
 import { Language } from './Language'
 
-export const Header = ({ layout }) => {
+export const Header = ({ layout, onLogOut }) => {
   const { locale, onLocaleChange } = useContext(LocaleContext)
   const { theme, onThemeChange } = useContext(ThemeContext)
 
@@ -89,6 +89,7 @@ export const Header = ({ layout }) => {
               onLocaleChange={onLocaleChange}
               theme={theme}
               onThemeChange={onThemeChange}
+              onLogOut={onLogOut}
             />
           </Box>
         )}
@@ -124,5 +125,6 @@ export const Header = ({ layout }) => {
 }
 
 Header.propTypes = {
-  layout: PropTypes.oneOf(['auth', 'app']).isRequired
+  layout: PropTypes.oneOf(['auth', 'app']).isRequired,
+  onLogOut: PropTypes.func
 }

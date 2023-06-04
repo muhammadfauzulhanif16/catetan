@@ -17,7 +17,6 @@ export const App = () => {
   useEffect(() => {
     const onLoginSuccess = async () => {
       return await getUserLogged()
-      // setAuthedUser(data)
     }
 
     onLoginSuccess().then((r) => setAuthedUser(r.data))
@@ -27,6 +26,11 @@ export const App = () => {
     putAccessToken(accessToken)
     const { data } = await getUserLogged()
     setAuthedUser(data)
+  }
+
+  const onLogOut = () => {
+    setAuthedUser(null)
+    putAccessToken('')
   }
 
   const [locale, setLocale] = useState(
@@ -59,10 +63,10 @@ export const App = () => {
       <ThemeContext.Provider value={themeContextValue}>
         <LocaleContext.Provider value={localeContextValue}>
           <Routes>
-            <Route path='/*' element={<NotFound />} />
-            <Route path='/all' element={<All />} />
-            <Route path='/add' element={<Add />} />
-            <Route path='/archive' element={<Archive />} />
+            <Route path='/*' element={<NotFound onLogOut={onLogOut} />} />
+            <Route path='/all' element={<All onLogOut={onLogOut} />} />
+            <Route path='/add' element={<Add onLogOut={onLogOut} />} />
+            <Route path='/archive' element={<Archive onLogOut={onLogOut} />} />
           </Routes>
         </LocaleContext.Provider>
       </ThemeContext.Provider>

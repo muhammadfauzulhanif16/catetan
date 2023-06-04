@@ -30,10 +30,14 @@ import {
 import { Icon } from './base/Icon'
 import { ID, US } from 'country-flag-icons/react/3x2'
 import PropTypes from 'prop-types'
-import { useNavigate } from 'react-router-dom'
 
-export const Drawer = ({ locale, theme, onLocaleChange, onThemeChange }) => {
-  const navigate = useNavigate()
+export const Drawer = ({
+  locale,
+  theme,
+  onLocaleChange,
+  onThemeChange,
+  onLogOut
+}) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const btnRef = useRef()
   const sideNavBarList = [
@@ -61,10 +65,7 @@ export const Drawer = ({ locale, theme, onLocaleChange, onThemeChange }) => {
       initIcon: SwipeRightRegular,
       finalIcon: SwipeRightFilled,
       color: 'pink',
-      onClick: () => {
-        localStorage.removeItem('catetan-token')
-        navigate('/login')
-      }
+      onClick: onLogOut
     }
   ]
 
@@ -171,5 +172,6 @@ Drawer.propTypes = {
   locale: PropTypes.string.isRequired,
   theme: PropTypes.string.isRequired,
   onLocaleChange: PropTypes.func.isRequired,
-  onThemeChange: PropTypes.func.isRequired
+  onThemeChange: PropTypes.func.isRequired,
+  onLogOut: PropTypes.func.isRequired
 }

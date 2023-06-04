@@ -3,8 +3,9 @@ import { Layout } from '../components/base/Layout'
 import { Header } from '../components/Header'
 import { NavBar } from '../components/NavBar'
 import { LocaleContext } from '../context/Locale'
+import PropTypes from 'prop-types'
 
-export const All = () => {
+export const All = ({ onLogOut }) => {
   const { locale } = useContext(LocaleContext)
 
   return (
@@ -14,9 +15,13 @@ export const All = () => {
         p: [4, 8, 12]
       }}
     >
-      <Header layout='app' />
+      <Header layout='app' onLogOut={onLogOut} />
 
       <NavBar path='all' />
     </Layout>
   )
+}
+
+All.propTypes = {
+  onLogOut: PropTypes.func
 }
