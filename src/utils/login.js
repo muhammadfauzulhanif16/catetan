@@ -13,7 +13,7 @@ export const login = (locale) => {
   const [email, onEmailChange] = useForm('')
   const [password, onPasswordChange] = useForm('')
 
-  const userData = {
+  const initialState = {
     email,
     password
   }
@@ -21,12 +21,12 @@ export const login = (locale) => {
   const isValidEmail = /[a-z0-9]+@[a-z0-9]+.[a-z]{2,3}/.test(email)
   const isValidPassword = password.length >= 6
 
+  const isValid = !isValidEmail || !isValidPassword
+
   const [isInValidEmail, setIsInValidEmail] = useState(false)
   const [isInValidPassword, setIsInValidPassword] = useState(false)
 
-  const isValid = !isValidEmail || !isValidPassword
-
-  const loginList = [
+  const formList = [
     {
       label: locale === 'en' ? 'Email' : 'Surel',
       type: 'email',
@@ -60,8 +60,8 @@ export const login = (locale) => {
   ]
 
   return {
-    loginList,
+    formList,
     isValid,
-    userData
+    initialState
   }
 }

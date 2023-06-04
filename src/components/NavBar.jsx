@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { Nav } from './base/Nav'
+import { Navigation } from './base/Navigation'
 import { navList } from '../data/navList'
 import { LocaleContext } from '../context/Locale'
 import { ThemeContext } from '../context/Theme'
@@ -29,7 +29,7 @@ export const NavBar = ({ path }) => {
       left={0}
     >
       {navs.map(({ initIcon, finalIcon, text, path }, id) => (
-        <Nav
+        <Navigation
           key={id}
           initIcon={initIcon}
           finalIcon={finalIcon}

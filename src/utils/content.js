@@ -1,9 +1,9 @@
-export const pageTitle = {
+export const titlePageLocaleList = {
   en: {
     home: 'Home',
-    register: 'Register an account',
+    register: 'RegisterPage an account',
     login: 'Log in account',
-    all: 'All notes',
+    all: 'AllNotesPage notes',
     archive: 'Archived notes',
     notFound: 'Not nound'
   },
@@ -17,37 +17,37 @@ export const pageTitle = {
   }
 }
 
-export const action = {
+export const formAction = {
   en: {
-    register: {
-      link: 'Register',
-      button: 'Create Account'
-    },
-    login: {
-      link: 'Log In',
-      button: 'Log In Account'
-    }
+    register: 'Create Account',
+    login: 'Log In Account'
   },
   id: {
-    register: {
-      link: 'Daftar',
-      button: 'Buat Akun'
-    },
-    login: {
-      link: 'Masuk',
-      button: 'Masuk Akun'
-    }
+    register: 'Buat Akun',
+    login: 'Masuk Akun'
   }
 }
 
 export const formHelperText = {
   en: {
-    register: 'Already have an account',
-    login: "Don't have an account"
+    register: {
+      start: 'Already have an account',
+      end: 'Log In'
+    },
+    login: {
+      start: "Don't have an account",
+      end: 'Register'
+    }
   },
   id: {
-    register: 'Sudah punya akun',
-    login: 'Belum punya akun'
+    register: {
+      start: 'Sudah punya akun',
+      end: 'Masuk'
+    },
+    login: {
+      start: 'Belum punya akun',
+      end: 'Daftar'
+    }
   }
 }
 

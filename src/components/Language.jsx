@@ -1,11 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Nav } from './base/Nav'
+import { Navigation } from './base/Navigation'
 import { ID, US } from 'country-flag-icons/react/3x2'
 
 export const Language = ({ data, onChange, theme }) => {
   return (
-    <Nav
+    <Navigation
       buttonProps={{
         bgColor: `gray.${theme === 'light' ? '100' : '800'}`,
         _hover: { bgColor: `gray.${theme === 'light' ? '200' : '700'}` },

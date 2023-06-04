@@ -1,14 +1,14 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
-import { HomePage } from './pages/Home'
-import { Register } from './pages/Register'
-import { LogIn } from './pages/LogIn'
-import { All } from './pages/All'
+import { HomePage } from './pages/HomePage'
+import { RegisterPage } from './pages/RegisterPage'
+import { LogInPage } from './pages/LogInPage'
+import { AllNotesPage } from './pages/AllNotesPage'
 import { LocaleContext } from './context/Locale'
 import { ThemeContext } from './context/Theme'
-import { NotFound } from './pages/NotFound'
-import { Add } from './pages/Add'
-import { Archive } from './pages/Archive'
+import { NotFoundPage } from './pages/NotFoundPage'
+import { AddNotePage } from './pages/AddNotePage'
+import { ArchiveNotesPage } from './pages/ArchiveNotesPage'
 import { getUserLogged, putAccessToken } from './api'
 import { noteList } from './data/noteList'
 
@@ -65,15 +65,17 @@ export const App = () => {
       <ThemeContext.Provider value={themeContextValue}>
         <LocaleContext.Provider value={localeContextValue}>
           <Routes>
-            <Route path='/*' element={<NotFound onLogOut={onLogOut} />} />
+            <Route path='/*' element={<NotFoundPage onLogOut={onLogOut} />} />
             <Route
               path='/all'
-              element={<All onLogOut={onLogOut} notes={noteList} />}
+              element={<AllNotesPage onLogOut={onLogOut} notes={noteList} />}
             />
-            <Route path='/add' element={<Add onLogOut={onLogOut} />} />
+            <Route path='/add' element={<AddNotePage onLogOut={onLogOut} />} />
             <Route
               path='/archive'
-              element={<Archive onLogOut={onLogOut} notes={noteList} />}
+              element={
+                <ArchiveNotesPage onLogOut={onLogOut} notes={noteList} />
+              }
             />
           </Routes>
         </LocaleContext.Provider>
@@ -86,10 +88,10 @@ export const App = () => {
       <LocaleContext.Provider value={localeContextValue}>
         <Routes>
           <Route path='/*' element={<HomePage />} />
-          <Route path='/register' element={<Register />} />
+          <Route path='/register' element={<RegisterPage />} />
           <Route
             path='/login'
-            element={<LogIn onLoginSuccess={onLoginSuccess} />}
+            element={<LogInPage onLoginSuccess={onLoginSuccess} />}
           />
         </Routes>
       </LocaleContext.Provider>

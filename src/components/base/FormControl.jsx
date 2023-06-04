@@ -6,12 +6,7 @@ import {
   Input,
   InputGroup,
   InputLeftElement,
-  InputRightElement,
-  Radio,
-  RadioGroup,
-  Select,
-  Stack,
-  Textarea
+  InputRightElement
 } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 import { ThemeContext } from '../../context/Theme'
@@ -21,12 +16,8 @@ export const FormControl = ({
   formLabelProps,
   formHelperTextProps,
   inputProps,
-  radioGroupProps,
-  stackProps,
-  textareaProps,
   label,
   type,
-  options,
   inputLeftElement,
   inputRightElement,
   helperText
@@ -44,27 +35,7 @@ export const FormControl = ({
         </FormLabel>
       )}
 
-      {type === 'radio' && (
-        <RadioGroup {...radioGroupProps}>
-          <Stack {...stackProps}>
-            {options.map(({ name }, id) => (
-              <Radio key={id}>{name}</Radio>
-            ))}
-          </Stack>
-        </RadioGroup>
-      )}
-
-      {type === 'textarea' ?? <Textarea {...textareaProps} bgColor='white' />}
-
-      {type === 'select' && (
-        <Select>
-          {options.map(({ name }, id) => (
-            <option key={id}>{name}</option>
-          ))}
-        </Select>
-      )}
-
-      {type !== 'radio' || type !== 'textarea' || type !== 'select' ? (
+      {type && (
         <InputGroup>
           {inputLeftElement && (
             <InputLeftElement
@@ -91,7 +62,7 @@ export const FormControl = ({
             </InputRightElement>
           )}
         </InputGroup>
-      ) : null}
+      )}
 
       <FormHelperText {...formHelperTextProps}>{helperText}</FormHelperText>
     </FormControlChakra>
@@ -103,12 +74,8 @@ FormControl.propTypes = {
   formLabelProps: PropTypes.object,
   formHelperTextProps: PropTypes.object,
   inputProps: PropTypes.object,
-  radioGroupProps: PropTypes.object,
-  stackProps: PropTypes.object,
-  textareaProps: PropTypes.object,
   label: PropTypes.string,
   type: PropTypes.string.isRequired,
-  options: PropTypes.arrayOf(PropTypes.object),
   inputLeftElement: PropTypes.any,
   inputRightElement: PropTypes.node,
   helperText: PropTypes.string

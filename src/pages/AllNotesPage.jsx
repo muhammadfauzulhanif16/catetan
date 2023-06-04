@@ -6,11 +6,11 @@ import { LocaleContext } from '../context/Locale'
 import PropTypes from 'prop-types'
 import { Shelf } from '../components/Shelf'
 
-export const All = ({ onLogOut, notes }) => {
+export const AllNotesPage = ({ onLogOut, notes }) => {
   const { locale } = useContext(LocaleContext)
 
   return (
-    <Layout title={locale === 'en' ? 'All Notes' : 'Semua Catatan'}>
+    <Layout title={locale === 'en' ? 'AllNotesPage Notes' : 'Semua Catatan'}>
       <Header layout='app' onLogOut={onLogOut} />
 
       <Shelf notes={notes} />
@@ -20,7 +20,7 @@ export const All = ({ onLogOut, notes }) => {
   )
 }
 
-All.propTypes = {
+AllNotesPage.propTypes = {
   onLogOut: PropTypes.func,
   notes: PropTypes.arrayOf(PropTypes.object)
 }

@@ -1,4 +1,4 @@
-import { action } from '../utils/content'
+import { formAction } from '../utils/content'
 import { useContext } from 'react'
 import { LocaleContext } from '../context/Locale'
 
@@ -7,10 +7,10 @@ export const homePageActionList = () => {
 
   return [
     {
-      name: action[locale].register.button,
+      name: formAction[locale].register,
       path: 'register',
       variant: 'outline'
     },
-    { name: action[locale].login.button, path: 'login', variant: 'solid' }
+    { name: formAction[locale].login, path: 'login', variant: 'solid' }
   ]
 }

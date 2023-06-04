@@ -12,13 +12,13 @@ import {
 } from '@emotion-icons/fluentui-system-filled'
 import PropTypes from 'prop-types'
 
-export const register = (locale) => {
+export const registerForm = (locale) => {
   const [fullName, onFullNameChange] = useForm('')
   const [email, onEmailChange] = useForm('')
   const [password, onPasswordChange] = useForm('')
   const [confirmPassword, onConfirmPasswordChange] = useForm('')
 
-  const userData = {
+  const initialState = {
     name: fullName,
     email,
     password
@@ -41,7 +41,7 @@ export const register = (locale) => {
   const [isInValidConfirmPassword, setIsInValidConfirmPassword] =
     useState(false)
 
-  const registerList = [
+  const formList = [
     {
       label: locale === 'en' ? 'Full Name' : 'Nama Lengkap',
       type: 'text',
@@ -119,12 +119,12 @@ export const register = (locale) => {
   ]
 
   return {
-    registerList,
+    formList,
     isValid,
-    userData
+    initialState
   }
 }
 
-register.propTypes = {
+registerForm.propTypes = {
   locale: PropTypes.string
 }

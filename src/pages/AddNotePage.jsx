@@ -5,12 +5,12 @@ import { NavBar } from '../components/NavBar'
 import { LocaleContext } from '../context/Locale'
 import PropTypes from 'prop-types'
 
-export const Add = ({ onLogOut }) => {
+export const AddNotePage = ({ onLogOut }) => {
   const { locale } = useContext(LocaleContext)
 
   return (
     <Layout
-      title={locale === 'en' ? 'Add Note' : 'Tambah Catatan'}
+      title={locale === 'en' ? 'AddNotePage Note' : 'Tambah Catatan'}
       boxProps={{
         p: [4, 8, 12]
       }}
@@ -22,6 +22,6 @@ export const Add = ({ onLogOut }) => {
   )
 }
 
-Add.propTypes = {
+AddNotePage.propTypes = {
   onLogOut: PropTypes.func
 }

@@ -8,10 +8,10 @@ import {
   WeatherSunny as WeatherSunnyFilled
 } from '@emotion-icons/fluentui-system-filled'
 import PropTypes from 'prop-types'
-import { Nav } from './base/Nav'
+import { Navigation } from './base/Navigation'
 
 export const Theme = ({ data, onChange }) => (
-  <Nav
+  <Navigation
     buttonProps={{
       color: `gray.${data === 'light' ? '600' : '300'}`,
       bgColor: `gray.${data === 'light' ? '100' : '800'}`,

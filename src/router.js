@@ -4,13 +4,13 @@
 //   Route
 // } from 'react-router-dom'
 // import React from 'react'
-// import { Register } from './pages/auth/Register'
-// import { LogIn } from './pages/auth/LogIn'
+// import { RegisterPage } from './pages/auth/RegisterPage'
+// import { LogInPage } from './pages/auth/LogInPage'
 //
 // export const router = createBrowserRouter(
 //   createRoutesFromElements(
-//     <Route path='/' element={<Register />}>
-//       <Route path='login' element={<LogIn />} />
+//     <Route path='/' element={<RegisterPage />}>
+//       <Route path='login' element={<LogInPage />} />
 //       <Route path='*' element={<div>Tidak ada</div>} />
 //     </Route>
 //   )

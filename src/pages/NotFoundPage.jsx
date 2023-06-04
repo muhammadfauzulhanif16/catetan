@@ -6,7 +6,7 @@ import { Box } from '@chakra-ui/react'
 import { NavBar } from '../components/NavBar'
 import PropTypes from 'prop-types'
 
-export const NotFound = ({ onLogOut }) => {
+export const NotFoundPage = ({ onLogOut }) => {
   const { locale } = useContext(LocaleContext)
 
   return (
@@ -25,6 +25,6 @@ export const NotFound = ({ onLogOut }) => {
   )
 }
 
-NotFound.propTypes = {
+NotFoundPage.propTypes = {
   onLogOut: PropTypes.func
 }

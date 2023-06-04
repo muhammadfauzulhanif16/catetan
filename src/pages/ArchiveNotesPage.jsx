@@ -4,8 +4,9 @@ import { Header } from '../components/Header'
 import { NavBar } from '../components/NavBar'
 import { LocaleContext } from '../context/Locale'
 import PropTypes from 'prop-types'
+import { Shelf } from '../components/Shelf'
 
-export const Archive = ({ onLogOut, notes }) => {
+export const ArchiveNotesPage = ({ onLogOut, notes }) => {
   const { locale } = useContext(LocaleContext)
 
   return (
@@ -17,12 +18,14 @@ export const Archive = ({ onLogOut, notes }) => {
     >
       <Header layout='app' onLogOut={onLogOut} />
 
+      <Shelf notes={notes} />
+
       <NavBar path='archive' />
     </Layout>
   )
 }
 
-Archive.propTypes = {
+ArchiveNotesPage.propTypes = {
   onLogOut: PropTypes.func,
   notes: PropTypes.arrayOf(PropTypes.object)
 }

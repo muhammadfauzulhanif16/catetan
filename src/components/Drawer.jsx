@@ -10,7 +10,7 @@ import {
   useDisclosure
 } from '@chakra-ui/react'
 import React, { useRef } from 'react'
-import { Nav } from './base/Nav'
+import { Navigation } from './base/Navigation'
 import {
   Important as ImportantFilled,
   MoreVertical as MoreVerticalFilled,
@@ -71,7 +71,7 @@ export const Drawer = ({
 
   return (
     <>
-      <Nav
+      <Navigation
         initIcon={MoreVerticalRegular}
         finalIcon={MoreVerticalFilled}
         iconProps={{
@@ -136,7 +136,7 @@ export const Drawer = ({
 
           <DrawerBody p={0} display='flex' gap={4} flexDirection='column'>
             {sideNavBarList.map((nav, id) => (
-              <Nav
+              <Navigation
                 key={id}
                 initIcon={nav.initIcon}
                 finalIcon={nav.finalIcon}

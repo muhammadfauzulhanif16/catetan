@@ -3,7 +3,7 @@ import { Button, Text } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 import { Icon } from './Icon'
 
-export const Nav = ({
+export const Navigation = ({
   initIcon,
   finalIcon,
   text,
@@ -11,8 +11,6 @@ export const Nav = ({
   textProps,
   iconProps
 }) => {
-  // const { theme } = useContext(ThemeContext)
-
   return (
     <Button {...buttonProps}>
       {initIcon && (
@@ -24,7 +22,7 @@ export const Nav = ({
   )
 }
 
-Nav.propTypes = {
+Navigation.propTypes = {
   initIcon: PropTypes.elementType,
   finalIcon: PropTypes.elementType,
   text: PropTypes.string,
