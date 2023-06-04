@@ -49,7 +49,6 @@ export const Menu = ({ data, onArchive, onDelete, setPathName, active }) => {
             _hover={{
               bgColor: `gray.${theme === 'light' ? '100' : '800'}`
             }}
-            // boxShadow='none'
           >
             {`${text} note`}
           </MenuItem>

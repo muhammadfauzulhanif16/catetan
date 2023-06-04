@@ -18,7 +18,7 @@ export const NavBar = ({ path }) => {
 
   return (
     <Flex
-      m={[4, 8, 12]}
+      mx={[4, 8, 12]}
       bgColor={`gray.${theme === 'light' ? '50' : '900'}`}
       py={2}
       gap={2}
