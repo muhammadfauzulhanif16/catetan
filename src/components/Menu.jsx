@@ -29,9 +29,13 @@ export const Menu = ({ data, onArchive, onDelete, setPathName, active }) => {
           bgColor: `cyan.${theme === 'light' ? '200' : '700'}`
         }}
         icon={<MoreHorizontal width={16} height={16} />}
+        color={`gray.${theme === 'light' ? '600' : '300'}`}
       />
 
-      <MenuList>
+      <MenuList
+        bgColor={`gray.${theme === 'light' ? '50' : '900'}`}
+        borderColor={`gray.${theme === 'light' ? '200' : '700'}`}
+      >
         {menus.map(({ text, icon, action, color }, id) => (
           <MenuItem
             key={id}
@@ -40,7 +44,12 @@ export const Menu = ({ data, onArchive, onDelete, setPathName, active }) => {
               setPathName(text === 'View' ? '' : active)
               action(`${text === 'View' ? '/notes/' : ''}${data.id}`)
             }}
-            color={`${color}.300`}
+            color={`${color}.${theme === 'light' ? '500' : '400'}`}
+            bgColor={`gray.${theme === 'light' ? '50' : '900'}`}
+            _hover={{
+              bgColor: `gray.${theme === 'light' ? '100' : '800'}`
+            }}
+            // boxShadow='none'
           >
             {`${text} note`}
           </MenuItem>
