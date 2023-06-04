@@ -15,7 +15,7 @@ export const ArchiveNotesPage = ({ onLogOut, notes }) => {
 
       <Shelf notes={notes} />
 
-      <NavBar path='archive' />
+      <NavBar />
     </Layout>
   )
 }

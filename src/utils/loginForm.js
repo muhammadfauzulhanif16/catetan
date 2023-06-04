@@ -9,7 +9,7 @@ import {
   Password as PasswordFilled
 } from '@emotion-icons/fluentui-system-filled'
 
-export const login = (locale) => {
+export const loginForm = (locale) => {
   const [email, onEmailChange] = useForm('')
   const [password, onPasswordChange] = useForm('')
 

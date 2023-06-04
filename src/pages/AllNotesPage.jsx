@@ -10,12 +10,12 @@ export const AllNotesPage = ({ onLogOut, notes }) => {
   const { locale } = useContext(LocaleContext)
 
   return (
-    <Layout title={locale === 'en' ? 'AllNotesPage Notes' : 'Semua Catatan'}>
+    <Layout title={locale === 'en' ? 'All Notes' : 'Semua Catatan'}>
       <Header layout='app' onLogOut={onLogOut} />
 
       <Shelf notes={notes} />
 
-      <NavBar path='all' />
+      <NavBar />
     </Layout>
   )
 }

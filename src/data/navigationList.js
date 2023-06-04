@@ -10,7 +10,7 @@ import {
 } from '@emotion-icons/fluentui-system-filled'
 import PropTypes from 'prop-types'
 
-export const navList = (locale) => [
+export const navigationList = ({ locale }) => [
   {
     initIcon: AppListRegular,
     finalIcon: AppListFilled,
@@ -31,7 +31,6 @@ export const navList = (locale) => [
   }
 ]
 
-navList.propTypes = {
-  pathName: PropTypes.string,
+navigationList.propTypes = {
   locale: PropTypes.string
 }

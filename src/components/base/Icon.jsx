@@ -10,14 +10,14 @@ export const Icon = ({ initIcon, finalIcon, iconProps }) => (
       {...iconProps}
     />
 
-    {finalIcon ? (
+    {finalIcon && (
       <IconChakra
         as={finalIcon}
         display='none'
         _groupHover={{ display: 'block' }}
         {...iconProps}
       />
-    ) : null}
+    )}
   </>
 )
 

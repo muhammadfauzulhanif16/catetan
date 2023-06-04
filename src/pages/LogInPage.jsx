@@ -1,10 +1,9 @@
 import React, { useContext, useState } from 'react'
 import { Grid, useToast } from '@chakra-ui/react'
 import { FormControl } from '../components/base/FormControl'
-import { Checkmark } from '@emotion-icons/fluentui-system-filled'
 import { Icon } from '../components/base/Icon'
 import { useNavigate } from 'react-router-dom'
-import { login } from '../utils/login'
+import { loginForm } from '../utils/loginForm'
 import { AuthLayout } from '../components/base/AuthLayout'
 import {
   formAction,
@@ -20,7 +19,7 @@ export const LogInPage = ({ onLoginSuccess }) => {
   const navigate = useNavigate()
   const { theme } = useContext(ThemeContext)
   const { locale } = useContext(LocaleContext)
-  const { formList, isValid, initialState } = login(locale)
+  const { formList, isValid, initialState } = loginForm(locale)
   const [isLoading, setIsLoading] = useState(false)
   const toast = useToast()
 
@@ -41,7 +40,7 @@ export const LogInPage = ({ onLoginSuccess }) => {
           position: 'top'
         })
 
-        navigate('/all')
+        navigate('/')
       } else {
         toast({
           title: 'Log In Failed',
@@ -114,18 +113,6 @@ export const LogInPage = ({ onLoginSuccess }) => {
                 ? () => login.setInValid(false)
                 : () => login.setInValid(true)
             }}
-            inputRightElement={
-              login.valid && (
-                <Icon
-                  initIcon={Checkmark}
-                  iconProps={{
-                    color: 'green.400',
-                    w: 6,
-                    h: 6
-                  }}
-                />
-              )
-            }
           />
         ))}
       </Grid>

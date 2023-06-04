@@ -49,6 +49,7 @@ export const App = () => {
 
   const onThemeChange = () => {
     setTheme((prevLocale) => (prevLocale === 'light' ? 'dark' : 'light'))
+
     localStorage.setItem('catetan-theme', theme === 'light' ? 'dark' : 'light')
   }
 
@@ -67,7 +68,7 @@ export const App = () => {
           <Routes>
             <Route path='/*' element={<NotFoundPage onLogOut={onLogOut} />} />
             <Route
-              path='/all'
+              path='/'
               element={<AllNotesPage onLogOut={onLogOut} notes={noteList} />}
             />
             <Route path='/add' element={<AddNotePage onLogOut={onLogOut} />} />
