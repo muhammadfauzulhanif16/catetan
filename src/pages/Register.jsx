@@ -22,9 +22,8 @@ export const Register = () => {
   const { registerList, isValid, userData } = register(locale)
   const [isLoading, setIsLoading] = useState(false)
   const toast = useToast()
-  // const [response, setResponse] = useState(null)
 
-  const postUser = async (payload) => {
+  const registerUser = async (payload) => {
     const response = await fetch('https://notes-api.dicoding.dev/v1/register', {
       method: 'post',
       headers: {
@@ -39,10 +38,6 @@ export const Register = () => {
 
     return response.json()
   }
-
-  // if (isLoading) {
-  //   return <>Loading</>
-  // }
 
   return (
     <AuthLayout title={title[locale].register}>
@@ -132,7 +127,7 @@ export const Register = () => {
               setIsLoading(true)
 
               setTimeout(async () => {
-                const data = await postUser(userData)
+                const data = await registerUser(userData)
 
                 if (data.status === 'success') {
                   toast({

@@ -1,5 +1,5 @@
-import React, { useContext } from 'react'
-import { Flex, Grid, Link, Text } from '@chakra-ui/react'
+import React, { useContext, useState } from 'react'
+import { Flex, Grid, Link, Text, useToast } from '@chakra-ui/react'
 import { FormControl } from '../components/base/FormControl'
 import {
   LockClosed as LockClosedRegular,
@@ -23,7 +23,24 @@ export const LogIn = () => {
   const navigate = useNavigate()
   const { theme } = useContext(ThemeContext)
   const { locale } = useContext(LocaleContext)
-  const { loginList, isValidEmail, isValidPassword } = login(locale)
+  const { loginList, isValid, userData } = login(locale)
+  const [isLoading, setIsLoading] = useState(false)
+  const toast = useToast()
+
+  const logiInUser = async (payload) => {
+    const response = await fetch('https://notes-api.dicoding.dev/v1/login', {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email: payload.email,
+        password: payload.password
+      })
+    })
+
+    return response.json()
+  }
 
   return (
     <AuthLayout title={title[locale].login}>
@@ -96,9 +113,9 @@ export const LogIn = () => {
 
         <Nav
           buttonProps={{
-            isLoading: false,
-            loadingText: locale === 'en' ? 'Loading' : 'Memuat',
-            isDisabled: !isValidEmail || !isValidPassword,
+            isLoading,
+            loadingText: isLoading && locale === 'en' ? 'Loading' : 'Memuat',
+            isDisabled: isValid,
             display: 'flex',
             gap: 4,
             w: 'full',
@@ -109,18 +126,40 @@ export const LogIn = () => {
               bgColor: `yellow.${theme === 'light' ? '500' : '400'}`
             },
             role: 'group',
-            onClick: () => navigate('/all')
+            onClick: () => {
+              setIsLoading(true)
+
+              setTimeout(async () => {
+                const data = await logiInUser(userData)
+
+                if (data.status === 'success') {
+                  toast({
+                    title: 'Log In Success',
+                    description: data.message,
+                    status: 'success',
+                    duration: 4000,
+                    isClosable: true,
+                    position: 'top'
+                  })
+
+                  navigate('/all')
+                } else {
+                  toast({
+                    title: 'Log In Failed',
+                    description: "Email or password doesn't match",
+                    status: 'error',
+                    duration: 4000,
+                    isClosable: true,
+                    position: 'top'
+                  })
+                }
+
+                setIsLoading(false)
+              }, 4000)
+            }
           }}
-          initIcon={
-            !isValidEmail || !isValidPassword
-              ? LockClosedRegular
-              : LockOpenRegular
-          }
-          finalIcon={
-            !isValidEmail || !isValidPassword
-              ? LockClosedFilled
-              : LockOpenFilled
-          }
+          initIcon={isValid ? LockClosedRegular : LockOpenRegular}
+          finalIcon={isValid ? LockClosedFilled : LockOpenFilled}
           iconProps={{
             w: 6,
             h: 6
