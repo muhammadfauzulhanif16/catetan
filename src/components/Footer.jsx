@@ -12,6 +12,7 @@ export const Footer = () => {
     <Text
       textAlign='center'
       color={`gray.${theme === 'light' ? '400' : '500'}`}
+      p={[4, 4, 8, 12]}
     >
       {`${footer[locale].start} `}
       <Link

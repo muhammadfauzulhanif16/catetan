@@ -22,12 +22,10 @@ export const NavBar = ({ path }) => {
       bgColor={`gray.${theme === 'light' ? '50' : '900'}`}
       py={2}
       gap={2}
-      rounded='md'
       pos='fixed'
       bottom={0}
       right={0}
       left={0}
-      // boxShadow='xl'
     >
       {navs.map(({ initIcon, finalIcon, text, path }, id) => (
         <Navigation
@@ -43,16 +41,13 @@ export const NavBar = ({ path }) => {
             role: 'group',
             display: 'flex',
             gap: [2, 4],
-            bgColor:
-              pathName === path
-                ? `gray.${theme === 'light' ? '100' : '800'}`
-                : `gray.${theme === 'light' ? '50' : '900'}`,
+            bgColor: `gray.${theme === 'light' ? '50' : '900'}`,
             _hover: {
               bgColor: `gray.${theme === 'light' ? '200' : '700'}`
             },
             color:
               pathName === path
-                ? `yellow.${theme === 'light' ? '500' : '400'}`
+                ? `yellow.${theme === 'light' ? '400' : '500'}`
                 : `gray.${theme === 'light' ? '600' : '300'}`,
             onClick: () => {
               localStorage.setItem('catetan-path', path)

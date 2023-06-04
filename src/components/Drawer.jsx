@@ -45,7 +45,7 @@ export const Drawer = ({
       text: locale === 'en' ? 'Theme' : 'Tema',
       initIcon: theme === 'light' ? WeatherSunnyRegular : WeatherMoonRegular,
       finalIcon: theme === 'light' ? WeatherSunnyFilled : WeatherMoonFilled,
-      color: 'purple',
+      color: 'cyan',
       onClick: onThemeChange
     },
     {
@@ -57,7 +57,7 @@ export const Drawer = ({
       text: locale === 'en' ? 'About App' : 'Tentang Aplikasi',
       initIcon: ImportantRegular,
       finalIcon: ImportantFilled,
-      color: 'cyan',
+      color: 'orange',
       onClick: onLocaleChange
     },
     {

@@ -21,12 +21,12 @@ export const Menu = ({ data, onArchive, onDelete, setPathName, active }) => {
     <MenuChakra>
       <MenuButton
         as={IconButton}
-        bgColor={`yellow.${theme === 'light' ? '200' : '700'}`}
+        bgColor={`cyan.${theme === 'light' ? '100' : '800'}`}
         _hover={{
-          bgColor: `yellow.${theme === 'light' ? '300' : '600'}`
+          bgColor: `cyan.${theme === 'light' ? '200' : '700'}`
         }}
         _active={{
-          bgColor: 'yellow.200'
+          bgColor: `cyan.${theme === 'light' ? '200' : '700'}`
         }}
         icon={<MoreHorizontal width={16} height={16} />}
       />

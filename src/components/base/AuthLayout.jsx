@@ -36,8 +36,7 @@ export const AuthLayout = ({
       boxProps={{
         display: 'flex',
         flexDirection: 'column',
-        h: '100vh',
-        p: [4, 4, 8, 12]
+        h: '100vh'
       }}
     >
       <Header layout='auth' />
@@ -50,6 +49,7 @@ export const AuthLayout = ({
         m='auto'
         justifyContent='center'
         alignItems='center'
+        px={[4, 4, 8, 12]}
       >
         {children}
 
