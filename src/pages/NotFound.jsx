@@ -20,7 +20,7 @@ export const NotFound = ({ onLogOut }) => {
 
       <Box color='gray.400'>Tidak Ditemukan</Box>
 
-      <NavBar path={localStorage.setItem('catetan-path', null)} />
+      <NavBar path='' />
     </Layout>
   )
 }

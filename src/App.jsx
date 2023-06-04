@@ -10,6 +10,7 @@ import { NotFound } from './pages/NotFound'
 import { Add } from './pages/Add'
 import { Archive } from './pages/Archive'
 import { getUserLogged, putAccessToken } from './api'
+import { noteList } from './data/noteList'
 
 export const App = () => {
   const [authedUser, setAuthedUser] = useState(null)
@@ -31,6 +32,7 @@ export const App = () => {
   const onLogOut = () => {
     setAuthedUser(null)
     putAccessToken('')
+    localStorage.setItem('catetan-path', 'all')
   }
 
   const [locale, setLocale] = useState(
@@ -64,9 +66,15 @@ export const App = () => {
         <LocaleContext.Provider value={localeContextValue}>
           <Routes>
             <Route path='/*' element={<NotFound onLogOut={onLogOut} />} />
-            <Route path='/all' element={<All onLogOut={onLogOut} />} />
+            <Route
+              path='/all'
+              element={<All onLogOut={onLogOut} notes={noteList} />}
+            />
             <Route path='/add' element={<Add onLogOut={onLogOut} />} />
-            <Route path='/archive' element={<Archive onLogOut={onLogOut} />} />
+            <Route
+              path='/archive'
+              element={<Archive onLogOut={onLogOut} notes={noteList} />}
+            />
           </Routes>
         </LocaleContext.Provider>
       </ThemeContext.Provider>

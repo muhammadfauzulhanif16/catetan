@@ -5,7 +5,7 @@ import { NavBar } from '../components/NavBar'
 import { LocaleContext } from '../context/Locale'
 import PropTypes from 'prop-types'
 
-export const Archive = ({ onLogOut }) => {
+export const Archive = ({ onLogOut, notes }) => {
   const { locale } = useContext(LocaleContext)
 
   return (
@@ -23,5 +23,6 @@ export const Archive = ({ onLogOut }) => {
 }
 
 Archive.propTypes = {
-  onLogOut: PropTypes.func
+  onLogOut: PropTypes.func,
+  notes: PropTypes.arrayOf(PropTypes.object)
 }

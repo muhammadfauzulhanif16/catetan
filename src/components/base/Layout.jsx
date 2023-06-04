@@ -12,9 +12,9 @@ export const Layout = ({ children, title, boxProps }) => {
   return (
     <Box
       {...boxProps}
-      bgColor={theme === 'light' ? 'gray.50' : 'gray.900'}
-      h='100vh'
-      w='100vw'
+      // bgColor={theme === 'light' ? 'gray.50' : 'gray.900'}
+      // h='100vh'
+      w='full'
       userSelect='none'
     >
       <Helmet>
