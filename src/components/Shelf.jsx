@@ -16,7 +16,7 @@ export const Shelf = ({ notes, onArchive, onDelete, setPathName, active }) => {
           gap={4}
           w='full'
           pb={[24, 32, 40]}
-          p={[4, 8, 12]}
+          px={[4, 8, 12]}
         >
           {notes.map((note) => (
             <Item

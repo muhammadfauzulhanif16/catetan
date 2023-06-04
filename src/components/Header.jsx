@@ -19,7 +19,7 @@ export const Header = ({ layout, onLogOut }) => {
   return (
     <Flex
       flex='none'
-      gap={4}
+      // gap={4}
       justifyContent='space-between'
       direction={{ base: 'column', md: 'row' }}
       bgColor={`gray.${theme === 'light' ? '50' : '900'}`}
@@ -112,7 +112,8 @@ export const Header = ({ layout, onLogOut }) => {
           }
           formControlProps={{
             w: 'full',
-            display: { base: 'block', md: 'none' }
+            display: { base: 'block', md: 'none' },
+            m: 0
           }}
           inputProps={{
             placeholder:

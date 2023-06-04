@@ -64,7 +64,9 @@ export const FormControl = ({
         </InputGroup>
       )}
 
-      <FormHelperText {...formHelperTextProps}>{helperText}</FormHelperText>
+      {helperText && (
+        <FormHelperText {...formHelperTextProps}>{helperText}</FormHelperText>
+      )}
     </FormControlChakra>
   )
 }
