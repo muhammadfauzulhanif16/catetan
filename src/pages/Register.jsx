@@ -14,6 +14,7 @@ import { LockClosed as LockClosedRegular } from '@emotion-icons/fluentui-system-
 import { LockOpen as LockOpenRegular } from '@emotion-icons/fluentui-system-regular/LockOpen'
 import { LockClosed as LockClosedFilled } from '@emotion-icons/fluentui-system-filled/LockClosed'
 import { LockOpen as LockOpenFilled } from '@emotion-icons/fluentui-system-filled/LockOpen'
+import { registerUser } from '../api'
 
 export const Register = () => {
   const navigate = useNavigate()
@@ -23,20 +24,36 @@ export const Register = () => {
   const [isLoading, setIsLoading] = useState(false)
   const toast = useToast()
 
-  const registerUser = async (payload) => {
-    const response = await fetch('https://notes-api.dicoding.dev/v1/register', {
-      method: 'post',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        name: payload.name,
-        email: payload.email,
-        password: payload.password
-      })
-    })
+  const onRegisterUser = (payload) => {
+    setIsLoading(true)
 
-    return response.json()
+    setTimeout(async () => {
+      const { error, data } = await registerUser(payload)
+
+      if (!error) {
+        toast({
+          title: 'Register Success',
+          description: data.message,
+          status: 'success',
+          duration: 4000,
+          isClosable: true,
+          position: 'top'
+        })
+
+        navigate('/login')
+      } else {
+        toast({
+          title: 'Register Failed',
+          description: data.message,
+          status: 'error',
+          duration: 4000,
+          isClosable: true,
+          position: 'top'
+        })
+      }
+
+      setIsLoading(false)
+    }, 4000)
   }
 
   return (
@@ -123,37 +140,7 @@ export const Register = () => {
               bgColor: `yellow.${theme === 'light' ? '500' : '400'}`
             },
             role: 'group',
-            onClick: () => {
-              setIsLoading(true)
-
-              setTimeout(async () => {
-                const data = await registerUser(userData)
-
-                if (data.status === 'success') {
-                  toast({
-                    title: 'Register Success',
-                    description: data.message,
-                    status: 'success',
-                    duration: 4000,
-                    isClosable: true,
-                    position: 'top'
-                  })
-
-                  navigate('/login')
-                } else {
-                  toast({
-                    title: 'Register Failed',
-                    description: data.message,
-                    status: 'error',
-                    duration: 4000,
-                    isClosable: true,
-                    position: 'top'
-                  })
-                }
-
-                setIsLoading(false)
-              }, 4000)
-            }
+            onClick: () => onRegisterUser(userData)
           }}
           initIcon={isValid ? LockClosedRegular : LockOpenRegular}
           finalIcon={isValid ? LockClosedFilled : LockOpenFilled}

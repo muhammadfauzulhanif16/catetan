@@ -18,8 +18,10 @@ import { action, formHelperText, title } from '../utils/content'
 import { LocaleContext } from '../context/Locale'
 import { ThemeContext } from '../context/Theme'
 import { Nav } from '../components/base/Nav'
+import PropTypes from 'prop-types'
+import { logInUser } from '../api'
 
-export const LogIn = () => {
+export const LogIn = ({ onLoginSuccess }) => {
   const navigate = useNavigate()
   const { theme } = useContext(ThemeContext)
   const { locale } = useContext(LocaleContext)
@@ -27,19 +29,37 @@ export const LogIn = () => {
   const [isLoading, setIsLoading] = useState(false)
   const toast = useToast()
 
-  const logiInUser = async (payload) => {
-    const response = await fetch('https://notes-api.dicoding.dev/v1/login', {
-      method: 'post',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        email: payload.email,
-        password: payload.password
-      })
-    })
+  const onLogInUser = async (payload) => {
+    setIsLoading(true)
 
-    return response.json()
+    setTimeout(async () => {
+      const { error, data } = await logInUser(payload)
+
+      if (!error) {
+        onLoginSuccess(data.data)
+        toast({
+          title: 'Log In Success',
+          description: data.message,
+          status: 'success',
+          duration: 4000,
+          isClosable: true,
+          position: 'top'
+        })
+
+        navigate('/all')
+      } else {
+        toast({
+          title: 'Log In Failed',
+          description: data.message,
+          status: 'error',
+          duration: 4000,
+          isClosable: true,
+          position: 'top'
+        })
+      }
+
+      setIsLoading(false)
+    }, 4000)
   }
 
   return (
@@ -126,38 +146,7 @@ export const LogIn = () => {
               bgColor: `yellow.${theme === 'light' ? '500' : '400'}`
             },
             role: 'group',
-            onClick: () => {
-              setIsLoading(true)
-
-              setTimeout(async () => {
-                const data = await logiInUser(userData)
-
-                if (data.status === 'success') {
-                  toast({
-                    title: 'Log In Success',
-                    description: data.message,
-                    status: 'success',
-                    duration: 4000,
-                    isClosable: true,
-                    position: 'top'
-                  })
-
-                  localStorage.setItem('catetan-token', data.data.accessToken)
-                  navigate('/all')
-                } else {
-                  toast({
-                    title: 'Log In Failed',
-                    description: "Email or password doesn't match",
-                    status: 'error',
-                    duration: 4000,
-                    isClosable: true,
-                    position: 'top'
-                  })
-                }
-
-                setIsLoading(false)
-              }, 4000)
-            }
+            onClick: () => onLogInUser(userData)
           }}
           initIcon={isValid ? LockClosedRegular : LockOpenRegular}
           finalIcon={isValid ? LockClosedFilled : LockOpenFilled}
@@ -177,4 +166,8 @@ export const LogIn = () => {
       </Flex>
     </AuthLayout>
   )
+}
+
+LogIn.propTypes = {
+  onLoginSuccess: PropTypes.func
 }

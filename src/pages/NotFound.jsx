@@ -19,7 +19,7 @@ export const NotFound = () => {
 
       <Box color='gray.400'>Tidak Ditemukan</Box>
 
-      <NavBar path='' />
+      <NavBar path={localStorage.setItem('catetan-path', null)} />
     </Layout>
   )
 }

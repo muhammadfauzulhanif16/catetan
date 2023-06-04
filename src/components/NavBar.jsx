@@ -8,12 +8,9 @@ import PropTypes from 'prop-types'
 import { useNavigate } from 'react-router-dom'
 
 export const NavBar = ({ path }) => {
-  // const checkPathName = ;
-
   const [pathName, setPathName] = useState(
-    localStorage.getItem('catetan-path', path) || path
+    localStorage.getItem('catetan-path', path)
   )
-
   const navigate = useNavigate()
   const { locale } = useContext(LocaleContext)
   const { theme } = useContext(ThemeContext)
@@ -74,5 +71,5 @@ export const NavBar = ({ path }) => {
 }
 
 NavBar.propTypes = {
-  path: PropTypes.string
+  path: PropTypes.any
 }
