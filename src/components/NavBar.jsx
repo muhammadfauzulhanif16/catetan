@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom'
 
 export const NavBar = ({ path }) => {
   const [pathName, setPathName] = useState(
-    localStorage.getItem('catetan-path', path)
+    localStorage.getItem('catetan-path', path) || 'all'
   )
   const navigate = useNavigate()
   const { locale } = useContext(LocaleContext)
