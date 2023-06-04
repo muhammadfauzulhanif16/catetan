@@ -13,7 +13,6 @@ export const Item = ({ data, onArchive, onDelete, setPathName, active }) => {
       bgColor={`teal.${theme === 'light' ? '50' : '900'}`}
       rounded={8}
       color={`gray.${theme === 'light' ? '600' : '300'}`}
-      shadow='sm'
     >
       <Heading noOfLines={1} size='lg'>
         {data.title}
