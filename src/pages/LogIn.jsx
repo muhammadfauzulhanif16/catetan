@@ -142,6 +142,7 @@ export const LogIn = () => {
                     position: 'top'
                   })
 
+                  localStorage.setItem('catetan-token', data.data.accessToken)
                   navigate('/all')
                 } else {
                   toast({

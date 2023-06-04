@@ -4,14 +4,17 @@ import { navList } from '../data/navList'
 import { LocaleContext } from '../context/Locale'
 import { ThemeContext } from '../context/Theme'
 import { Flex } from '@chakra-ui/react'
+import PropTypes from 'prop-types'
+import { useNavigate } from 'react-router-dom'
 
-export const NavBar = () => {
+export const NavBar = ({ path }) => {
   // const checkPathName = ;
 
   const [pathName, setPathName] = useState(
-    localStorage.getItem('catetan-path') || 'all'
+    localStorage.getItem('catetan-path', path) || path
   )
-  // const navigate = useNavigate()
+
+  const navigate = useNavigate()
   const { locale } = useContext(LocaleContext)
   const { theme } = useContext(ThemeContext)
   const navs = navList(locale)
@@ -57,6 +60,7 @@ export const NavBar = () => {
             onClick: () => {
               localStorage.setItem('catetan-path', path)
               setPathName(path)
+              navigate(`/${path}`)
             }
           }}
           iconProps={{
@@ -69,7 +73,6 @@ export const NavBar = () => {
   )
 }
 
-// NavBar.propTypes = {
-// note: PropTypes.object,
-// onAdd: PropTypes.func
-// }
+NavBar.propTypes = {
+  path: PropTypes.string
+}

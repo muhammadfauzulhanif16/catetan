@@ -1,22 +1,25 @@
 import React, { useContext } from 'react'
 import { Layout } from '../components/base/Layout'
 import { Header } from '../components/Header'
-import { NavBar } from '../components/NavBar'
 import { LocaleContext } from '../context/Locale'
+import { Box } from '@chakra-ui/react'
+import { NavBar } from '../components/NavBar'
 
-export const All = () => {
+export const NotFound = () => {
   const { locale } = useContext(LocaleContext)
 
   return (
     <Layout
-      title={locale === 'en' ? 'All Notes' : 'Semua Catatan'}
+      title={locale === 'en' ? 'Not Found' : 'Tidak Ditemukan'}
       boxProps={{
         p: [4, 8, 12]
       }}
     >
       <Header layout='app' />
 
-      <NavBar path='all' />
+      <Box color='gray.400'>Tidak Ditemukan</Box>
+
+      <NavBar path='' />
     </Layout>
   )
 }

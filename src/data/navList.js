@@ -26,8 +26,8 @@ export const navList = (locale) => [
   {
     initIcon: ArchiveRegular,
     finalIcon: ArchiveFilled,
-    text: locale === 'en' ? 'Archived' : 'Arsip',
-    path: 'archived'
+    text: locale === 'en' ? 'Archive' : 'Arsip',
+    path: 'archive'
   }
 ]
 
