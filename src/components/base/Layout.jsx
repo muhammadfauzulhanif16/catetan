@@ -12,18 +12,13 @@ export const Layout = ({ children, title, boxProps }) => {
   return (
     <Box
       {...boxProps}
-      // bgColor={theme === 'light' ? 'gray.50' : 'gray.900'}
-      // h='100vh'
+      bgColor={theme === 'light' ? 'gray.50' : 'gray.900'}
       w='full'
       userSelect='none'
     >
       <Helmet>
         <meta
-          content={
-            locale === 'en'
-              ? 'The application for keeping personal notes was created by Muhammad Fauzul Hanif'
-              : 'Aplikasi pencatatan catatan pribadi ini dibuat oleh Muhammad Fauzul Hanif'
-          }
+          content='The application for keeping personal notes was created by Muhammad Fauzul Hanif'
           name='description'
         />
         <meta

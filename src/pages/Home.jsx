@@ -2,20 +2,20 @@ import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { AuthLayout } from '../components/base/AuthLayout'
 import { Flex } from '@chakra-ui/react'
-import { actionList } from '../data/actionList'
+import { homePageActionList } from '../data/actionList'
 import { LocaleContext } from '../context/Locale'
-import { title } from '../utils/content'
+import { pageTitle } from '../utils/content'
 import { ThemeContext } from '../context/Theme'
 import { Nav } from '../components/base/Nav'
 
-export const Home = () => {
+export const HomePage = () => {
   const navigate = useNavigate()
-  const actions = actionList()
+
   const { locale } = useContext(LocaleContext)
   const { theme } = useContext(ThemeContext)
 
   return (
-    <AuthLayout title={title[locale].home}>
+    <AuthLayout title={pageTitle[locale].home}>
       <Flex
         flexGrow={1}
         direction='column'
@@ -25,7 +25,7 @@ export const Home = () => {
         justifyContent='center'
         alignItems='center'
       >
-        {actions.map((action, id) => (
+        {homePageActionList().map((action, id) => (
           <Nav
             key={id}
             text={action.name}

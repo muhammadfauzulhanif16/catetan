@@ -11,6 +11,7 @@ export const AuthLayout = ({ title, children }) => {
       boxProps={{
         display: 'flex',
         flexDirection: 'column',
+        h: '100vh',
         p: [4, 4, 8, 12]
       }}
     >

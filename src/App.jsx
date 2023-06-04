@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
-import { Home } from './pages/Home'
+import { HomePage } from './pages/Home'
 import { Register } from './pages/Register'
 import { LogIn } from './pages/LogIn'
 import { All } from './pages/All'
@@ -85,7 +85,7 @@ export const App = () => {
     <ThemeContext.Provider value={themeContextValue}>
       <LocaleContext.Provider value={localeContextValue}>
         <Routes>
-          <Route path='/*' element={<Home />} />
+          <Route path='/*' element={<HomePage />} />
           <Route path='/register' element={<Register />} />
           <Route
             path='/login'

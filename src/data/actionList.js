@@ -2,7 +2,7 @@ import { action } from '../utils/content'
 import { useContext } from 'react'
 import { LocaleContext } from '../context/Locale'
 
-export const actionList = () => {
+export const homePageActionList = () => {
   const { locale } = useContext(LocaleContext)
 
   return [

@@ -1,13 +1,19 @@
-export const title = {
+export const pageTitle = {
   en: {
     home: 'Home',
     register: 'Register an account',
-    login: 'Log in account'
+    login: 'Log in account',
+    all: 'All notes',
+    archive: 'Archived notes',
+    notFound: 'Not nound'
   },
   id: {
     home: 'Beranda',
     register: 'Daftar akun',
-    login: 'Masuk akun'
+    login: 'Masuk akun',
+    all: 'Semua catatan',
+    archive: 'Arsip catatan',
+    notFound: 'Tidak ditemukan'
   }
 }
 
