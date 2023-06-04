@@ -10,12 +10,7 @@ export const ArchiveNotesPage = ({ onLogOut, notes }) => {
   const { locale } = useContext(LocaleContext)
 
   return (
-    <Layout
-      title={locale === 'en' ? 'Archived Notes' : 'Arsip Catatan'}
-      boxProps={{
-        p: [4, 8, 12]
-      }}
-    >
+    <Layout title={locale === 'en' ? 'Archive Notes' : 'Arsip Catatan'}>
       <Header layout='app' onLogOut={onLogOut} />
 
       <Shelf notes={notes} />

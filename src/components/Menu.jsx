@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import {
   IconButton,
   Menu as MenuChakra,
@@ -10,8 +10,10 @@ import { MoreHorizontal } from '@emotion-icons/fluentui-system-regular'
 import PropTypes from 'prop-types'
 import { menuList } from '../data/menuList'
 import { useNavigate } from 'react-router-dom'
+import { ThemeContext } from '../context/Theme'
 
 export const Menu = ({ data, onArchive, onDelete, setPathName, active }) => {
+  const { theme } = useContext(ThemeContext)
   const navigate = useNavigate()
   const menus = menuList(data, navigate, onArchive, onDelete)
 
@@ -19,9 +21,9 @@ export const Menu = ({ data, onArchive, onDelete, setPathName, active }) => {
     <MenuChakra>
       <MenuButton
         as={IconButton}
-        bgColor='yellow.100'
+        bgColor={`yellow.${theme === 'light' ? '200' : '700'}`}
         _hover={{
-          bgColor: 'yellow.200'
+          bgColor: `yellow.${theme === 'light' ? '300' : '600'}`
         }}
         _active={{
           bgColor: 'yellow.200'
