@@ -71,7 +71,7 @@ export const AuthLayout = ({
                   bgColor: `yellow.${theme === 'light' ? '500' : '400'}`
                 },
                 role: 'group',
-                onClick: () => onClickForm
+                onClick: onClickForm
               }}
               initIcon={isValidForm ? LockClosedRegular : LockOpenRegular}
               finalIcon={isValidForm ? LockClosedFilled : LockOpenFilled}
