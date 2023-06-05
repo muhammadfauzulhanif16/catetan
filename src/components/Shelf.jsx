@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
-import { Flex, SimpleGrid } from '@chakra-ui/react'
+import { Box, SimpleGrid } from '@chakra-ui/react'
 import { Item } from './Item'
 import { ThemeContext } from '../context/Theme'
 
@@ -8,10 +8,9 @@ export const Shelf = ({ notes, onArchive, onDelete, setPathName, active }) => {
   const { theme } = useContext(ThemeContext)
 
   return (
-    <Flex flexGrow={1} h={0}>
+    <Box flexGrow={1} overflowY='auto'>
       {notes?.length > 0 ? (
         <SimpleGrid
-          overflowY='auto'
           bgColor={theme === 'light' ? 'gray.50' : 'gray.900'}
           columns={[1, 1, 2, 3]}
           gap={4}
@@ -33,7 +32,7 @@ export const Shelf = ({ notes, onArchive, onDelete, setPathName, active }) => {
         // <EmptyState />
         <>Tidak ada</>
       )}
-    </Flex>
+    </Box>
   )
 }
 

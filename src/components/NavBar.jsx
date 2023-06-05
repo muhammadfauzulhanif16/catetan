@@ -19,6 +19,7 @@ export const NavBar = () => {
     <Flex
       flex='none'
       bgColor={`gray.${theme === 'light' ? '50' : '900'}`}
+      px={[4, 8, 12]}
       py={2}
       gap={2}
     >
