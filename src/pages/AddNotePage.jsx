@@ -21,9 +21,16 @@ export const AddNotePage = ({ onLogOut }) => {
   const toast = useToast()
   const navigate = useNavigate()
 
-  const [title, onTitleChange] = useForm('')
+  const [title, setTitle] = useState('')
   const [content, onContentChange] = useForm('')
-  // const [maxTitleLength, setMaxTitleLength] = useState(50)
+  const [maxTitleLength, setMaxTitleLength] = useState(50)
+
+  const onTitleChange = (e) => {
+    if (e.target.value.length <= 50) {
+      setTitle(e.target.value)
+      setMaxTitleLength(50 - e.target.value.length)
+    }
+  }
 
   const initialState = {
     title,
@@ -85,17 +92,17 @@ export const AddNotePage = ({ onLogOut }) => {
           <FormControl
             label={locale === 'en' ? 'Title' : 'Judul'}
             type='text'
-            // helperText={
-            //   isInValidTitle
-            //     ? `${
-            //         locale === 'en' ? 'Title is required' : 'Judul diperlukan'
-            //       }`
-            //     : `${
-            //         locale === 'en'
-            //           ? `Maximal: ${maxTitleLength} characters left`
-            //           : `Maksimal: ${maxTitleLength} karakter tersisa`
-            //       }`
-            // }
+            helperText={
+              isInValidTitle
+                ? `${
+                    locale === 'en' ? 'Title is required' : 'Judul diperlukan'
+                  }`
+                : `${
+                    locale === 'en'
+                      ? `Maximal: ${maxTitleLength} characters left`
+                      : `Maksimal: ${maxTitleLength} karakter tersisa`
+                  }`
+            }
             formHelperTextProps={{
               color: isInValidTitle
                 ? `red.${theme === 'light' ? '600' : '300'}`

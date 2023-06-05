@@ -13,6 +13,7 @@ import { AuthedUserContext } from './context/AuthedUser'
 
 export const Router = () => {
   const [authedUser, setAuthedUser] = useState(null)
+  const [initializing, setInitializing] = useState(true)
 
   const authedUserContextValue = useMemo(() => {
     return { authedUser }
@@ -24,6 +25,7 @@ export const Router = () => {
     }
 
     onLoginSuccess().then((r) => setAuthedUser(r.data))
+    setInitializing(false)
   }, [])
 
   const onLoginSuccess = async ({ accessToken }) => {
@@ -37,6 +39,8 @@ export const Router = () => {
     editAccessToken('')
     localStorage.setItem('catetan-path', 'all')
   }
+
+  if (initializing) return null
 
   if (authedUser === null) {
     return (
