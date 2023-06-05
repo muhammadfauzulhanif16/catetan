@@ -80,7 +80,12 @@ export const AddNotePage = ({ onLogOut }) => {
     >
       <Header layout='app' onLogOut={onLogOut} />
 
-      <Flex justifyContent='center' display='flex'>
+      <Flex
+        justifyContent='center'
+        display='flex'
+        px={{ base: 4 }}
+        pt={[12, 6, 0]}
+      >
         <Flex w={['full', '80%', '60%', '40%']} gap={4} direction='column'>
           <FormControl
             label={locale === 'en' ? 'Title' : 'Judul'}
@@ -113,7 +118,7 @@ export const AddNotePage = ({ onLogOut }) => {
             type='textarea'
             label={locale === 'en' ? 'Content' : 'Isi'}
             helperText={
-              locale === 'en' ? "Can't be empthy" : 'Tidak boleh kosong'
+              locale === 'en' ? "Can't be empty" : 'Tidak boleh kosong'
             }
             formHelperTextProps={{
               color: isInValidContent

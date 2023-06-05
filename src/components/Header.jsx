@@ -67,7 +67,13 @@ export const Header = ({ layout, onLogOut }) => {
             }
             formControlProps={{
               w: '40%',
-              display: { base: 'none', md: 'block' }
+              display: {
+                base: 'none',
+                md:
+                  localStorage.getItem('catetan-path') === 'add'
+                    ? 'none'
+                    : 'block'
+              }
             }}
             inputProps={{
               placeholder:
@@ -112,7 +118,13 @@ export const Header = ({ layout, onLogOut }) => {
           }
           formControlProps={{
             w: 'full',
-            display: { base: 'block', md: 'none' },
+            display: {
+              base:
+                localStorage.getItem('catetan-path') === 'add'
+                  ? 'none'
+                  : 'block',
+              md: 'none'
+            },
             m: 0
           }}
           inputProps={{
