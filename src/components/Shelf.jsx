@@ -9,7 +9,7 @@ export const Shelf = ({ notes, onArchive, onDelete, setPathName, active }) => {
 
   return (
     <Box flexGrow={1} overflowY='auto'>
-      {notes?.length > 0 ? (
+      {notes && notes.length > 0 ? (
         <SimpleGrid
           bgColor={theme === 'light' ? 'gray.50' : 'gray.900'}
           columns={[1, 1, 2, 3]}

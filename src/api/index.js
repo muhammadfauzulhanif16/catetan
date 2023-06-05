@@ -55,6 +55,10 @@ export const registerUser = async ({ name, email, password }) => {
 }
 
 async function getUserLogged () {
+  if (!getAccessToken()) {
+    return { error: true, data: null }
+  }
+
   const response = await fetchWithToken(`${BASE_URL}/users/me`)
   const responseJson = await response.json()
 
@@ -75,7 +79,7 @@ export const addNote = async ({ title, body }) => {
   })
 
   const responseJson = await response.json()
-  console.log(responseJson)
+
   if (responseJson.status !== 'success') {
     return { error: true, data: responseJson }
   }
@@ -84,9 +88,13 @@ export const addNote = async ({ title, body }) => {
 }
 
 async function getNotes () {
+  if (!getAccessToken()) {
+    return { error: true, data: [] }
+  }
+
   const response = await fetchWithToken(`${BASE_URL}/notes`)
   const responseJson = await response.json()
-
+  console.log(responseJson)
   if (responseJson.status !== 'success') {
     return { error: true, data: [] }
   }

@@ -13,8 +13,8 @@ import { AuthedUserContext } from './context/AuthedUser'
 export const Router = () => {
   const [authedUser, setAuthedUser] = useState(null)
   const [initializing, setInitializing] = useState(true)
-  const [notes, setNotes] = useState(null)
-
+  const [notes, setNotes] = useState([])
+  console.log(notes)
   const authedUserContextValue = useMemo(() => {
     return { authedUser }
   }, [authedUser])
@@ -25,23 +25,17 @@ export const Router = () => {
       setInitializing(false)
     })
 
-    return () => {
-      setAuthedUser(null)
-    }
-  }, [])
-
-  useEffect(() => {
     getNotes().then(({ data }) => setNotes(data))
 
     return () => {
-      setNotes(null)
+      setNotes([])
+      setAuthedUser(null)
     }
   }, [])
 
   const onLoginSuccess = async ({ accessToken }) => {
     editAccessToken(accessToken)
-    const { data } = await getUserLogged()
-    setAuthedUser(data)
+    getUserLogged().then(({ data }) => setAuthedUser(data))
   }
 
   const onLogOut = () => {
@@ -65,23 +59,18 @@ export const Router = () => {
     )
   }
 
-  const allNotes = notes.filter((note) => note.archived === false)
-  const archivedNotes = notes.filter((note) => note.archived === true)
-
   return (
     <AuthedUserContext.Provider value={authedUserContextValue}>
       <Routes>
         <Route path='/*' element={<NotFoundPage onLogOut={onLogOut} />} />
         <Route
           path='/'
-          element={<AllNotesPage onLogOut={onLogOut} notes={allNotes} />}
+          element={<AllNotesPage onLogOut={onLogOut} notes={notes} />}
         />
         <Route path='/add' element={<AddNotePage onLogOut={onLogOut} />} />
         <Route
           path='/archive'
-          element={
-            <ArchiveNotesPage onLogOut={onLogOut} notes={archivedNotes} />
-          }
+          element={<ArchiveNotesPage onLogOut={onLogOut} notes={notes} />}
         />
       </Routes>
     </AuthedUserContext.Provider>
