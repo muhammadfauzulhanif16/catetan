@@ -9,13 +9,40 @@ import {
 import { MoreHorizontal } from '@emotion-icons/fluentui-system-regular'
 import PropTypes from 'prop-types'
 import { menuList } from '../data/menuList'
-import { useNavigate } from 'react-router-dom'
 import { ThemeContext } from '../context/Theme'
+import { archivedNote, deleteNote, getNotes, unarchivedNote } from '../api'
+import { NotesContext } from '../context/Notes'
 
-export const Menu = ({ data, onArchive, onDelete, setPathName, active }) => {
+export const Menu = ({ data }) => {
   const { theme } = useContext(ThemeContext)
-  const navigate = useNavigate()
-  const menus = menuList(data, navigate, onArchive, onDelete)
+  // const navigate = useNavigate()
+  const { setNotes } = useContext(NotesContext)
+
+  const onArchive = async (id) => {
+    await archivedNote(id)
+
+    getNotes().then(({ data }) => setNotes(data))
+  }
+
+  const onUnarchive = async (id) => {
+    await unarchivedNote(id)
+
+    getNotes().then(({ data }) => setNotes(data))
+  }
+
+  const onDeleteNote = async (id) => {
+    await deleteNote(id)
+
+    getNotes().then(({ data }) => setNotes(data))
+  }
+
+  const menus = menuList({
+    data,
+    onArchive,
+    onUnarchive,
+    onDeleteNote
+    // navigate
+  })
 
   return (
     <MenuChakra>
@@ -41,7 +68,6 @@ export const Menu = ({ data, onArchive, onDelete, setPathName, active }) => {
             key={id}
             icon={icon}
             onClick={() => {
-              setPathName(text === 'View' ? '' : active)
               action(`${text === 'View' ? '/notes/' : ''}${data.id}`)
             }}
             color={`${color}.${theme === 'light' ? '400' : '500'}`}

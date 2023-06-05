@@ -37,8 +37,6 @@ export const AddNotePage = ({ onLogOut }) => {
     body: content
   }
 
-  console.log(initialState)
-
   const isValidTitle = title.length > 0
   const isValidContent = content.length > 0
 
