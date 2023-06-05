@@ -15,12 +15,13 @@ export const AddNotePage = ({ onLogOut }) => {
       title={locale === 'en' ? 'AddNotePage Note' : 'Tambah Catatan'}
       boxProps={{
         display: 'flex',
-        flexDirection: 'column'
+        flexDirection: 'column',
+        h: '100vh'
       }}
     >
       <Header layout='app' onLogOut={onLogOut} />
 
-      <Flex bgColor='green.300' flexGrow={1} display='flex'>
+      <Flex bgColor='green.300' display='flex'>
         <FormControl
           // key={id}
           // label={login.label}

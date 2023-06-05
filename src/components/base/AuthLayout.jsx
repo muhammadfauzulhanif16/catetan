@@ -57,6 +57,7 @@ export const AuthLayout = ({
           <>
             <Navigation
               buttonProps={{
+                type: 'submit',
                 isLoading: isLoadingForm,
                 loadingText:
                   isLoadingForm && locale === 'en' ? 'Loading' : 'Memuat',
