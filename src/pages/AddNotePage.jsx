@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { Layout } from '../components/base/Layout'
 import { Header } from '../components/Header'
 import { NavBar } from '../components/NavBar'
@@ -6,9 +6,28 @@ import { LocaleContext } from '../context/Locale'
 import PropTypes from 'prop-types'
 import { Flex } from '@chakra-ui/react'
 import { FormControl } from '../components/base/FormControl'
+import { useForm } from '../utils/hooks'
+import { ThemeContext } from '../context/Theme'
 
 export const AddNotePage = ({ onLogOut }) => {
+  const { theme } = useContext(ThemeContext)
   const { locale } = useContext(LocaleContext)
+
+  const [title, onTitleChange] = useForm('')
+  const [content, onContentChange] = useForm('')
+
+  // const initialState = {
+  //   title,
+  //   content
+  // }
+
+  const isValidTitle = title.length > 0
+  const isValidContent = content.length > 0
+
+  // const isValid = !isValidTitle || !isValidContent
+
+  const [isInValidTitle, setIsInValidTitle] = useState(false)
+  const [isInValidContent, setIsInValidContent] = useState(false)
 
   return (
     <Layout
@@ -21,55 +40,60 @@ export const AddNotePage = ({ onLogOut }) => {
     >
       <Header layout='app' onLogOut={onLogOut} />
 
-      <Flex bgColor='green.300' display='flex'>
-        <FormControl
-          // key={id}
-          // label={login.label}
-          label={locale === 'en' ? 'Title' : 'Judul'}
-          // type={login.type}
-          type='text'
-          // inputLeftElement={
-          //   <Icon
-          //     initIcon={login.initIcon}
-          //     finalIcon={login.finalIcon}
-          //     iconProps={{
-          //       w: 6,
-          //       h: 6
-          //     }}
-          //   />
-          // }
-          // helperText={login.helperText}
-          // formHelperTextProps={{
-          //   color: login.inValid
-          //     ? `red.${theme === 'light' ? '600' : '300'}`
-          //     : `gray.${theme === 'light' ? '600' : '300'}`
-          // }}
-          inputProps={{
-            placeholder: locale === 'en' ? 'Enter tile' : 'Masukkan judul'
-            // value: login.value,
-            // onChange: login.onChange
-          }}
-          formControlProps={{
-            isRequired: true,
-            role: 'group'
-            // isInvalid: login.inValid,
-            // onBlur: login.valid
-            //   ? () => login.setInValid(false)
-            //   : () => login.setInValid(true)
-          }}
-          // inputRightElement={
-          //   login.valid && (
-          //     <Icon
-          //       initIcon={Checkmark}
-          //       iconProps={{
-          //         color: 'green.400',
-          //         w: 6,
-          //         h: 6
-          //       }}
-          //     />
-          //   )
-          // }
-        />
+      <Flex justifyContent='center' display='flex'>
+        <Flex w={['full', '80%', '60%', '40%']} gap={4} direction='column'>
+          <FormControl
+            label={locale === 'en' ? 'Title' : 'Judul'}
+            type='text'
+            helperText={
+              locale === 'en'
+                ? 'Maximal: 50 characters left'
+                : 'Maksimal: 50 karakter tersisa'
+            }
+            formHelperTextProps={{
+              color: isInValidTitle
+                ? `red.${theme === 'light' ? '600' : '300'}`
+                : `gray.${theme === 'light' ? '600' : '300'}`
+            }}
+            inputProps={{
+              placeholder: locale === 'en' ? 'Enter tile' : 'Masukkan judul',
+              value: title,
+              onChange: onTitleChange
+            }}
+            formControlProps={{
+              isRequired: true,
+              isInvalid: isInValidTitle,
+              onBlur: isValidTitle
+                ? () => setIsInValidTitle(false)
+                : () => setIsInValidTitle(true)
+            }}
+          />
+
+          <FormControl
+            type='textarea'
+            label={locale === 'en' ? 'Content' : 'Isi'}
+            helperText={
+              locale === 'en' ? "Can't be empthy" : 'Tidak boleh kosong'
+            }
+            formHelperTextProps={{
+              color: isInValidContent
+                ? `red.${theme === 'light' ? '600' : '300'}`
+                : `gray.${theme === 'light' ? '600' : '300'}`
+            }}
+            textareaProps={{
+              placeholder: locale === 'en' ? 'Type anything' : 'Ketik apa saja',
+              value: content,
+              onChange: onContentChange
+            }}
+            formControlProps={{
+              isRequired: true,
+              isInvalid: isInValidContent,
+              onBlur: isValidContent
+                ? () => setIsInValidContent(false)
+                : () => setIsInValidContent(true)
+            }}
+          />
+        </Flex>
       </Flex>
 
       <NavBar />

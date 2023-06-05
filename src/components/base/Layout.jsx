@@ -10,12 +10,7 @@ export const Layout = ({ children, title, boxProps }) => {
   const { locale } = useContext(LocaleContext)
 
   return (
-    <Box
-      {...boxProps}
-      bgColor={theme === 'light' ? 'gray.50' : 'gray.900'}
-      w='full'
-      userSelect='none'
-    >
+    <Box {...boxProps} w='full' userSelect='none'>
       <Helmet>
         <meta
           content='The application for keeping personal notes was created by Muhammad Fauzul Hanif'

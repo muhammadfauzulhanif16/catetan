@@ -2,6 +2,7 @@ import React, { useMemo, useState } from 'react'
 import { LocaleContext } from './context/Locale'
 import { ThemeContext } from './context/Theme'
 import { Router } from './Router'
+import { ChakraProvider, extendTheme } from '@chakra-ui/react'
 
 export const App = () => {
   const [locale, setLocale] = useState(
@@ -30,11 +31,23 @@ export const App = () => {
     return { theme, onThemeChange }
   }, [theme])
 
+  const _theme = extendTheme({
+    styles: {
+      global: {
+        body: {
+          bg: theme === 'light' ? 'gray.50' : 'gray.900'
+        }
+      }
+    }
+  })
+
   return (
-    <ThemeContext.Provider value={themeContextValue}>
-      <LocaleContext.Provider value={localeContextValue}>
-        <Router />
-      </LocaleContext.Provider>
-    </ThemeContext.Provider>
+    <ChakraProvider theme={_theme}>
+      <ThemeContext.Provider value={themeContextValue}>
+        <LocaleContext.Provider value={localeContextValue}>
+          <Router />
+        </LocaleContext.Provider>
+      </ThemeContext.Provider>
+    </ChakraProvider>
   )
 }

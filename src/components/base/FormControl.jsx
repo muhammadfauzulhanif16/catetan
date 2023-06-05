@@ -6,7 +6,8 @@ import {
   Input,
   InputGroup,
   InputLeftElement,
-  InputRightElement
+  InputRightElement,
+  Textarea
 } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 import { ThemeContext } from '../../context/Theme'
@@ -20,7 +21,8 @@ export const FormControl = ({
   type,
   inputLeftElement,
   inputRightElement,
-  helperText
+  helperText,
+  textareaProps
 }) => {
   const { theme } = useContext(ThemeContext)
 
@@ -35,7 +37,7 @@ export const FormControl = ({
         </FormLabel>
       )}
 
-      {type && (
+      {type !== 'textarea' && (
         <InputGroup>
           {inputLeftElement && (
             <InputLeftElement
@@ -64,6 +66,17 @@ export const FormControl = ({
         </InputGroup>
       )}
 
+      {type === 'textarea' && (
+        <Textarea
+          {...textareaProps}
+          bgColor={theme === 'light' ? 'whiteAlpha.900' : 'blackAlpha.50'}
+          borderColor={`gray.${theme === 'light' ? '300' : '600'}`}
+          focusBorderColor={`blue.${theme === 'light' ? '600' : '300'}`}
+          errorBorderColor={`red.${theme === 'light' ? '600' : '300'}`}
+          color={`gray.${theme === 'light' ? '800' : '100'}`}
+        />
+      )}
+
       {helperText && (
         <FormHelperText {...formHelperTextProps}>{helperText}</FormHelperText>
       )}
@@ -80,5 +93,6 @@ FormControl.propTypes = {
   type: PropTypes.string.isRequired,
   inputLeftElement: PropTypes.any,
   inputRightElement: PropTypes.node,
-  helperText: PropTypes.string
+  helperText: PropTypes.string,
+  textareaProps: PropTypes.object
 }
