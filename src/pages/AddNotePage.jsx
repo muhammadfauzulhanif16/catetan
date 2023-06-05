@@ -8,6 +8,7 @@ import { Flex } from '@chakra-ui/react'
 import { FormControl } from '../components/base/FormControl'
 import { useForm } from '../utils/hooks'
 import { ThemeContext } from '../context/Theme'
+import { Navigation } from '../components/base/Navigation'
 
 export const AddNotePage = ({ onLogOut }) => {
   const { theme } = useContext(ThemeContext)
@@ -92,6 +93,34 @@ export const AddNotePage = ({ onLogOut }) => {
                 ? () => setIsInValidContent(false)
                 : () => setIsInValidContent(true)
             }}
+          />
+
+          <Navigation
+            buttonProps={{
+              type: 'submit',
+              // isLoading: isLoadingForm,
+              // loadingText:
+              //   isLoadingForm && locale === 'en' ? 'Loading' : 'Memuat',
+              // isDisabled: isValidForm,
+              display: 'flex',
+              gap: 4,
+              w: 'full',
+              color: `gray.${theme === 'light' ? '600' : '300'}`,
+              bgColor: `yellow.${theme === 'light' ? '400' : '500'}`,
+              _hover: {
+                color: `gray.${theme === 'light' ? '300' : '600'}`,
+                bgColor: `yellow.${theme === 'light' ? '500' : '400'}`
+              },
+              role: 'group'
+              // onClick: onClickForm
+            }}
+            // initIcon={isValidForm ? LockClosedRegular : LockOpenRegular}
+            // finalIcon={isValidForm ? LockClosedFilled : LockOpenFilled}
+            iconProps={{
+              w: 6,
+              h: 6
+            }}
+            // text={formAction}
           />
         </Flex>
       </Flex>
