@@ -4,7 +4,7 @@ import { Box, SimpleGrid } from '@chakra-ui/react'
 import { Item } from './Item'
 import { ThemeContext } from '../context/Theme'
 
-export const Shelf = ({ notes, onArchive, onDelete, setPathName, active }) => {
+export const Shelf = ({ onArchive, onDelete, setPathName, active, notes }) => {
   const { theme } = useContext(ThemeContext)
 
   return (
@@ -37,9 +37,9 @@ export const Shelf = ({ notes, onArchive, onDelete, setPathName, active }) => {
 }
 
 Shelf.propTypes = {
-  notes: PropTypes.arrayOf(PropTypes.object),
   onArchive: PropTypes.func,
   onDelete: PropTypes.func,
   setPathName: PropTypes.func,
-  active: PropTypes.string
+  active: PropTypes.string,
+  notes: PropTypes.arrayOf(PropTypes.object)
 }

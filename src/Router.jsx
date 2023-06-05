@@ -1,10 +1,10 @@
 import { Route, Routes } from 'react-router-dom'
 import { NotFoundPage } from './pages/NotFoundPage'
-import { AllNotesPage } from './pages/AllNotesPage'
+import { ActiveNotesPage } from './pages/ActiveNotesPage'
 import { AddNotePage } from './pages/AddNotePage'
 import { ArchiveNotesPage } from './pages/ArchiveNotesPage'
 import React, { useEffect, useMemo, useState } from 'react'
-import { editAccessToken, getNotes, getUserLogged } from './api'
+import { editAccessToken, getUserLogged } from './api'
 import { HomePage } from './pages/HomePage'
 import { RegisterPage } from './pages/RegisterPage'
 import { LogInPage } from './pages/LogInPage'
@@ -13,8 +13,7 @@ import { AuthedUserContext } from './context/AuthedUser'
 export const Router = () => {
   const [authedUser, setAuthedUser] = useState(null)
   const [initializing, setInitializing] = useState(true)
-  const [notes, setNotes] = useState([])
-  console.log(notes)
+
   const authedUserContextValue = useMemo(() => {
     return { authedUser }
   }, [authedUser])
@@ -25,10 +24,7 @@ export const Router = () => {
       setInitializing(false)
     })
 
-    getNotes().then(({ data }) => setNotes(data))
-
     return () => {
-      setNotes([])
       setAuthedUser(null)
     }
   }, [])
@@ -63,14 +59,11 @@ export const Router = () => {
     <AuthedUserContext.Provider value={authedUserContextValue}>
       <Routes>
         <Route path='/*' element={<NotFoundPage onLogOut={onLogOut} />} />
-        <Route
-          path='/'
-          element={<AllNotesPage onLogOut={onLogOut} notes={notes} />}
-        />
+        <Route path='/' element={<ActiveNotesPage onLogOut={onLogOut} />} />
         <Route path='/add' element={<AddNotePage onLogOut={onLogOut} />} />
         <Route
           path='/archive'
-          element={<ArchiveNotesPage onLogOut={onLogOut} notes={notes} />}
+          element={<ArchiveNotesPage onLogOut={onLogOut} />}
         />
       </Routes>
     </AuthedUserContext.Provider>

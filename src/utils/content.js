@@ -3,7 +3,7 @@ export const titlePageLocaleList = {
     home: 'Home',
     register: 'RegisterPage an account',
     login: 'Log in account',
-    all: 'AllNotesPage notes',
+    all: 'ActiveNotesPage notes',
     archive: 'Archived notes',
     notFound: 'Not nound'
   },
