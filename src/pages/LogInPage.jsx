@@ -41,6 +41,7 @@ export const LogInPage = ({ onLoginSuccess }) => {
         })
 
         navigate('/')
+        localStorage.setItem('catetan-path', 'all')
       } else {
         toast({
           title: 'Log In Failed',
