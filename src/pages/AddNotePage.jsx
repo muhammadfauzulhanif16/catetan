@@ -83,8 +83,9 @@ export const AddNotePage = ({ onLogOut }) => {
       <Flex
         justifyContent='center'
         display='flex'
+        alignItems='center'
+        flexGrow={1}
         px={{ base: 4 }}
-        pt={[12, 6, 0]}
       >
         <Flex w={['full', '80%', '60%', '40%']} gap={4} direction='column'>
           <FormControl

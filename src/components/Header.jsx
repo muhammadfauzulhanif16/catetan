@@ -25,7 +25,9 @@ export const Header = ({ layout, onLogOut }) => {
       bgColor={`gray.${theme === 'light' ? '50' : '900'}`}
       pos='sticky'
       zIndex={2}
-      p={[4, 8, 12]}
+      pt={[4, 8, 12]}
+      px={[4, 8, 12]}
+      pb={4}
       top={0}
     >
       <Flex gap={4} w='full' justifyContent='space-between'>

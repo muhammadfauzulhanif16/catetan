@@ -17,14 +17,10 @@ export const NavBar = () => {
 
   return (
     <Flex
-      mx={[4, 8, 12]}
+      flex='none'
       bgColor={`gray.${theme === 'light' ? '50' : '900'}`}
       py={2}
       gap={2}
-      pos='fixed'
-      bottom={0}
-      right={0}
-      left={0}
     >
       {navs.map(({ initIcon, finalIcon, text, path }, id) => (
         <Navigation
