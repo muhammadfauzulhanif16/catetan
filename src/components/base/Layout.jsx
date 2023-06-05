@@ -13,6 +13,7 @@ export const Layout = ({ children, title, boxProps }) => {
     <Box
       {...boxProps}
       w='full'
+      pos='fixed'
       userSelect='none'
       display='flex'
       flexDirection='column'

@@ -13,30 +13,29 @@ import { AuthedUserContext } from './context/AuthedUser'
 export const Router = () => {
   const [authedUser, setAuthedUser] = useState(null)
   const [initializing, setInitializing] = useState(true)
-  const [notes, setNotes] = useState([])
+  const [notes, setNotes] = useState(null)
 
   const authedUserContextValue = useMemo(() => {
     return { authedUser }
   }, [authedUser])
 
   useEffect(() => {
-    const onLoginSuccess = async () => {
-      const { data } = await getUserLogged()
+    getUserLogged().then(({ data }) => {
+      setAuthedUser(data)
+      setInitializing(false)
+    })
 
-      setAuthedUser(() => data)
+    return () => {
+      setAuthedUser(null)
     }
-
-    onLoginSuccess()
-    setInitializing(false)
   }, [])
 
   useEffect(() => {
-    const onGetNotes = async () => {
-      const { data } = await getNotes()
-      setNotes(() => data)
-    }
+    getNotes().then(({ data }) => setNotes(data))
 
-    onGetNotes()
+    return () => {
+      setNotes(null)
+    }
   }, [])
 
   const onLoginSuccess = async ({ accessToken }) => {

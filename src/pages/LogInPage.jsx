@@ -30,7 +30,7 @@ export const LogInPage = ({ onLoginSuccess }) => {
       const { error, data } = await logInUser(payload)
 
       if (!error) {
-        onLoginSuccess(data)
+        onLoginSuccess(data.data)
         toast({
           title: data.message,
           status: 'success',

@@ -33,7 +33,7 @@ export const logInUser = async ({ email, password }) => {
     return { error: true, data: null }
   }
 
-  return { error: false, data: responseJson.data }
+  return { error: false, data: responseJson }
 }
 
 export const registerUser = async ({ name, email, password }) => {
