@@ -1,14 +1,14 @@
 const BASE_URL = 'https://notes-api.dicoding.dev/v1'
 
-function getAccessToken () {
+export const getAccessToken = () => {
   return localStorage.getItem('catetan-token')
 }
 
-function putAccessToken (accessToken) {
+export const editAccessToken = (accessToken) => {
   return localStorage.setItem('catetan-token', accessToken)
 }
 
-async function fetchWithToken (url, options = {}) {
+export const fetchWithToken = async (url, options = {}) => {
   return fetch(url, {
     ...options,
     headers: {
@@ -18,7 +18,7 @@ async function fetchWithToken (url, options = {}) {
   })
 }
 
-async function logInUser ({ email, password }) {
+export const logInUser = async ({ email, password }) => {
   const response = await fetch(`${BASE_URL}/login`, {
     method: 'POST',
     headers: {
@@ -36,7 +36,7 @@ async function logInUser ({ email, password }) {
   return { error: false, data: responseJson }
 }
 
-async function registerUser ({ name, email, password }) {
+export const registerUser = async ({ name, email, password }) => {
   const response = await fetch(`${BASE_URL}/register`, {
     method: 'POST',
     headers: {
@@ -54,7 +54,7 @@ async function registerUser ({ name, email, password }) {
   return { error: false, data: responseJson }
 }
 
-async function getUserLogged () {
+export const getUserLogged = async () => {
   const response = await fetchWithToken(`${BASE_URL}/users/me`)
   const responseJson = await response.json()
 
@@ -65,7 +65,7 @@ async function getUserLogged () {
   return { error: false, data: responseJson.data }
 }
 
-async function addContact ({ name, tag }) {
+export const addNote = async ({ name, tag }) => {
   const response = await fetchWithToken(`${BASE_URL}/contacts`, {
     method: 'POST',
     headers: {
@@ -84,7 +84,7 @@ async function addContact ({ name, tag }) {
   return { error: false }
 }
 
-async function getContacts () {
+export const getNotes = async () => {
   const response = await fetchWithToken(`${BASE_URL}/contacts`)
   const responseJson = await response.json()
 
@@ -96,7 +96,7 @@ async function getContacts () {
   return { error: false, data: responseJson.data }
 }
 
-async function deleteContact (id) {
+export const deleteNote = async (id) => {
   const response = await fetchWithToken(`${BASE_URL}/contacts/${id}`, {
     method: 'DELETE'
   })
@@ -108,15 +108,4 @@ async function deleteContact (id) {
   }
 
   return { error: false, data: responseJson }
-}
-
-export {
-  getAccessToken,
-  putAccessToken,
-  logInUser,
-  registerUser,
-  getUserLogged,
-  addContact,
-  getContacts,
-  deleteContact
 }

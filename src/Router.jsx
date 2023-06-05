@@ -5,7 +5,7 @@ import { noteList } from './data/noteList'
 import { AddNotePage } from './pages/AddNotePage'
 import { ArchiveNotesPage } from './pages/ArchiveNotesPage'
 import React, { useEffect, useState } from 'react'
-import { getUserLogged, putAccessToken } from './api'
+import { editAccessToken, getUserLogged } from './api'
 import { HomePage } from './pages/HomePage'
 import { RegisterPage } from './pages/RegisterPage'
 import { LogInPage } from './pages/LogInPage'
@@ -22,14 +22,14 @@ export const Router = () => {
   }, [authedUser])
 
   const onLoginSuccess = async ({ accessToken }) => {
-    putAccessToken(accessToken)
+    editAccessToken(accessToken)
     const { data } = await getUserLogged()
     setAuthedUser(data)
   }
 
   const onLogOut = () => {
     setAuthedUser(null)
-    putAccessToken('')
+    editAccessToken('')
     localStorage.setItem('catetan-path', 'all')
   }
 
