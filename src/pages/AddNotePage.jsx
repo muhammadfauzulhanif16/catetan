@@ -4,26 +4,30 @@ import { Header } from '../components/Header'
 import { NavBar } from '../components/NavBar'
 import { LocaleContext } from '../context/Locale'
 import PropTypes from 'prop-types'
-import { Flex } from '@chakra-ui/react'
+import { Flex, useToast } from '@chakra-ui/react'
 import { FormControl } from '../components/base/FormControl'
 import { useForm } from '../utils/hooks'
 import { ThemeContext } from '../context/Theme'
 import { Navigation } from '../components/base/Navigation'
 import { Send as SendFilled } from '@emotion-icons/fluentui-system-filled'
 import { Send as SendRegular } from '@emotion-icons/fluentui-system-regular'
+import { registerUser } from '../api'
+import { useNavigate } from 'react-router-dom'
 
 export const AddNotePage = ({ onLogOut }) => {
   const { theme } = useContext(ThemeContext)
   const { locale } = useContext(LocaleContext)
   const [isLoadingForm, setIsLoadingForm] = useState(false)
+  const toast = useToast()
+  const navigate = useNavigate()
 
   const [title, onTitleChange] = useForm('')
   const [content, onContentChange] = useForm('')
 
-  // const initialState = {
-  //   title,
-  //   content
-  // }
+  const initialState = {
+    title,
+    content
+  }
 
   const isValidTitle = title.length > 0
   const isValidContent = content.length > 0
@@ -32,6 +36,38 @@ export const AddNotePage = ({ onLogOut }) => {
 
   const [isInValidTitle, setIsInValidTitle] = useState(false)
   const [isInValidContent, setIsInValidContent] = useState(false)
+
+  const onAddNote = (payload) => {
+    setIsLoadingForm(true)
+
+    setTimeout(async () => {
+      const { error, data } = await registerUser(payload)
+
+      if (!error) {
+        toast({
+          title: 'RegisterPage Success',
+          description: data.message,
+          status: 'success',
+          duration: 4000,
+          isClosable: true,
+          position: 'top'
+        })
+
+        navigate('/')
+      } else {
+        toast({
+          title: 'RegisterPage Failed',
+          description: data.message,
+          status: 'error',
+          duration: 4000,
+          isClosable: true,
+          position: 'top'
+        })
+      }
+
+      setIsLoadingForm(false)
+    }, 4000)
+  }
 
   return (
     <Layout
@@ -114,8 +150,8 @@ export const AddNotePage = ({ onLogOut }) => {
                 color: `gray.${theme === 'light' ? '300' : '600'}`,
                 bgColor: `yellow.${theme === 'light' ? '500' : '400'}`
               },
-              role: 'group'
-              // onClick: onClickForm
+              role: 'group',
+              onClick: () => onAddNote(initialState)
             }}
             initIcon={SendRegular}
             finalIcon={SendFilled}
