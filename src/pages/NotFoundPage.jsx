@@ -2,23 +2,37 @@ import React, { useContext } from 'react'
 import { Layout } from '../components/base/Layout'
 import { Header } from '../components/Header'
 import { LocaleContext } from '../context/Locale'
-import { Box } from '@chakra-ui/react'
 import { NavBar } from '../components/NavBar'
 import PropTypes from 'prop-types'
+import { Flex, Text } from '@chakra-ui/react'
+import { Icon } from '../components/base/Icon'
+import { Page } from '@emotion-icons/fluentui-system-regular'
 
 export const NotFoundPage = ({ onLogOut }) => {
   const { locale } = useContext(LocaleContext)
+  localStorage.setItem('catetan-path', null)
 
   return (
     <Layout
       title={locale === 'en' ? 'Not Found' : 'Tidak Ditemukan'}
       boxProps={{
-        p: [4, 8, 12]
+        display: 'flex',
+        flexDirection: 'column',
+        h: '100vh'
       }}
     >
       <Header layout='app' onLogOut={onLogOut} />
 
-      <Box color='gray.400'>Tidak Ditemukan</Box>
+      <Flex color='gray.400' direction='column' alignItems='center' py={16}>
+        <Icon
+          initIcon={Page}
+          iconProps={{
+            w: 24,
+            h: 24
+          }}
+        />
+        <Text fontSize='xl'>Ops... page not found</Text>
+      </Flex>
 
       <NavBar path='' />
     </Layout>
