@@ -85,9 +85,15 @@ export const AddNotePage = ({ onLogOut }) => {
             label={locale === 'en' ? 'Title' : 'Judul'}
             type='text'
             helperText={
-              locale === 'en'
-                ? 'Maximal: 50 characters left'
-                : 'Maksimal: 50 karakter tersisa'
+              isInValidTitle
+                ? `${
+                    locale === 'en' ? 'Title is required' : 'Judul diperlukan'
+                  }`
+                : `${
+                    locale === 'en'
+                      ? 'Maximal: 50 characters left'
+                      : 'Maksimal: 50 karakter tersisa'
+                  }`
             }
             formHelperTextProps={{
               color: isInValidTitle
@@ -112,7 +118,11 @@ export const AddNotePage = ({ onLogOut }) => {
             type='textarea'
             label={locale === 'en' ? 'Content' : 'Isi'}
             helperText={
-              locale === 'en' ? "Can't be empty" : 'Tidak boleh kosong'
+              isInValidContent
+                ? `${
+                    locale === 'en' ? 'Content is required' : 'Isi diperlukan'
+                  }`
+                : `${locale === 'en' ? "Can't be empty" : 'Tidak boleh kosong'}`
             }
             formHelperTextProps={{
               color: isInValidContent
