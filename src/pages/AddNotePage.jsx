@@ -11,7 +11,7 @@ import { ThemeContext } from '../context/Theme'
 import { Navigation } from '../components/base/Navigation'
 import { Send as SendFilled } from '@emotion-icons/fluentui-system-filled'
 import { Send as SendRegular } from '@emotion-icons/fluentui-system-regular'
-import { registerUser } from '../api'
+import { addNote } from '../api'
 import { useNavigate } from 'react-router-dom'
 
 export const AddNotePage = ({ onLogOut }) => {
@@ -34,8 +34,10 @@ export const AddNotePage = ({ onLogOut }) => {
 
   const initialState = {
     title,
-    content
+    body: content
   }
+
+  console.log(initialState)
 
   const isValidTitle = title.length > 0
   const isValidContent = content.length > 0
@@ -49,12 +51,11 @@ export const AddNotePage = ({ onLogOut }) => {
     setIsLoadingForm(true)
 
     setTimeout(async () => {
-      const { error, data } = await registerUser(payload)
+      const { error, data } = await addNote(payload)
 
       if (!error) {
         toast({
-          title: 'RegisterPage Success',
-          description: data.message,
+          title: data.message,
           status: 'success',
           duration: 4000,
           isClosable: true,
@@ -62,10 +63,10 @@ export const AddNotePage = ({ onLogOut }) => {
         })
 
         navigate('/')
+        localStorage.setItem('catetan-path', 'all')
       } else {
         toast({
-          title: 'RegisterPage Failed',
-          description: data.message,
+          title: data.message,
           status: 'error',
           duration: 4000,
           isClosable: true,

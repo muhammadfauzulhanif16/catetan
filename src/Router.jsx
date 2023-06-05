@@ -1,11 +1,10 @@
 import { Route, Routes } from 'react-router-dom'
 import { NotFoundPage } from './pages/NotFoundPage'
 import { AllNotesPage } from './pages/AllNotesPage'
-import { noteList } from './data/noteList'
 import { AddNotePage } from './pages/AddNotePage'
 import { ArchiveNotesPage } from './pages/ArchiveNotesPage'
 import React, { useEffect, useMemo, useState } from 'react'
-import { editAccessToken, getUserLogged } from './api'
+import { editAccessToken, getNotes, getUserLogged } from './api'
 import { HomePage } from './pages/HomePage'
 import { RegisterPage } from './pages/RegisterPage'
 import { LogInPage } from './pages/LogInPage'
@@ -14,6 +13,7 @@ import { AuthedUserContext } from './context/AuthedUser'
 export const Router = () => {
   const [authedUser, setAuthedUser] = useState(null)
   const [initializing, setInitializing] = useState(true)
+  const [notes, setNotes] = useState([])
 
   const authedUserContextValue = useMemo(() => {
     return { authedUser }
@@ -21,11 +21,22 @@ export const Router = () => {
 
   useEffect(() => {
     const onLoginSuccess = async () => {
-      return await getUserLogged()
+      const { data } = await getUserLogged()
+
+      setAuthedUser(() => data)
     }
 
-    onLoginSuccess().then((r) => setAuthedUser(r.data))
+    onLoginSuccess()
     setInitializing(false)
+  }, [])
+
+  useEffect(() => {
+    const onGetNotes = async () => {
+      const { data } = await getNotes()
+      setNotes(() => data)
+    }
+
+    onGetNotes()
   }, [])
 
   const onLoginSuccess = async ({ accessToken }) => {
@@ -55,8 +66,8 @@ export const Router = () => {
     )
   }
 
-  const allNotes = noteList.filter((note) => note.archived === false)
-  const archivedNotes = noteList.filter((note) => note.archived === true)
+  const allNotes = notes.filter((note) => note.archived === false)
+  const archivedNotes = notes.filter((note) => note.archived === true)
 
   return (
     <AuthedUserContext.Provider value={authedUserContextValue}>

@@ -30,10 +30,9 @@ export const LogInPage = ({ onLoginSuccess }) => {
       const { error, data } = await logInUser(payload)
 
       if (!error) {
-        onLoginSuccess(data.data)
+        onLoginSuccess(data)
         toast({
-          title: 'Log In Success',
-          description: data.message,
+          title: data.message,
           status: 'success',
           duration: 4000,
           isClosable: true,
@@ -44,8 +43,7 @@ export const LogInPage = ({ onLoginSuccess }) => {
         localStorage.setItem('catetan-path', 'all')
       } else {
         toast({
-          title: 'Log In Failed',
-          description: data.message,
+          title: data.message,
           status: 'error',
           duration: 4000,
           isClosable: true,

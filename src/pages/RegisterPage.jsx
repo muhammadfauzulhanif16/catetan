@@ -31,8 +31,7 @@ export const RegisterPage = () => {
 
       if (!error) {
         toast({
-          title: 'RegisterPage Success',
-          description: data.message,
+          title: data.message,
           status: 'success',
           duration: 4000,
           isClosable: true,
@@ -42,8 +41,7 @@ export const RegisterPage = () => {
         navigate('/login')
       } else {
         toast({
-          title: 'RegisterPage Failed',
-          description: data.message,
+          title: data.message,
           status: 'error',
           duration: 4000,
           isClosable: true,

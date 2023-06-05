@@ -33,7 +33,7 @@ export const logInUser = async ({ email, password }) => {
     return { error: true, data: null }
   }
 
-  return { error: false, data: responseJson }
+  return { error: false, data: responseJson.data }
 }
 
 export const registerUser = async ({ name, email, password }) => {
@@ -54,7 +54,7 @@ export const registerUser = async ({ name, email, password }) => {
   return { error: false, data: responseJson }
 }
 
-export const getUserLogged = async () => {
+async function getUserLogged () {
   const response = await fetchWithToken(`${BASE_URL}/users/me`)
   const responseJson = await response.json()
 
@@ -65,31 +65,29 @@ export const getUserLogged = async () => {
   return { error: false, data: responseJson.data }
 }
 
-export const addNote = async ({ name, tag }) => {
-  const response = await fetchWithToken(`${BASE_URL}/contacts`, {
+export const addNote = async ({ title, body }) => {
+  const response = await fetchWithToken(`${BASE_URL}/notes`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ name, tag })
+    body: JSON.stringify({ title, body })
   })
 
   const responseJson = await response.json()
-
+  console.log(responseJson)
   if (responseJson.status !== 'success') {
-    alert(responseJson.message)
-    return { error: true }
+    return { error: true, data: responseJson }
   }
 
-  return { error: false }
+  return { error: false, data: responseJson }
 }
 
-export const getNotes = async () => {
-  const response = await fetchWithToken(`${BASE_URL}/contacts`)
+async function getNotes () {
+  const response = await fetchWithToken(`${BASE_URL}/notes`)
   const responseJson = await response.json()
 
   if (responseJson.status !== 'success') {
-    alert(responseJson.message)
     return { error: true, data: [] }
   }
 
@@ -97,7 +95,7 @@ export const getNotes = async () => {
 }
 
 export const deleteNote = async (id) => {
-  const response = await fetchWithToken(`${BASE_URL}/contacts/${id}`, {
+  const response = await fetchWithToken(`${BASE_URL}/notes/${id}`, {
     method: 'DELETE'
   })
 
@@ -109,3 +107,5 @@ export const deleteNote = async (id) => {
 
   return { error: false, data: responseJson }
 }
+
+export { getUserLogged, getNotes }
