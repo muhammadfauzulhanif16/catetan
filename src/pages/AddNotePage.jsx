@@ -15,6 +15,7 @@ import { Send as SendRegular } from '@emotion-icons/fluentui-system-regular'
 export const AddNotePage = ({ onLogOut }) => {
   const { theme } = useContext(ThemeContext)
   const { locale } = useContext(LocaleContext)
+  const [isLoadingForm, setIsLoadingForm] = useState(false)
 
   const [title, onTitleChange] = useForm('')
   const [content, onContentChange] = useForm('')
@@ -100,9 +101,9 @@ export const AddNotePage = ({ onLogOut }) => {
           <Navigation
             buttonProps={{
               type: 'submit',
-              // isLoading: isLoadingForm,
-              // loadingText:
-              //   isLoadingForm && locale === 'en' ? 'Loading' : 'Memuat',
+              isLoading: isLoadingForm,
+              loadingText:
+                isLoadingForm && locale === 'en' ? 'Loading' : 'Memuat',
               isDisabled: isValidForm,
               display: 'flex',
               gap: 4,
