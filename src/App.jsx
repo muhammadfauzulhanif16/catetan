@@ -32,6 +32,10 @@ export const App = () => {
   }, [theme])
 
   const _theme = extendTheme({
+    fonts: {
+      body: 'Josefin Sans',
+      heading: 'Josefin Sans'
+    },
     styles: {
       global: {
         body: {

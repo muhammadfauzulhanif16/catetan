@@ -16,7 +16,14 @@ export const NotFoundPage = ({ onLogOut }) => {
     <Layout title={locale === 'en' ? 'Not Found' : 'Tidak Ditemukan'}>
       <Header layout='app' onLogOut={onLogOut} />
 
-      <Flex color='gray.400' direction='column' alignItems='center' py={16}>
+      <Flex
+        color='gray.400'
+        direction='column'
+        alignItems='center'
+        justifyContent='center'
+        py={16}
+        h='full'
+      >
         <Icon
           initIcon={Page}
           iconProps={{

@@ -12,7 +12,9 @@ export const ArchiveNotesPage = ({ onLogOut }) => {
   const [notes, setNotes] = useState([])
 
   useEffect(() => {
-    getNotes().then(({ data }) => setNotes(data))
+    getNotes().then(({ data }) => {
+      setNotes(data)
+    })
 
     return () => {
       setNotes([])
@@ -22,7 +24,7 @@ export const ArchiveNotesPage = ({ onLogOut }) => {
   const archivedNotes = notes.filter((note) => note.archived === true)
 
   return (
-    <Layout title={locale === 'en' ? 'Archive Notes' : 'Arsip Catatan'}>
+    <Layout title={locale === 'en' ? 'Archive Notes' : 'Catatan Arsip'}>
       <Header layout='app' onLogOut={onLogOut} />
 
       <Shelf notes={archivedNotes} />

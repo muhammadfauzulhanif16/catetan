@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { Box, SimpleGrid } from '@chakra-ui/react'
 import { Item } from './Item'
 import { ThemeContext } from '../context/Theme'
+import { EmptyState } from './EmptyState'
 
 export const Shelf = ({ onArchive, onDelete, setPathName, active, notes }) => {
   const { theme } = useContext(ThemeContext)
@@ -29,8 +30,7 @@ export const Shelf = ({ onArchive, onDelete, setPathName, active, notes }) => {
           ))}
         </SimpleGrid>
       ) : (
-        // <EmptyState />
-        <>Tidak ada</>
+        <EmptyState />
       )}
     </Box>
   )

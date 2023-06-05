@@ -22,7 +22,7 @@ export const ActiveNotesPage = ({ onLogOut }) => {
   const activeNotes = notes.filter((note) => note.archived === false)
 
   return (
-    <Layout title={locale === 'en' ? 'All Notes' : 'Semua Catatan'}>
+    <Layout title={locale === 'en' ? 'Active Notes' : 'Catatan Aktif'}>
       <Header layout='app' onLogOut={onLogOut} />
 
       <Shelf notes={activeNotes} />
