@@ -12,7 +12,6 @@ import {
 import React, { useContext, useRef } from 'react'
 import { Navigation } from './base/Navigation'
 import {
-  Important as ImportantFilled,
   MoreVertical as MoreVerticalFilled,
   PersonAccounts as PersonAccountsFilled,
   SwipeRight as SwipeRightFilled,
@@ -20,7 +19,6 @@ import {
   WeatherSunny as WeatherSunnyFilled
 } from '@emotion-icons/fluentui-system-filled'
 import {
-  Important as ImportantRegular,
   MoreVertical as MoreVerticalRegular,
   PersonAccounts as PersonAccountsRegular,
   SwipeRight as SwipeRightRegular,
@@ -53,13 +51,6 @@ export const Drawer = ({
     {
       text: locale === 'en' ? 'Language' : 'Bahasa',
       initIcon: locale === 'en' ? US : ID,
-      onClick: onLocaleChange
-    },
-    {
-      text: locale === 'en' ? 'About App' : 'Tentang Aplikasi',
-      initIcon: ImportantRegular,
-      finalIcon: ImportantFilled,
-      color: 'orange',
       onClick: onLocaleChange
     },
     {
