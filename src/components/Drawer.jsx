@@ -9,7 +9,7 @@ import {
   Text,
   useDisclosure
 } from '@chakra-ui/react'
-import React, { useRef } from 'react'
+import React, { useContext, useRef } from 'react'
 import { Navigation } from './base/Navigation'
 import {
   Important as ImportantFilled,
@@ -30,6 +30,7 @@ import {
 import { Icon } from './base/Icon'
 import { ID, US } from 'country-flag-icons/react/3x2'
 import PropTypes from 'prop-types'
+import { AuthedUserContext } from '../context/AuthedUser'
 
 export const Drawer = ({
   locale,
@@ -38,6 +39,7 @@ export const Drawer = ({
   onThemeChange,
   onLogOut
 }) => {
+  const { authedUser } = useContext(AuthedUserContext)
   const { isOpen, onOpen, onClose } = useDisclosure()
   const btnRef = useRef()
   const sideNavBarList = [
@@ -121,7 +123,7 @@ export const Drawer = ({
                 noOfLines={1}
                 color={`gray.${theme === 'light' ? '600' : '300'}`}
               >
-                Muhammad Fauzul Hanif
+                {authedUser.name}
               </Heading>
 
               <Text
@@ -129,7 +131,7 @@ export const Drawer = ({
                 noOfLines={1}
                 color={`gray.${theme === 'light' ? '400' : '500'}`}
               >
-                muhammadfauzulhanif2230511102@ummi.ac.id
+                {authedUser.email}
               </Text>
             </Box>
           </DrawerHeader>

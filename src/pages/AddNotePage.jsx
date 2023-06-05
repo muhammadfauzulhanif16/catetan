@@ -23,6 +23,7 @@ export const AddNotePage = ({ onLogOut }) => {
 
   const [title, onTitleChange] = useForm('')
   const [content, onContentChange] = useForm('')
+  // const [maxTitleLength, setMaxTitleLength] = useState(50)
 
   const initialState = {
     title,
@@ -84,17 +85,17 @@ export const AddNotePage = ({ onLogOut }) => {
           <FormControl
             label={locale === 'en' ? 'Title' : 'Judul'}
             type='text'
-            helperText={
-              isInValidTitle
-                ? `${
-                    locale === 'en' ? 'Title is required' : 'Judul diperlukan'
-                  }`
-                : `${
-                    locale === 'en'
-                      ? 'Maximal: 50 characters left'
-                      : 'Maksimal: 50 karakter tersisa'
-                  }`
-            }
+            // helperText={
+            //   isInValidTitle
+            //     ? `${
+            //         locale === 'en' ? 'Title is required' : 'Judul diperlukan'
+            //       }`
+            //     : `${
+            //         locale === 'en'
+            //           ? `Maximal: ${maxTitleLength} characters left`
+            //           : `Maksimal: ${maxTitleLength} karakter tersisa`
+            //       }`
+            // }
             formHelperTextProps={{
               color: isInValidTitle
                 ? `red.${theme === 'light' ? '600' : '300'}`

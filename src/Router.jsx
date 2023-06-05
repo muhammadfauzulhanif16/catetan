@@ -4,14 +4,19 @@ import { AllNotesPage } from './pages/AllNotesPage'
 import { noteList } from './data/noteList'
 import { AddNotePage } from './pages/AddNotePage'
 import { ArchiveNotesPage } from './pages/ArchiveNotesPage'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { editAccessToken, getUserLogged } from './api'
 import { HomePage } from './pages/HomePage'
 import { RegisterPage } from './pages/RegisterPage'
 import { LogInPage } from './pages/LogInPage'
+import { AuthedUserContext } from './context/AuthedUser'
 
 export const Router = () => {
   const [authedUser, setAuthedUser] = useState(null)
+
+  const authedUserContextValue = useMemo(() => {
+    return { authedUser }
+  }, [authedUser])
 
   useEffect(() => {
     const onLoginSuccess = async () => {
@@ -19,7 +24,7 @@ export const Router = () => {
     }
 
     onLoginSuccess().then((r) => setAuthedUser(r.data))
-  }, [authedUser])
+  }, [])
 
   const onLoginSuccess = async ({ accessToken }) => {
     editAccessToken(accessToken)
@@ -50,17 +55,21 @@ export const Router = () => {
   const archivedNotes = noteList.filter((note) => note.archived === true)
 
   return (
-    <Routes>
-      <Route path='/*' element={<NotFoundPage onLogOut={onLogOut} />} />
-      <Route
-        path='/'
-        element={<AllNotesPage onLogOut={onLogOut} notes={allNotes} />}
-      />
-      <Route path='/add' element={<AddNotePage onLogOut={onLogOut} />} />
-      <Route
-        path='/archive'
-        element={<ArchiveNotesPage onLogOut={onLogOut} notes={archivedNotes} />}
-      />
-    </Routes>
+    <AuthedUserContext.Provider value={authedUserContextValue}>
+      <Routes>
+        <Route path='/*' element={<NotFoundPage onLogOut={onLogOut} />} />
+        <Route
+          path='/'
+          element={<AllNotesPage onLogOut={onLogOut} notes={allNotes} />}
+        />
+        <Route path='/add' element={<AddNotePage onLogOut={onLogOut} />} />
+        <Route
+          path='/archive'
+          element={
+            <ArchiveNotesPage onLogOut={onLogOut} notes={archivedNotes} />
+          }
+        />
+      </Routes>
+    </AuthedUserContext.Provider>
   )
 }
