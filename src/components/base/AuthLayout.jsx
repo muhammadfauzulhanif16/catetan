@@ -31,14 +31,7 @@ export const AuthLayout = ({
   const navigate = useNavigate()
 
   return (
-    <Layout
-      title={title}
-      boxProps={{
-        display: 'flex',
-        flexDirection: 'column',
-        h: '100vh'
-      }}
-    >
+    <Layout title={title}>
       <Header layout='auth' />
 
       <Flex

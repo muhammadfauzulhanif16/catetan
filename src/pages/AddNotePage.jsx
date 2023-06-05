@@ -70,14 +70,7 @@ export const AddNotePage = ({ onLogOut }) => {
   }
 
   return (
-    <Layout
-      title={locale === 'en' ? 'AddNotePage Note' : 'Tambah Catatan'}
-      boxProps={{
-        display: 'flex',
-        flexDirection: 'column',
-        h: '100vh'
-      }}
-    >
+    <Layout title={locale === 'en' ? 'AddNotePage Note' : 'Tambah Catatan'}>
       <Header layout='app' onLogOut={onLogOut} />
 
       <Flex

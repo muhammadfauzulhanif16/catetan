@@ -13,14 +13,7 @@ export const NotFoundPage = ({ onLogOut }) => {
   localStorage.setItem('catetan-path', null)
 
   return (
-    <Layout
-      title={locale === 'en' ? 'Not Found' : 'Tidak Ditemukan'}
-      boxProps={{
-        display: 'flex',
-        flexDirection: 'column',
-        h: '100vh'
-      }}
-    >
+    <Layout title={locale === 'en' ? 'Not Found' : 'Tidak Ditemukan'}>
       <Header layout='app' onLogOut={onLogOut} />
 
       <Flex color='gray.400' direction='column' alignItems='center' py={16}>
