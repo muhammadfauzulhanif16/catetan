@@ -46,17 +46,20 @@ export const Router = () => {
     )
   }
 
+  const allNotes = noteList.filter((note) => note.archived === false)
+  const archivedNotes = noteList.filter((note) => note.archived === true)
+
   return (
     <Routes>
       <Route path='/*' element={<NotFoundPage onLogOut={onLogOut} />} />
       <Route
         path='/'
-        element={<AllNotesPage onLogOut={onLogOut} notes={noteList} />}
+        element={<AllNotesPage onLogOut={onLogOut} notes={allNotes} />}
       />
       <Route path='/add' element={<AddNotePage onLogOut={onLogOut} />} />
       <Route
         path='/archive'
-        element={<ArchiveNotesPage onLogOut={onLogOut} notes={noteList} />}
+        element={<ArchiveNotesPage onLogOut={onLogOut} notes={archivedNotes} />}
       />
     </Routes>
   )
