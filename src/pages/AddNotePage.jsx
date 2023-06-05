@@ -9,6 +9,8 @@ import { FormControl } from '../components/base/FormControl'
 import { useForm } from '../utils/hooks'
 import { ThemeContext } from '../context/Theme'
 import { Navigation } from '../components/base/Navigation'
+import { Send as SendFilled } from '@emotion-icons/fluentui-system-filled'
+import { Send as SendRegular } from '@emotion-icons/fluentui-system-regular'
 
 export const AddNotePage = ({ onLogOut }) => {
   const { theme } = useContext(ThemeContext)
@@ -25,7 +27,7 @@ export const AddNotePage = ({ onLogOut }) => {
   const isValidTitle = title.length > 0
   const isValidContent = content.length > 0
 
-  // const isValid = !isValidTitle || !isValidContent
+  const isValidForm = !isValidTitle || !isValidContent
 
   const [isInValidTitle, setIsInValidTitle] = useState(false)
   const [isInValidContent, setIsInValidContent] = useState(false)
@@ -101,7 +103,7 @@ export const AddNotePage = ({ onLogOut }) => {
               // isLoading: isLoadingForm,
               // loadingText:
               //   isLoadingForm && locale === 'en' ? 'Loading' : 'Memuat',
-              // isDisabled: isValidForm,
+              isDisabled: isValidForm,
               display: 'flex',
               gap: 4,
               w: 'full',
@@ -114,13 +116,13 @@ export const AddNotePage = ({ onLogOut }) => {
               role: 'group'
               // onClick: onClickForm
             }}
-            // initIcon={isValidForm ? LockClosedRegular : LockOpenRegular}
-            // finalIcon={isValidForm ? LockClosedFilled : LockOpenFilled}
+            initIcon={SendRegular}
+            finalIcon={SendFilled}
             iconProps={{
               w: 6,
               h: 6
             }}
-            // text={formAction}
+            text={locale === 'en' ? 'Submit' : 'Kirim'}
           />
         </Flex>
       </Flex>
