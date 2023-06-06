@@ -7,8 +7,10 @@ import PropTypes from 'prop-types'
 import { Flex, Text } from '@chakra-ui/react'
 import { Icon } from '../components/base/Icon'
 import { Page } from '@emotion-icons/fluentui-system-regular'
+import { ThemeContext } from '../context/Theme'
 
 export const NotFoundPage = ({ onLogOut }) => {
+  const { theme } = useContext(ThemeContext)
   const { locale } = useContext(LocaleContext)
   localStorage.setItem('catetan-path', null)
 
@@ -17,7 +19,7 @@ export const NotFoundPage = ({ onLogOut }) => {
       <Header layout='app' onLogOut={onLogOut} />
 
       <Flex
-        color='gray.400'
+        color={`gray.${theme === 'light' ? '300' : '600'}`}
         direction='column'
         alignItems='center'
         justifyContent='center'

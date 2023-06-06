@@ -10,36 +10,42 @@ import { MoreHorizontal } from '@emotion-icons/fluentui-system-regular'
 import PropTypes from 'prop-types'
 import { menuList } from '../data/menuList'
 import { ThemeContext } from '../context/Theme'
-import { archivedNote, deleteNote, getNotes, unarchivedNote } from '../api'
 import { NotesContext } from '../context/Notes'
+import {
+  deleteNote,
+  editArchiveNote,
+  editUnarchiveNote,
+  getActiveNotes,
+  getArchiveNotes
+} from '../api'
 
 export const Menu = ({ data }) => {
   const { theme } = useContext(ThemeContext)
   // const navigate = useNavigate()
   const { setNotes } = useContext(NotesContext)
 
-  const onArchive = async (id) => {
-    await archivedNote(id)
+  const onArchiveNote = async (id) => {
+    await editArchiveNote(id)
 
-    getNotes().then(({ data }) => setNotes(data))
+    getArchiveNotes().then(({ data }) => setNotes(data))
   }
 
-  const onUnarchive = async (id) => {
-    await unarchivedNote(id)
+  const onUnarchiveNote = async (id) => {
+    await editUnarchiveNote(id)
 
-    getNotes().then(({ data }) => setNotes(data))
+    getActiveNotes().then(({ data }) => setNotes(data))
   }
 
   const onDeleteNote = async (id) => {
     await deleteNote(id)
 
-    getNotes().then(({ data }) => setNotes(data))
+    // getNotes().then(({ data }) => setNotes(data))
   }
 
   const menus = menuList({
     data,
-    onArchive,
-    onUnarchive,
+    onArchiveNote,
+    onUnarchiveNote,
     onDeleteNote
     // navigate
   })

@@ -9,6 +9,10 @@ export const editAccessToken = (accessToken) => {
 }
 
 export const fetchWithToken = async (url, options = {}) => {
+  if (!getAccessToken()) {
+    return null
+  }
+
   return fetch(url, {
     ...options,
     headers: {
@@ -16,24 +20,6 @@ export const fetchWithToken = async (url, options = {}) => {
       Authorization: `Bearer ${getAccessToken()}`
     }
   })
-}
-
-export const logInUser = async ({ email, password }) => {
-  const response = await fetch(`${BASE_URL}/login`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ email, password })
-  })
-
-  const responseJson = await response.json()
-
-  if (responseJson.status !== 'success') {
-    return { error: true, data: null }
-  }
-
-  return { error: false, data: responseJson }
 }
 
 export const registerUser = async ({ name, email, password }) => {
@@ -54,10 +40,28 @@ export const registerUser = async ({ name, email, password }) => {
   return { error: false, data: responseJson }
 }
 
-export const getUserLogged = async () => {
-  if (!getAccessToken()) {
+export const logInUser = async ({ email, password }) => {
+  const response = await fetch(`${BASE_URL}/login`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ email, password })
+  })
+
+  const responseJson = await response.json()
+
+  if (responseJson.status !== 'success') {
     return { error: true, data: null }
   }
+
+  return { error: false, data: responseJson }
+}
+
+export const getUserLogged = async () => {
+  // if (!getAccessToken()) {
+  //   return { error: true, data: null }
+  // }
 
   const response = await fetchWithToken(`${BASE_URL}/users/me`)
   const responseJson = await response.json()
@@ -87,10 +91,10 @@ export const addNote = async ({ title, body }) => {
   return { error: false, data: responseJson }
 }
 
-export const getNotes = async () => {
-  if (!getAccessToken()) {
-    return { error: true, data: [] }
-  }
+export const getActiveNotes = async () => {
+  // if (!getAccessToken()) {
+  //   return { error: true, data: [] }
+  // }
 
   const response = await fetchWithToken(`${BASE_URL}/notes`)
   const responseJson = await response.json()
@@ -102,9 +106,24 @@ export const getNotes = async () => {
   return { error: false, data: responseJson.data }
 }
 
-export const archivedNote = async (id) => {
+export const getArchiveNotes = async () => {
+  // if (!getAccessToken()) {
+  //   return { error: true, data: [] }
+  // }
+
+  const response = await fetchWithToken(`${BASE_URL}/notes/archived`)
+  const responseJson = await response.json()
+
+  if (responseJson.status !== 'success') {
+    return { error: true, data: [] }
+  }
+
+  return { error: false, data: responseJson.data }
+}
+
+export const editArchiveNote = async (id) => {
   const response = await fetchWithToken(`${BASE_URL}/notes/${id}/archive`, {
-    method: 'DELETE'
+    method: 'POST'
   })
 
   const responseJson = await response.json()
@@ -116,9 +135,9 @@ export const archivedNote = async (id) => {
   return { error: false, data: responseJson }
 }
 
-export const unarchivedNote = async (id) => {
+export const editUnarchiveNote = async (id) => {
   const response = await fetchWithToken(`${BASE_URL}/notes/${id}/unarchive`, {
-    method: 'DELETE'
+    method: 'POST'
   })
 
   const responseJson = await response.json()

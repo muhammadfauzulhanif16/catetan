@@ -5,7 +5,7 @@ import { NavBar } from '../components/NavBar'
 import { LocaleContext } from '../context/Locale'
 import PropTypes from 'prop-types'
 import { Shelf } from '../components/Shelf'
-import { getNotes } from '../api'
+import { getArchiveNotes } from '../api'
 import { NotesContext } from '../context/Notes'
 
 export const ArchiveNotesPage = ({ onLogOut }) => {
@@ -13,7 +13,7 @@ export const ArchiveNotesPage = ({ onLogOut }) => {
   const { notes, setNotes } = useContext(NotesContext)
 
   useEffect(() => {
-    getNotes().then(({ data }) => {
+    getArchiveNotes().then(({ data }) => {
       setNotes(data)
     })
 
@@ -22,13 +22,11 @@ export const ArchiveNotesPage = ({ onLogOut }) => {
     }
   }, [])
 
-  const archivedNotes = notes.filter((note) => note.archived === true)
-
   return (
     <Layout title={locale === 'en' ? 'Archive Notes' : 'Catatan Arsip'}>
       <Header layout='app' onLogOut={onLogOut} />
 
-      <Shelf notes={archivedNotes} />
+      <Shelf notes={notes} />
 
       <NavBar />
     </Layout>
