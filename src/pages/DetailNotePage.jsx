@@ -68,14 +68,17 @@ export const DetailNotePage = ({ onLogOut }) => {
 
   const actionDetailPage = [
     {
-      text: note?.archived ? 'Unarchive' : 'Archive',
+      text:
+        locale === 'en'
+          ? `${note?.archived ? 'Unarchive' : 'Archive'}`
+          : `${note?.archived ? 'Batalkan arsip' : 'Arsipkan'}`,
       initIcon: ArchiveRegular,
       finalIcon: ArchiveFilled,
       color: 'purple',
       onClick: onStatusNote
     },
     {
-      text: 'Delete',
+      text: locale === 'en' ? 'Delete' : 'Hapus',
       initIcon: DeleteRegular,
       finalIcon: DeleteFilled,
       color: 'red',
@@ -111,7 +114,11 @@ export const DetailNotePage = ({ onLogOut }) => {
                 {moment(note.createdAt).format('DD/MM/YY, HH:mm:ss')}
               </Text>
 
-              {note.archived && <Badge colorScheme='purple'>Archived</Badge>}
+              {note.archived && (
+                <Badge colorScheme='purple'>
+                  {locale === 'en' ? 'Archived' : 'Diarsipkan'}
+                </Badge>
+              )}
             </Flex>
 
             <Text>{note.body}</Text>

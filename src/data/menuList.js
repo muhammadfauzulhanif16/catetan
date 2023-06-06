@@ -40,6 +40,6 @@ menuList.propTypes = {
   data: PropTypes.object,
   onStatusNote: PropTypes.func,
   onDeleteNote: PropTypes.func,
-  navigate: PropTypes.func,
+  navigate: PropTypes.any,
   locale: PropTypes.string
 }

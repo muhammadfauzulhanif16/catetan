@@ -117,7 +117,9 @@ export const Menu = ({ data }) => {
             key={id}
             icon={icon}
             onClick={() => {
-              action(text === 'View' ? `/notes/${data.id}` : data)
+              action(
+                text === 'View' || text === 'Lihat' ? `/notes/${data.id}` : data
+              )
             }}
             color={`${color}.${theme === 'light' ? '400' : '500'}`}
             bgColor={`gray.${theme === 'light' ? '50' : '900'}`}
