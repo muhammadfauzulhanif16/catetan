@@ -59,8 +59,11 @@ export const EmptyState = () => {
           bgColor: `yellow.${theme === 'light' ? '400' : '500'}`,
           _hover: {
             color: `gray.${theme === 'light' ? '200' : '700'}`,
-            bgColor: `yellow.${theme === 'light' ? '500' : '400'}`,
-            onClick: () => navigate('/add')
+            bgColor: `yellow.${theme === 'light' ? '500' : '400'}`
+          },
+          onClick: () => {
+            navigate('/add')
+            localStorage.setItem('catetan-path', 'add')
           }
         }}
       />
