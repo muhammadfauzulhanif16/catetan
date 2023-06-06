@@ -61,7 +61,7 @@ export const AddNotePage = ({ onLogOut }) => {
         })
 
         navigate('/')
-        localStorage.setItem('catetan-path', 'all')
+        localStorage.setItem('catetan-path', 'active')
       } else {
         toast({
           title: data.message,
@@ -73,7 +73,7 @@ export const AddNotePage = ({ onLogOut }) => {
       }
 
       setIsLoadingForm(false)
-    }, 4000)
+    }, 2000)
   }
 
   return (

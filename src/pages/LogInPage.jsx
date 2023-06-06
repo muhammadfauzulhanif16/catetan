@@ -40,7 +40,7 @@ export const LogInPage = ({ onLoginSuccess }) => {
         })
 
         navigate('/')
-        localStorage.setItem('catetan-path', 'all')
+        localStorage.setItem('catetan-path', 'active')
       } else {
         toast({
           title: data.message,
@@ -52,7 +52,7 @@ export const LogInPage = ({ onLoginSuccess }) => {
       }
 
       setIsLoading(false)
-    }, 4000)
+    }, 2000)
   }
 
   return (

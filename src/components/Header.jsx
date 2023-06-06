@@ -27,7 +27,7 @@ export const Header = ({ layout, onLogOut }) => {
       zIndex={2}
       pt={[4, 8, 12]}
       px={[4, 8, 12]}
-      pb={4}
+      pb={localStorage.getItem('catetan-path') === 'add' ? 0 : [4, 8, 12]}
       top={0}
     >
       <Flex gap={4} w='full' justifyContent='space-between'>

@@ -50,7 +50,7 @@ export const RegisterPage = () => {
       }
 
       setIsLoading(false)
-    }, 4000)
+    }, 2000)
   }
 
   return (

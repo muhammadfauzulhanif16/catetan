@@ -6,10 +6,11 @@ import { Header } from '../components/Header'
 import { NavBar } from '../components/NavBar'
 import { LocaleContext } from '../context/Locale'
 import PropTypes from 'prop-types'
-import { Flex, Heading, Text } from '@chakra-ui/react'
-import { Menu } from '../components/Menu'
+import { Badge, Flex, Heading, Text } from '@chakra-ui/react'
+import { ThemeContext } from '../context/Theme'
 
 export const DetailNotePage = ({ onLogOut }) => {
+  const { theme } = useContext(ThemeContext)
   const { locale } = useContext(LocaleContext)
   const [note, setNote] = useState(null)
   const { id } = useParams()
@@ -31,14 +32,31 @@ export const DetailNotePage = ({ onLogOut }) => {
     <Layout title={locale === 'en' ? 'Active Notes' : 'Catatan Aktif'}>
       <Header layout='app' onLogOut={onLogOut} />
 
-      <Flex direction='column' px={[4, 8, 12]} h='full' w='full'>
-        <Flex justifyContent='space-between' w='full' gap={4}>
-          <Heading w='full'>{note.title}</Heading>
+      <Flex
+        direction='column'
+        px={[4, 8, 12]}
+        h='full'
+        color={`gray.${theme === 'light' ? '600' : '300'}`}
+        gap={4}
+      >
+        <Heading w='full'>{note.title}</Heading>
 
-          <Menu data={note} />
+        <Flex
+          justifyContent='space-between'
+          w='full'
+          gap={4}
+          alignItems='center'
+        >
+          <Text color={`gray.${theme === 'light' ? '500' : '400'}`}>
+            {note.createdAt}
+          </Text>
+
+          {note.archived && <Badge colorScheme='purple'>Archived</Badge>}
         </Flex>
+
         <Text>{note.body}</Text>
       </Flex>
+
       <NavBar />
     </Layout>
   )

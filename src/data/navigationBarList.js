@@ -10,12 +10,12 @@ import {
 } from '@emotion-icons/fluentui-system-filled'
 import PropTypes from 'prop-types'
 
-export const navigationList = ({ locale }) => [
+export const navigationBarList = ({ locale }) => [
   {
     initIcon: AppListRegular,
     finalIcon: AppListFilled,
-    text: locale === 'en' ? 'All' : 'Semua',
-    path: 'all'
+    text: locale === 'en' ? 'Active' : 'Aktif',
+    path: 'active'
   },
   {
     initIcon: AddRegular,
@@ -31,6 +31,6 @@ export const navigationList = ({ locale }) => [
   }
 ]
 
-navigationList.propTypes = {
+navigationBarList.propTypes = {
   locale: PropTypes.string
 }
