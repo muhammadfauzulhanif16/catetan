@@ -14,7 +14,7 @@ export const Shelf = ({ notes, isLoading }) => {
       {isLoading ? (
         <Navigation
           buttonProps={{
-            color: `gray.${theme === 'light' ? '300' : '600'}`,
+            color: `gray.${theme === 'light' ? '400' : '500'}`,
             display: 'flex',
             gap: 2,
             isLoading: true,
