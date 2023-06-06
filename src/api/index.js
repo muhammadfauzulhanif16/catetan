@@ -9,9 +9,9 @@ export const editAccessToken = (accessToken) => {
 }
 
 export const fetchWithToken = async (url, options = {}) => {
-  if (!getAccessToken()) {
-    return null
-  }
+  // if (!getAccessToken()) {
+  //   return null
+  // }
 
   return fetch(url, {
     ...options,
@@ -59,9 +59,9 @@ export const logInUser = async ({ email, password }) => {
 }
 
 export const getUserLogged = async () => {
-  // if (!getAccessToken()) {
-  //   return { error: true, data: null }
-  // }
+  if (!getAccessToken()) {
+    return { error: true, data: null }
+  }
 
   const response = await fetchWithToken(`${BASE_URL}/users/me`)
   const responseJson = await response.json()
@@ -92,9 +92,9 @@ export const addNote = async ({ title, body }) => {
 }
 
 export const getActiveNotes = async () => {
-  // if (!getAccessToken()) {
-  //   return { error: true, data: [] }
-  // }
+  if (!getAccessToken()) {
+    return { error: true, data: [] }
+  }
 
   const response = await fetchWithToken(`${BASE_URL}/notes`)
   const responseJson = await response.json()
@@ -107,9 +107,9 @@ export const getActiveNotes = async () => {
 }
 
 export const getArchiveNotes = async () => {
-  // if (!getAccessToken()) {
-  //   return { error: true, data: [] }
-  // }
+  if (!getAccessToken()) {
+    return { error: true, data: [] }
+  }
 
   const response = await fetchWithToken(`${BASE_URL}/notes/archived`)
   const responseJson = await response.json()
