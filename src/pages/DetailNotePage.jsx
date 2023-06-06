@@ -1,6 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import { getNote } from '../api'
+import { useNavigate, useParams } from 'react-router-dom'
+import {
+  deleteNote,
+  editArchiveNote,
+  editUnarchiveNote,
+  getActiveNotes,
+  getArchiveNotes,
+  getNote
+} from '../api'
 import { Layout } from '../components/base/Layout'
 import { Header } from '../components/Header'
 import { NavBar } from '../components/NavBar'
@@ -17,14 +24,36 @@ import {
   Archive as ArchiveFilled,
   Delete as DeleteFilled
 } from '@emotion-icons/fluentui-system-filled'
+import { NotesContext } from '../context/Notes'
 
 export const DetailNotePage = ({ onLogOut }) => {
   const { theme } = useContext(ThemeContext)
   const { locale } = useContext(LocaleContext)
+  const navigate = useNavigate()
   const [note, setNote] = useState(null)
   const { id } = useParams()
   const [isLoading, setIsLoading] = useState(true)
   localStorage.setItem('catetan-path', 'detail')
+
+  const { setNotes } = useContext(NotesContext)
+
+  const onStatusNote = async (data) => {
+    data.archived
+      ? await editUnarchiveNote(data.id)
+      : await editArchiveNote(data.id)
+
+    data.archived
+      ? getArchiveNotes().then(({ data }) => setNotes(data))
+      : getActiveNotes().then(({ data }) => setNotes(data))
+  }
+
+  const onDeleteNote = async (data) => {
+    await deleteNote(data.id)
+
+    data.archived
+      ? getArchiveNotes().then(({ data }) => setNotes(data))
+      : getActiveNotes().then(({ data }) => setNotes(data))
+  }
 
   useEffect(() => {
     setTimeout(() => {
@@ -40,13 +69,15 @@ export const DetailNotePage = ({ onLogOut }) => {
       text: note?.archived ? 'Unarchive' : 'Archive',
       initIcon: ArchiveRegular,
       finalIcon: ArchiveFilled,
-      color: 'purple'
+      color: 'purple',
+      onClick: onStatusNote
     },
     {
       text: 'Delete',
       initIcon: DeleteRegular,
       finalIcon: DeleteFilled,
-      color: 'red'
+      color: 'red',
+      onClick: onDeleteNote
     }
   ]
 
@@ -98,7 +129,15 @@ export const DetailNotePage = ({ onLogOut }) => {
                 gap: [2, 4],
                 w: 'full',
                 variant: 'outline',
-                colorScheme: action.color
+                colorScheme: action.color,
+                onClick: () => {
+                  navigate(`/${note.archived ? 'archive' : ''}`)
+                  localStorage.setItem(
+                    'catetan-path',
+                    `${note.archived ? 'archive' : 'active'}`
+                  )
+                  action.onClick(note)
+                }
               }}
               text={action.text}
             />
