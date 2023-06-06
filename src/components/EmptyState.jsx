@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Flex, Text } from '@chakra-ui/react'
+import { Box, Flex, Text } from '@chakra-ui/react'
 import { Icon } from './base/Icon'
 import { Note } from '@emotion-icons/fluentui-system-regular'
 import { ThemeContext } from '../context/Theme'
@@ -15,15 +15,20 @@ export const EmptyState = () => {
       justifyContent='center'
       py={16}
       h='full'
+      gap={4}
     >
       <Icon
         initIcon={Note}
         iconProps={{
-          w: 24,
-          h: 24
+          w: 12,
+          h: 12
         }}
       />
-      <Text fontSize='xl'>Ops... no notes yet</Text>
+
+      <Box textAlign='center'>
+        <Text fontSize='md'>Ops... no notes yet</Text>
+        <Text fontSize='md'>Please add one or more note</Text>
+      </Box>
     </Flex>
   )
 }
