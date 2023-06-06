@@ -20,12 +20,14 @@ import {
   getArchiveNotes
 } from '../api'
 import { useNavigate } from 'react-router-dom'
+import { LocaleContext } from '../context/Locale'
 
 export const Menu = ({ data }) => {
   const { theme } = useContext(ThemeContext)
   const navigate = useNavigate()
   const { setNotes } = useContext(NotesContext)
   const toast = useToast()
+  const { locale } = useContext(LocaleContext)
 
   const onStatusNote = (data) => {
     setTimeout(async () => {
@@ -87,7 +89,8 @@ export const Menu = ({ data }) => {
     data,
     onStatusNote,
     onDeleteNote,
-    navigate
+    navigate,
+    locale
   })
 
   return (
@@ -122,7 +125,7 @@ export const Menu = ({ data }) => {
               bgColor: `gray.${theme === 'light' ? '100' : '800'}`
             }}
           >
-            {`${text} note`}
+            {text}
           </MenuItem>
         ))}
       </MenuList>
