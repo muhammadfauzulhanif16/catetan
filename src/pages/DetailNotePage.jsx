@@ -13,7 +13,7 @@ import { Header } from '../components/Header'
 import { NavBar } from '../components/NavBar'
 import { LocaleContext } from '../context/Locale'
 import PropTypes from 'prop-types'
-import { Badge, Flex, Heading, Text } from '@chakra-ui/react'
+import { Badge, Flex, Heading, Text, useToast } from '@chakra-ui/react'
 import { ThemeContext } from '../context/Theme'
 import { Navigation } from '../components/base/Navigation'
 import {
@@ -32,25 +32,63 @@ export const DetailNotePage = ({ onLogOut }) => {
   const { theme } = useContext(ThemeContext)
   const { locale } = useContext(LocaleContext)
   const navigate = useNavigate()
+  const toast = useToast()
   const [note, setNote] = useState(null)
   const { id } = useParams()
   const [isLoading, setIsLoading] = useState(true)
+  const { setNotes } = useContext(NotesContext)
   localStorage.setItem('catetan-path', 'detail')
 
-  const { setNotes } = useContext(NotesContext)
+  const onStatusNote = (data) => {
+    setTimeout(async () => {
+      const { error, data: note } = data.archived
+        ? await editUnarchiveNote(data.id)
+        : await editArchiveNote(data.id)
 
-  const onStatusNote = async (data) => {
-    data.archived
-      ? await editUnarchiveNote(data.id)
-      : await editArchiveNote(data.id)
+      if (!error) {
+        toast({
+          title: note.message,
+          status: 'success',
+          duration: 4000,
+          isClosable: true,
+          position: 'top'
+        })
+      } else {
+        toast({
+          title: note.message,
+          status: 'error',
+          duration: 4000,
+          isClosable: true,
+          position: 'top'
+        })
+      }
 
-    data.archived
-      ? getArchiveNotes().then(({ data }) => setNotes(data))
-      : getActiveNotes().then(({ data }) => setNotes(data))
+      data.archived
+        ? getArchiveNotes().then(({ data }) => setNotes(data))
+        : getActiveNotes().then(({ data }) => setNotes(data))
+    })
   }
 
   const onDeleteNote = async (data) => {
-    await deleteNote(data.id)
+    const { error, data: note } = await deleteNote(data.id)
+
+    if (!error) {
+      toast({
+        title: note.message,
+        status: 'success',
+        duration: 4000,
+        isClosable: true,
+        position: 'top'
+      })
+    } else {
+      toast({
+        title: note.message,
+        status: 'error',
+        duration: 4000,
+        isClosable: true,
+        position: 'top'
+      })
+    }
 
     data.archived
       ? getArchiveNotes().then(({ data }) => setNotes(data))
@@ -139,7 +177,13 @@ export const DetailNotePage = ({ onLogOut }) => {
                   gap: [2, 4],
                   w: 'full',
                   variant: 'outline',
-                  colorScheme: action.color,
+                  color: `${action.color}.${theme === 'light' ? '400' : '500'}`,
+                  borderColor: `${action.color}.${
+                    theme === 'light' ? '400' : '500'
+                  }`,
+                  _hover: {
+                    bgColor: `gray.${theme === 'light' ? '100' : '800'}`
+                  },
                   onClick: () => {
                     navigate(`/${note.archived ? 'archive' : ''}`)
                     localStorage.setItem(
