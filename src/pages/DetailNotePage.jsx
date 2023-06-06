@@ -26,6 +26,7 @@ import {
 } from '@emotion-icons/fluentui-system-filled'
 import { NotesContext } from '../context/Notes'
 import moment from 'moment/moment'
+import { LoadingState } from '../components/LoadingState'
 
 export const DetailNotePage = ({ onLogOut }) => {
   const { theme } = useContext(ThemeContext)
@@ -87,17 +88,7 @@ export const DetailNotePage = ({ onLogOut }) => {
       <Header layout='app' onLogOut={onLogOut} />
 
       {isLoading ? (
-        <Navigation
-          buttonProps={{
-            color: `gray.${theme === 'light' ? '400' : '500'}`,
-            display: 'flex',
-            gap: 2,
-            isLoading: true,
-            h: 'full',
-            variant: '',
-            loadingText: 'Wait a minute'
-          }}
-        />
+        <LoadingState />
       ) : (
         <Flex
           direction='column'

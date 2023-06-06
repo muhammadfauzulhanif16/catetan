@@ -4,7 +4,7 @@ import { Box, SimpleGrid } from '@chakra-ui/react'
 import { Item } from './Item'
 import { ThemeContext } from '../context/Theme'
 import { EmptyState } from './EmptyState'
-import { Navigation } from './base/Navigation'
+import { LoadingState } from './LoadingState'
 
 export const Shelf = ({ notes, isLoading }) => {
   const { theme } = useContext(ThemeContext)
@@ -12,17 +12,7 @@ export const Shelf = ({ notes, isLoading }) => {
   return (
     <>
       {isLoading ? (
-        <Navigation
-          buttonProps={{
-            color: `gray.${theme === 'light' ? '400' : '500'}`,
-            display: 'flex',
-            gap: 2,
-            isLoading: true,
-            h: 'full',
-            variant: '',
-            loadingText: 'Wait a minute'
-          }}
-        />
+        <LoadingState />
       ) : (
         <Box flexGrow={1} overflowY='auto'>
           {notes && notes.length > 0 ? (
