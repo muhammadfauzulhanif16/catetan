@@ -24,28 +24,27 @@ export const Menu = ({ data }) => {
   // const navigate = useNavigate()
   const { setNotes } = useContext(NotesContext)
 
-  const onArchiveNote = async (id) => {
-    await editArchiveNote(id)
+  const onStatusNote = async (data) => {
+    data.archived
+      ? await editUnarchiveNote(data.id)
+      : await editArchiveNote(data.id)
 
-    getArchiveNotes().then(({ data }) => setNotes(data))
+    data.archived
+      ? getArchiveNotes().then(({ data }) => setNotes(data))
+      : getActiveNotes().then(({ data }) => setNotes(data))
   }
 
-  const onUnarchiveNote = async (id) => {
-    await editUnarchiveNote(id)
+  const onDeleteNote = async (data) => {
+    await deleteNote(data.id)
 
-    getActiveNotes().then(({ data }) => setNotes(data))
-  }
-
-  const onDeleteNote = async (id) => {
-    await deleteNote(id)
-
-    // getNotes().then(({ data }) => setNotes(data))
+    data.archived
+      ? getArchiveNotes().then(({ data }) => setNotes(data))
+      : getActiveNotes().then(({ data }) => setNotes(data))
   }
 
   const menus = menuList({
     data,
-    onArchiveNote,
-    onUnarchiveNote,
+    onStatusNote,
     onDeleteNote
     // navigate
   })
@@ -74,7 +73,7 @@ export const Menu = ({ data }) => {
             key={id}
             icon={icon}
             onClick={() => {
-              action(`${text === 'View' ? '/notes/' : ''}${data.id}`)
+              action(data)
             }}
             color={`${color}.${theme === 'light' ? '400' : '500'}`}
             bgColor={`gray.${theme === 'light' ? '50' : '900'}`}

@@ -6,24 +6,17 @@ import {
 import React from 'react'
 import PropTypes from 'prop-types'
 
-export const menuList = ({
-  data,
-  navigate,
-  onArchive,
-  onUnarchive,
-  onDeleteNote
-}) => {
+export const menuList = ({ data, onStatusNote, onDeleteNote }) => {
   return [
     {
       text: 'View',
       icon: <ContentView width={24} height={24} />,
-      // action: navigate,
       color: 'blue'
     },
     {
       text: data.archived ? 'Unarchived' : 'Archived',
       icon: <Archive width={24} height={24} />,
-      action: data.archived ? onUnarchive : onArchive,
+      action: onStatusNote,
       color: 'purple'
     },
     {
@@ -37,8 +30,6 @@ export const menuList = ({
 
 menuList.propTypes = {
   data: PropTypes.object,
-  navigate: PropTypes.func,
-  onArchive: PropTypes.func,
-  onUnarchive: PropTypes.func,
+  onStatusNote: PropTypes.func,
   onDeleteNote: PropTypes.func
 }
