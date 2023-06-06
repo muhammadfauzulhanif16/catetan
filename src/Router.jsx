@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, useSearchParams } from 'react-router-dom'
 import { NotFoundPage } from './pages/NotFoundPage'
 import { ActiveNotesPage } from './pages/ActiveNotesPage'
 import { AddNotePage } from './pages/AddNotePage'
@@ -16,6 +16,15 @@ export const Router = () => {
   const [authedUser, setAuthedUser] = useState(null)
   const [initializing, setInitializing] = useState(true)
   const [notes, setNotes] = useState([])
+  const [searchParams, setSearchParams] = useSearchParams()
+  const [searchKeyword, setSearchKeyword] = useState(
+    searchParams.get('keyword') || ''
+  )
+
+  const onSearchKeywordChange = ({ target: { value: keyword } }) => {
+    setSearchKeyword(keyword)
+    setSearchParams({ keyword })
+  }
 
   const authedUserContextValue = useMemo(() => {
     return { authedUser }
@@ -67,11 +76,26 @@ export const Router = () => {
       <NotesContext.Provider value={notesContextValue}>
         <Routes>
           <Route path='/*' element={<NotFoundPage onLogOut={onLogOut} />} />
-          <Route path='/' element={<ActiveNotesPage onLogOut={onLogOut} />} />
+          <Route
+            path='/'
+            element={
+              <ActiveNotesPage
+                onLogOut={onLogOut}
+                searchKeyword={searchKeyword}
+                onSearchKeywordChange={onSearchKeywordChange}
+              />
+            }
+          />
           <Route path='/add' element={<AddNotePage onLogOut={onLogOut} />} />
           <Route
             path='/archive'
-            element={<ArchiveNotesPage onLogOut={onLogOut} />}
+            element={
+              <ArchiveNotesPage
+                onLogOut={onLogOut}
+                searchKeyword={searchKeyword}
+                onSearchKeywordChange={onSearchKeywordChange}
+              />
+            }
           />
           <Route
             path='/notes/:id'

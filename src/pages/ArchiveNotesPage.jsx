@@ -8,7 +8,11 @@ import { Shelf } from '../components/Shelf'
 import { getArchiveNotes } from '../api'
 import { NotesContext } from '../context/Notes'
 
-export const ArchiveNotesPage = ({ onLogOut }) => {
+export const ArchiveNotesPage = ({
+  onLogOut,
+  searchKeyword,
+  onSearchKeywordChange
+}) => {
   const { locale } = useContext(LocaleContext)
   const { notes, setNotes } = useContext(NotesContext)
   const [isLoading, setIsLoading] = useState(false)
@@ -28,11 +32,22 @@ export const ArchiveNotesPage = ({ onLogOut }) => {
     }, 2000)
   }, [])
 
+  const searchNotes = notes.filter((data) =>
+    searchKeyword === ''
+      ? data
+      : data.title.toLowerCase().includes(searchKeyword.toLowerCase())
+  )
+
   return (
     <Layout title={locale === 'en' ? 'Archive Notes' : 'Catatan Arsip'}>
-      <Header layout='app' onLogOut={onLogOut} />
+      <Header
+        layout='app'
+        onLogOut={onLogOut}
+        searchKeyword={searchKeyword}
+        onSearchKeywordChange={onSearchKeywordChange}
+      />
 
-      <Shelf notes={notes} isLoading={isLoading} />
+      <Shelf notes={searchNotes} isLoading={isLoading} />
 
       <NavBar />
     </Layout>
@@ -40,5 +55,7 @@ export const ArchiveNotesPage = ({ onLogOut }) => {
 }
 
 ArchiveNotesPage.propTypes = {
-  onLogOut: PropTypes.func
+  onLogOut: PropTypes.func,
+  searchKeyword: PropTypes.string,
+  onSearchKeywordChange: PropTypes.func
 }

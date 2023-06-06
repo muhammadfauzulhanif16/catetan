@@ -12,7 +12,12 @@ import { LocaleContext } from '../context/Locale'
 import { ThemeContext } from '../context/Theme'
 import { Language } from './Language'
 
-export const Header = ({ layout, onLogOut }) => {
+export const Header = ({
+  layout,
+  onLogOut,
+  searchKeyword,
+  onSearchKeywordChange
+}) => {
   const { locale, onLocaleChange } = useContext(LocaleContext)
   const { theme, onThemeChange } = useContext(ThemeContext)
 
@@ -79,6 +84,8 @@ export const Header = ({ layout, onLogOut }) => {
               }
             }}
             inputProps={{
+              value: searchKeyword,
+              onChange: onSearchKeywordChange,
               placeholder:
                 locale === 'en'
                   ? 'Search notes by title...'
@@ -132,6 +139,8 @@ export const Header = ({ layout, onLogOut }) => {
             m: 0
           }}
           inputProps={{
+            value: searchKeyword,
+            onChange: onSearchKeywordChange,
             placeholder:
               locale === 'en'
                 ? 'Search notes by title...'
@@ -145,5 +154,8 @@ export const Header = ({ layout, onLogOut }) => {
 
 Header.propTypes = {
   layout: PropTypes.oneOf(['auth', 'app']).isRequired,
-  onLogOut: PropTypes.func
+  onLogOut: PropTypes.func,
+  notes: PropTypes.arrayOf(PropTypes.object),
+  searchKeyword: PropTypes.string,
+  onSearchKeywordChange: PropTypes.func
 }

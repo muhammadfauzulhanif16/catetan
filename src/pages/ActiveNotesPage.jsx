@@ -8,7 +8,11 @@ import { Shelf } from '../components/Shelf'
 import { getActiveNotes } from '../api'
 import { NotesContext } from '../context/Notes'
 
-export const ActiveNotesPage = ({ onLogOut }) => {
+export const ActiveNotesPage = ({
+  onLogOut,
+  searchKeyword,
+  onSearchKeywordChange
+}) => {
   const { locale } = useContext(LocaleContext)
   const { notes, setNotes } = useContext(NotesContext)
   const [isLoading, setIsLoading] = useState(false)
@@ -23,16 +27,27 @@ export const ActiveNotesPage = ({ onLogOut }) => {
       })
 
       return () => {
-        setNotes([])
+        setNotes([notes])
       }
     }, 2000)
   }, [])
 
+  const searchNotes = notes.filter((data) =>
+    searchKeyword === ''
+      ? data
+      : data.title.toLowerCase().includes(searchKeyword.toLowerCase())
+  )
+
   return (
     <Layout title={locale === 'en' ? 'Active Notes' : 'Catatan Aktif'}>
-      <Header layout='app' onLogOut={onLogOut} />
+      <Header
+        layout='app'
+        onLogOut={onLogOut}
+        searchKeyword={searchKeyword}
+        onSearchKeywordChange={onSearchKeywordChange}
+      />
 
-      <Shelf notes={notes} isLoading={isLoading} />
+      <Shelf notes={searchNotes} isLoading={isLoading} />
 
       <NavBar />
     </Layout>
@@ -40,5 +55,7 @@ export const ActiveNotesPage = ({ onLogOut }) => {
 }
 
 ActiveNotesPage.propTypes = {
-  onLogOut: PropTypes.func
+  onLogOut: PropTypes.func,
+  searchKeyword: PropTypes.string,
+  onSearchKeywordChange: PropTypes.func
 }
