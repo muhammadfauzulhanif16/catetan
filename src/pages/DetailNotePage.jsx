@@ -89,7 +89,13 @@ export const DetailNotePage = ({ onLogOut }) => {
               key={id}
               initIcon={action.initIcon}
               finalIcon={action.finalIcon}
+              iconProps={{
+                w: 6,
+                h: 6
+              }}
               buttonProps={{
+                display: 'flex',
+                gap: [2, 4],
                 w: 'full',
                 variant: 'outline',
                 colorScheme: action.color
