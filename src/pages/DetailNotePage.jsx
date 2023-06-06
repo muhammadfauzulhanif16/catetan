@@ -25,6 +25,7 @@ import {
   Delete as DeleteFilled
 } from '@emotion-icons/fluentui-system-filled'
 import { NotesContext } from '../context/Notes'
+import moment from 'moment/moment'
 
 export const DetailNotePage = ({ onLogOut }) => {
   const { theme } = useContext(ThemeContext)
@@ -105,7 +106,7 @@ export const DetailNotePage = ({ onLogOut }) => {
             alignItems='center'
           >
             <Text color={`gray.${theme === 'light' ? '500' : '400'}`}>
-              {note.createdAt}
+              {moment(note.createdAt).format('DD/MM/YY, HH:mm:ss')}
             </Text>
 
             {note.archived && <Badge colorScheme='purple'>Archived</Badge>}

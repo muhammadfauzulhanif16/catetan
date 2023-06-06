@@ -3,6 +3,7 @@ import { Box, Flex, Heading, Text } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 import { Menu } from './Menu'
 import { ThemeContext } from '../context/Theme'
+import moment from 'moment'
 
 export const Item = ({ data }) => {
   const { theme } = useContext(ThemeContext)
@@ -28,7 +29,7 @@ export const Item = ({ data }) => {
         <Menu data={data} />
 
         <Text color={`gray.${theme === 'light' ? '500' : '400'}`} noOfLines={1}>
-          {data.createdAt}
+          {moment(data.createdAt).format('DD/MM/YY, HH:mm:ss')}
         </Text>
       </Flex>
     </Box>

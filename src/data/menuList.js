@@ -14,7 +14,7 @@ export const menuList = ({ data, onStatusNote, onDeleteNote, navigate }) => [
     color: 'blue'
   },
   {
-    text: data.archived ? 'Unarchived' : 'Archived',
+    text: data.archived ? 'Unarchive' : 'Archive',
     icon: <Archive width={24} height={24} />,
     action: onStatusNote,
     color: 'purple'
