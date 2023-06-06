@@ -6,11 +6,12 @@ import {
 import React from 'react'
 import PropTypes from 'prop-types'
 
-export const menuList = ({ data, onStatusNote, onDeleteNote }) => {
+export const menuList = ({ data, onStatusNote, onDeleteNote, navigate }) => {
   return [
     {
       text: 'View',
       icon: <ContentView width={24} height={24} />,
+      action: navigate,
       color: 'blue'
     },
     {

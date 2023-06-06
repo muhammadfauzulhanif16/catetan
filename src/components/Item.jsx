@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { Menu } from './Menu'
 import { ThemeContext } from '../context/Theme'
 
-export const Item = ({ data, onArchive, onDelete, setPathName, active }) => {
+export const Item = ({ data }) => {
   const { theme } = useContext(ThemeContext)
 
   return (
@@ -25,13 +25,7 @@ export const Item = ({ data, onArchive, onDelete, setPathName, active }) => {
         alignItems='center'
         gap={4}
       >
-        <Menu
-          data={data}
-          onArchive={onArchive}
-          onDelete={onDelete}
-          setPathName={setPathName}
-          active={active}
-        />
+        <Menu data={data} />
 
         <Text color={`gray.${theme === 'light' ? '500' : '400'}`} noOfLines={1}>
           {data.createdAt}

@@ -121,6 +121,21 @@ export const getArchiveNotes = async () => {
   return { error: false, data: responseJson.data }
 }
 
+export const getNote = async (id) => {
+  if (!getAccessToken()) {
+    return { error: true, data: null }
+  }
+
+  const response = await fetchWithToken(`${BASE_URL}/notes/${id}`)
+  const responseJson = await response.json()
+
+  if (responseJson.status !== 'success') {
+    return { error: true, data: null }
+  }
+
+  return { error: false, data: responseJson.data }
+}
+
 export const editArchiveNote = async (id) => {
   const response = await fetchWithToken(`${BASE_URL}/notes/${id}/archive`, {
     method: 'POST'

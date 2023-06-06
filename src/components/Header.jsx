@@ -72,7 +72,8 @@ export const Header = ({ layout, onLogOut }) => {
               display: {
                 base: 'none',
                 md:
-                  localStorage.getItem('catetan-path') === 'add'
+                  localStorage.getItem('catetan-path') === 'add' ||
+                  localStorage.getItem('catetan-path') === 'detail'
                     ? 'none'
                     : 'block'
               }
@@ -122,7 +123,8 @@ export const Header = ({ layout, onLogOut }) => {
             w: 'full',
             display: {
               base:
-                localStorage.getItem('catetan-path') === 'add'
+                localStorage.getItem('catetan-path') === 'add' ||
+                localStorage.getItem('catetan-path') === 'detail'
                   ? 'none'
                   : 'block',
               md: 'none'

@@ -18,10 +18,11 @@ import {
   getActiveNotes,
   getArchiveNotes
 } from '../api'
+import { useNavigate } from 'react-router-dom'
 
 export const Menu = ({ data }) => {
   const { theme } = useContext(ThemeContext)
-  // const navigate = useNavigate()
+  const navigate = useNavigate()
   const { setNotes } = useContext(NotesContext)
 
   const onStatusNote = async (data) => {
@@ -45,8 +46,8 @@ export const Menu = ({ data }) => {
   const menus = menuList({
     data,
     onStatusNote,
-    onDeleteNote
-    // navigate
+    onDeleteNote,
+    navigate
   })
 
   return (
@@ -73,7 +74,7 @@ export const Menu = ({ data }) => {
             key={id}
             icon={icon}
             onClick={() => {
-              action(data)
+              action(text === 'View' ? `/notes/${data.id}` : data)
             }}
             color={`${color}.${theme === 'light' ? '400' : '500'}`}
             bgColor={`gray.${theme === 'light' ? '50' : '900'}`}
@@ -90,9 +91,5 @@ export const Menu = ({ data }) => {
 }
 
 Menu.propTypes = {
-  data: PropTypes.object,
-  onArchive: PropTypes.func,
-  onDelete: PropTypes.func,
-  setPathName: PropTypes.func,
-  active: PropTypes.string
+  data: PropTypes.object
 }

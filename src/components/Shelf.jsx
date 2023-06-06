@@ -5,7 +5,7 @@ import { Item } from './Item'
 import { ThemeContext } from '../context/Theme'
 import { EmptyState } from './EmptyState'
 
-export const Shelf = ({ onArchive, onDelete, setPathName, active, notes }) => {
+export const Shelf = ({ notes }) => {
   const { theme } = useContext(ThemeContext)
 
   return (
@@ -19,14 +19,7 @@ export const Shelf = ({ onArchive, onDelete, setPathName, active, notes }) => {
           px={[4, 8, 12]}
         >
           {notes.map((note) => (
-            <Item
-              key={note.id}
-              data={note}
-              onArchive={onArchive}
-              onDelete={onDelete}
-              setPathName={setPathName}
-              active={active}
-            />
+            <Item key={note.id} data={note} />
           ))}
         </SimpleGrid>
       ) : (
@@ -37,9 +30,5 @@ export const Shelf = ({ onArchive, onDelete, setPathName, active, notes }) => {
 }
 
 Shelf.propTypes = {
-  onArchive: PropTypes.func,
-  onDelete: PropTypes.func,
-  setPathName: PropTypes.func,
-  active: PropTypes.string,
   notes: PropTypes.arrayOf(PropTypes.object)
 }

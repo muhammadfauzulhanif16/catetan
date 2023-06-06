@@ -10,6 +10,7 @@ import { RegisterPage } from './pages/RegisterPage'
 import { LogInPage } from './pages/LogInPage'
 import { AuthedUserContext } from './context/AuthedUser'
 import { NotesContext } from './context/Notes'
+import { DetailNotePage } from './pages/DetailNotePage'
 
 export const Router = () => {
   const [authedUser, setAuthedUser] = useState(null)
@@ -71,6 +72,10 @@ export const Router = () => {
           <Route
             path='/archive'
             element={<ArchiveNotesPage onLogOut={onLogOut} />}
+          />
+          <Route
+            path='/notes/:id'
+            element={<DetailNotePage onLogOut={onLogOut} />}
           />
         </Routes>
       </NotesContext.Provider>
