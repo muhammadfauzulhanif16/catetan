@@ -7,7 +7,6 @@ import PropTypes from 'prop-types'
 import { Shelf } from '../components/Shelf'
 import { getActiveNotes } from '../api'
 import { NotesContext } from '../context/Notes'
-import { Navigation } from '../components/base/Navigation'
 
 export const ActiveNotesPage = ({ onLogOut }) => {
   const { locale } = useContext(LocaleContext)
@@ -16,6 +15,7 @@ export const ActiveNotesPage = ({ onLogOut }) => {
 
   useEffect(() => {
     setIsLoading(true)
+
     setTimeout(() => {
       getActiveNotes().then(({ data }) => {
         setNotes(data)
@@ -32,20 +32,7 @@ export const ActiveNotesPage = ({ onLogOut }) => {
     <Layout title={locale === 'en' ? 'Active Notes' : 'Catatan Aktif'}>
       <Header layout='app' onLogOut={onLogOut} />
 
-      {isLoading ? (
-        <Navigation
-          buttonProps={{
-            display: 'flex',
-            gap: 2,
-            isLoading: true,
-            h: 'full',
-            variant: '',
-            loadingText: 'Wait a minute'
-          }}
-        />
-      ) : (
-        <Shelf notes={notes} />
-      )}
+      <Shelf notes={notes} isLoading={isLoading} />
 
       <NavBar />
     </Layout>
