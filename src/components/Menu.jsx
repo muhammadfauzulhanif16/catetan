@@ -4,7 +4,8 @@ import {
   Menu as MenuChakra,
   MenuButton,
   MenuItem,
-  MenuList
+  MenuList,
+  useToast
 } from '@chakra-ui/react'
 import { MoreHorizontal } from '@emotion-icons/fluentui-system-regular'
 import PropTypes from 'prop-types'
@@ -24,19 +25,58 @@ export const Menu = ({ data }) => {
   const { theme } = useContext(ThemeContext)
   const navigate = useNavigate()
   const { setNotes } = useContext(NotesContext)
+  const toast = useToast()
 
-  const onStatusNote = async (data) => {
-    data.archived
-      ? await editUnarchiveNote(data.id)
-      : await editArchiveNote(data.id)
+  const onStatusNote = (data) => {
+    setTimeout(async () => {
+      const { error, data: note } = data.archived
+        ? await editUnarchiveNote(data.id)
+        : await editArchiveNote(data.id)
 
-    data.archived
-      ? getArchiveNotes().then(({ data }) => setNotes(data))
-      : getActiveNotes().then(({ data }) => setNotes(data))
+      if (!error) {
+        toast({
+          title: note.message,
+          status: 'success',
+          duration: 4000,
+          isClosable: true,
+          position: 'top'
+        })
+      } else {
+        toast({
+          title: note.message,
+          status: 'error',
+          duration: 4000,
+          isClosable: true,
+          position: 'top'
+        })
+      }
+
+      data.archived
+        ? getArchiveNotes().then(({ data }) => setNotes(data))
+        : getActiveNotes().then(({ data }) => setNotes(data))
+    })
   }
 
   const onDeleteNote = async (data) => {
-    await deleteNote(data.id)
+    const { error, data: note } = await deleteNote(data.id)
+
+    if (!error) {
+      toast({
+        title: note.message,
+        status: 'success',
+        duration: 4000,
+        isClosable: true,
+        position: 'top'
+      })
+    } else {
+      toast({
+        title: note.message,
+        status: 'error',
+        duration: 4000,
+        isClosable: true,
+        position: 'top'
+      })
+    }
 
     data.archived
       ? getArchiveNotes().then(({ data }) => setNotes(data))

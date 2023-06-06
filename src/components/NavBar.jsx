@@ -14,23 +14,12 @@ export const NavBar = () => {
   const { locale } = useContext(LocaleContext)
   const { theme } = useContext(ThemeContext)
 
-  // const actionDetailPage = [
-  //   {
-  //     text: 'Archive',
-  //     initIcon: ''
-  //   },
-  //   {
-  //     text: 'Delete',
-  //     finalIcon: ''
-  //   }
-  // ]
-
   return (
     <Flex
       flex='none'
       bgColor={`gray.${theme === 'light' ? '50' : '900'}`}
       px={[4, 8, 12]}
-      py={2}
+      py={[2, 4]}
       gap={2}
     >
       {navigationBarList({ locale }).map(
@@ -69,8 +58,6 @@ export const NavBar = () => {
           />
         )
       )}
-      {/*  </> */}
-      {/* )} */}
     </Flex>
   )
 }
