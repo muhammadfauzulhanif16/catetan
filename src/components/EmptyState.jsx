@@ -35,7 +35,7 @@ export const EmptyState = () => {
           {`${
             locale === 'en'
               ? 'Please add one or more notes'
-              : 'Silahkan tambahkan satu atau beberapa catatan'
+              : 'Silahkan tambah satu atau beberapa catatan'
           }.`}
         </Text>
       </Box>
