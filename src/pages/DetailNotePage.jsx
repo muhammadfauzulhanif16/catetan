@@ -82,69 +82,81 @@ export const DetailNotePage = ({ onLogOut }) => {
     }
   ]
 
-  if (isLoading) return <>loading</>
-
   return (
     <Layout title={locale === 'en' ? 'Active Notes' : 'Catatan Aktif'}>
       <Header layout='app' onLogOut={onLogOut} />
 
-      <Flex
-        direction='column'
-        px={[4, 8, 12]}
-        h='full'
-        color={`gray.${theme === 'light' ? '600' : '300'}`}
-        gap={4}
-        justifyContent='space-between'
-      >
-        <Flex gap={4} direction='column'>
-          <Heading w='full'>{note.title}</Heading>
+      {isLoading ? (
+        <Navigation
+          buttonProps={{
+            color: `gray.${theme === 'light' ? '400' : '500'}`,
+            display: 'flex',
+            gap: 2,
+            isLoading: true,
+            h: 'full',
+            variant: '',
+            loadingText: 'Wait a minute'
+          }}
+        />
+      ) : (
+        <Flex
+          direction='column'
+          px={[4, 8, 12]}
+          h='full'
+          color={`gray.${theme === 'light' ? '600' : '300'}`}
+          gap={4}
+          justifyContent='space-between'
+        >
+          <Flex gap={4} direction='column'>
+            <Heading w='full'>{note.title}</Heading>
 
-          <Flex
-            justifyContent='space-between'
-            w='full'
-            gap={4}
-            alignItems='center'
-          >
-            <Text color={`gray.${theme === 'light' ? '500' : '400'}`}>
-              {moment(note.createdAt).format('DD/MM/YY, HH:mm:ss')}
-            </Text>
+            <Flex
+              justifyContent='space-between'
+              w='full'
+              gap={4}
+              alignItems='center'
+            >
+              <Text color={`gray.${theme === 'light' ? '500' : '400'}`}>
+                {moment(note.createdAt).format('DD/MM/YY, HH:mm:ss')}
+              </Text>
 
-            {note.archived && <Badge colorScheme='purple'>Archived</Badge>}
+              {note.archived && <Badge colorScheme='purple'>Archived</Badge>}
+            </Flex>
+
+            <Text>{note.body}</Text>
           </Flex>
 
-          <Text>{note.body}</Text>
+          <Flex gap={4}>
+            {actionDetailPage.map((action, id) => (
+              <Navigation
+                key={id}
+                initIcon={action.initIcon}
+                finalIcon={action.finalIcon}
+                iconProps={{
+                  w: 6,
+                  h: 6
+                }}
+                buttonProps={{
+                  display: 'flex',
+                  gap: [2, 4],
+                  w: 'full',
+                  variant: 'outline',
+                  colorScheme: action.color,
+                  onClick: () => {
+                    navigate(`/${note.archived ? 'archive' : ''}`)
+                    localStorage.setItem(
+                      'catetan-path',
+                      `${note.archived ? 'archive' : 'active'}`
+                    )
+                    action.onClick(note)
+                  }
+                }}
+                text={action.text}
+              />
+            ))}
+          </Flex>
         </Flex>
-
-        <Flex gap={4}>
-          {actionDetailPage.map((action, id) => (
-            <Navigation
-              key={id}
-              initIcon={action.initIcon}
-              finalIcon={action.finalIcon}
-              iconProps={{
-                w: 6,
-                h: 6
-              }}
-              buttonProps={{
-                display: 'flex',
-                gap: [2, 4],
-                w: 'full',
-                variant: 'outline',
-                colorScheme: action.color,
-                onClick: () => {
-                  navigate(`/${note.archived ? 'archive' : ''}`)
-                  localStorage.setItem(
-                    'catetan-path',
-                    `${note.archived ? 'archive' : 'active'}`
-                  )
-                  action.onClick(note)
-                }
-              }}
-              text={action.text}
-            />
-          ))}
-        </Flex>
-      </Flex>
+      )}
 
       <NavBar />
     </Layout>
