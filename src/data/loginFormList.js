@@ -1,4 +1,4 @@
-import { useForm } from './hooks'
+import { useForm } from '../utils/hooks'
 import { useState } from 'react'
 import {
   Mail as MailRegular,
@@ -9,7 +9,7 @@ import {
   Password as PasswordFilled
 } from '@emotion-icons/fluentui-system-filled'
 
-export const loginForm = (locale) => {
+export const loginFormList = ({ locale }) => {
   const [email, onEmailChange] = useForm('')
   const [password, onPasswordChange] = useForm('')
 

@@ -3,7 +3,7 @@ import { Grid, useToast } from '@chakra-ui/react'
 import { FormControl } from '../components/base/FormControl'
 import { Icon } from '../components/base/Icon'
 import { useNavigate } from 'react-router-dom'
-import { loginForm } from '../utils/loginForm'
+import { loginFormList } from '../data/loginFormList'
 import { AuthLayout } from '../components/base/AuthLayout'
 import {
   formAction,
@@ -19,7 +19,7 @@ export const LogInPage = ({ onLoginSuccess }) => {
   const navigate = useNavigate()
   const { theme } = useContext(ThemeContext)
   const { locale } = useContext(LocaleContext)
-  const { formList, isValid, initialState } = loginForm(locale)
+  const { formList, isValid, initialState } = loginFormList({ locale })
   const [isLoading, setIsLoading] = useState(false)
   const toast = useToast()
 

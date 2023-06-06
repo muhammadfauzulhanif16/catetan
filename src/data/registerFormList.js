@@ -1,4 +1,4 @@
-import { useForm } from './hooks'
+import { useForm } from '../utils/hooks'
 import { useState } from 'react'
 import {
   Mail as MailRegular,
@@ -12,7 +12,7 @@ import {
 } from '@emotion-icons/fluentui-system-filled'
 import PropTypes from 'prop-types'
 
-export const registerForm = (locale) => {
+export const registerFormList = ({ locale }) => {
   const [fullName, onFullNameChange] = useForm('')
   const [email, onEmailChange] = useForm('')
   const [password, onPasswordChange] = useForm('')
@@ -125,6 +125,6 @@ export const registerForm = (locale) => {
   }
 }
 
-registerForm.propTypes = {
+registerFormList.propTypes = {
   locale: PropTypes.string
 }

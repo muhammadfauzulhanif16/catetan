@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Layout } from '../components/base/Layout'
 import { Header } from '../components/Header'
 import { NavBar } from '../components/NavBar'
@@ -7,24 +7,45 @@ import PropTypes from 'prop-types'
 import { Shelf } from '../components/Shelf'
 import { getActiveNotes } from '../api'
 import { NotesContext } from '../context/Notes'
+import { Navigation } from '../components/base/Navigation'
 
 export const ActiveNotesPage = ({ onLogOut }) => {
   const { locale } = useContext(LocaleContext)
   const { notes, setNotes } = useContext(NotesContext)
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
-    getActiveNotes().then(({ data }) => setNotes(data))
+    setIsLoading(true)
+    setTimeout(() => {
+      getActiveNotes().then(({ data }) => {
+        setNotes(data)
+        setIsLoading(false)
+      })
 
-    return () => {
-      setNotes([])
-    }
+      return () => {
+        setNotes([])
+      }
+    }, 2000)
   }, [])
 
   return (
     <Layout title={locale === 'en' ? 'Active Notes' : 'Catatan Aktif'}>
       <Header layout='app' onLogOut={onLogOut} />
 
-      <Shelf notes={notes} />
+      {isLoading ? (
+        <Navigation
+          buttonProps={{
+            display: 'flex',
+            gap: 2,
+            isLoading: true,
+            h: 'full',
+            variant: '',
+            loadingText: 'Wait a minute'
+          }}
+        />
+      ) : (
+        <Shelf notes={notes} />
+      )}
 
       <NavBar />
     </Layout>

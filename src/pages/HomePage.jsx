@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { AuthLayout } from '../components/base/AuthLayout'
-import { homePageActionList } from '../data/homePageActionList'
+import { homePageNavigationList } from '../data/homePageNavigationList'
 import { LocaleContext } from '../context/Locale'
 import { titlePageLocaleList } from '../utils/content'
 import { ThemeContext } from '../context/Theme'
@@ -19,7 +19,7 @@ export const HomePage = () => {
         w: ['full', '80%', '60%', '40%']
       }}
     >
-      {homePageActionList().map((action, id) => (
+      {homePageNavigationList().map((action, id) => (
         <Navigation
           key={id}
           text={action.name}

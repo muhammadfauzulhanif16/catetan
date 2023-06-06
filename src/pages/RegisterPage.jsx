@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { Grid, useToast } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom'
-import { registerForm } from '../utils/registerForm'
+import { registerFormList } from '../data/registerFormList'
 import { FormControl } from '../components/base/FormControl'
 import { Icon } from '../components/base/Icon'
 import { Checkmark } from '@emotion-icons/fluentui-system-filled'
@@ -19,7 +19,7 @@ export const RegisterPage = () => {
   const navigate = useNavigate()
   const { theme } = useContext(ThemeContext)
   const { locale } = useContext(LocaleContext)
-  const { formList, isValid, initialState } = registerForm(locale)
+  const { formList, isValid, initialState } = registerFormList({ locale })
   const [isLoading, setIsLoading] = useState(false)
   const toast = useToast()
 

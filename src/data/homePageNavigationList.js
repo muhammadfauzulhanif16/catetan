@@ -2,7 +2,7 @@ import { formAction } from '../utils/content'
 import { useContext } from 'react'
 import { LocaleContext } from '../context/Locale'
 
-export const homePageActionList = () => {
+export const homePageNavigationList = () => {
   const { locale } = useContext(LocaleContext)
 
   return [
