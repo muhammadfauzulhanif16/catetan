@@ -15,7 +15,7 @@ export const EmptyState = () => {
       direction='column'
       alignItems='center'
       justifyContent='center'
-      py={16}
+      px={[4, 0]}
       h='full'
       gap={4}
     >
@@ -29,12 +29,14 @@ export const EmptyState = () => {
 
       <Box textAlign='center'>
         <Text fontSize='md'>
-          {`Ops... ${locale === 'en' ? 'no notes yet' : 'belum ada catatan'}`}
+          {`Ops... ${locale === 'en' ? 'no notes yet' : 'belum ada catatan'}.`}
         </Text>
         <Text fontSize='md'>
-          {locale === 'en'
-            ? 'Please add one or more notes'
-            : 'Silahkan tambahkan satu atau beberapa catatan'}
+          {`${
+            locale === 'en'
+              ? 'Please add one or more notes'
+              : 'Silahkan tambahkan satu atau beberapa catatan'
+          }.`}
         </Text>
       </Box>
     </Flex>
